@@ -19,3 +19,4 @@
 Vagrantfile
 /.vagrant
 *.log
+/log
