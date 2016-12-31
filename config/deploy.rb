@@ -20,3 +20,13 @@ set :cache_path, 'var/cache'
 set :symfony_console_path, 'bin/console'
 set :symfony_console_flags, '--no-debug'
 set :controllers_to_clear, ['app_*.php', 'config.php']
+
+after 'deploy:symlink:release', 'symfony:clear_cache'
+
+namespace :symfony do
+  task :clear_cache do
+	on roles(:web) do
+	  symfony_console "cache:clear", "--env=prod --no-debug"
+	end
+  end
+end

@@ -70,13 +70,36 @@ nav.reduced .navbar-toggle {
   margin-top: 10px;
 }
 
+section#contacts #dzer_contact {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #dadada;
+  margin-left: 20px;
+}
+
+section#contacts p {
+  margin-left: 30px;
+  font-size: 1.1em;
+}
+
+section#contacts #nn_contact {
+  margin-top: 15px;
+  margin-left: 20px;
+}
+
+section#contacts #dzer_map, main #contacts #nn_map {
+  height: 300px;
+}
+
+.ymaps-2-1-47-map {
+  min-height: 300px;
+}
 /*** main body styles ***/
 
 main .heading {
   text-align: center;
   padding-top: 100px;
   padding-bottom: 40px;
-  background-image: url('images/over_heading.png');
+  background-image: url('bg/over_heading.png');
   background-position: center top;
   background-repeat: no-repeat;
 }
@@ -90,7 +113,7 @@ main .heading h2 {
 }
 
 main #jumbotron {
-  background-image: url('images/jumbotron_bg.jpg');
+  background-image: url('bg/jumbotron_bg.jpg');
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -162,26 +185,6 @@ main #call_form {
 
 main #call_form input, main #call_form textarea {
   margin-bottom: 15px;
-}
-
-main #contacts #dzer_contact {
-  padding-bottom: 15px;
-  border-bottom: 1px solid #dadada;
-  margin-left: 20px;
-}
-
-main #contacts p {
-  margin-left: 30px;
-  font-size: 1.1em;
-}
-
-main #contacts #nn_contact {
-  margin-top: 15px;
-  margin-left: 20px;
-}
-
-main #contacts #dzer_map, main #contacts #nn_map {
-  height: 300px;
 }
 
 /*** footer styles ***/
