@@ -2,93 +2,6 @@ body {
   font-family: Open Sans, Helvetica, Arial, sans-serif;
 }
 
-/*** header styles ***/
-
-header {
-  nav {
-    height: 104px;
-    background-color: #e7e7e7 !important;
-    box-shadow: 0px 3px 5px #888888;
-    opacity: 0.9;
-    transition: height 0.5s;
-
-    #header_menu li a {
-      padding-top: 41px;
-      padding-bottom: 42px;
-      font-size: 1.3em;
-      color: #414141;
-      transition: padding 0.5s;
-
-      &:hover {
-        color: #000;
-        background-color: #d8d8d8;
-      }
-    }
-
-
-    .navbar-toggle {
-      border: none !important;
-      margin-top: 35px;
-      transition: margin-top 0.5s;
-    }
-
-    .navbar-brand {
-      transition: padding 0.5s;
-
-      img {
-        height: 77px;
-        transition: height 0.5s;
-      }
-    }
-
-    &.reduced {
-      height: 50px;
-
-      .navbar-brand {
-        padding: 3px;
-
-        img {
-          height: 40px;
-        }
-      }
-
-      .navbar-toggle {
-        margin-top: 10px;
-      }
-
-      #header_menu li a {
-        padding-top: 14px;
-        padding-bottom: 15px;
-      }
-
-    }
-  }
-
-  #contacts {
-    p {
-      margin-left: 30px;
-      font-size: 1.1em;
-    }
-
-    #dzer_contact {
-      padding-bottom: 15px;
-      border-bottom: 1px solid #dadada;
-      margin-left: 20px;
-    }
-
-    #nn_contact {
-      margin-top: 15px;
-      margin-left: 20px;
-    }
-
-    #dzer_map, #nn_map {
-      height: 300px;
-    }
-  }
-}
-
-/*** main body styles ***/
-
 main {
   .heading {
     text-align: center;
@@ -115,13 +28,9 @@ main {
     background-size: cover;
 
     .jumbotron {
-      margin-top: 150px;
+      margin-top: 200px;
       background: inherit !important;
       text-align: center;
-
-      .col-sm-6 {
-        padding: 5px;
-      }
     }
   }
 
@@ -182,63 +91,9 @@ main {
   }
 }
 
-/*** footer styles ***/
-
-footer {
-  background-color: #2e3032;
-  color: #fff;
-
-  .footer_heading {
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-
-  ul {
-    padding-left: 0;
-    list-style-type: none;
-  }
-
-  a {
-    color: #fff;
-
-    &:hover {
-      color: #dadada;
-    }
-  }
-
-  #copyright {
-    margin-bottom: 10px;
-  }
-
-  .glyphicon {
-    margin-right: 5px;
-  }
-
-  .contact{
-    margin-top: 20px;
-  }
-
+//!!!!!DELETEME!!!!!!!!!
+#iamnotready {
+  margin-top: 100px;
+  text-align: center;
 }
-
-@media (max-width: 991px) {
-  nav {
-    #header_menu {
-      background: #e7e7e7;
-      margin-top: 30px;
-      li a {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        &:hover {
-          border-color: #e7e7e7;
-        }
-      }
-    }
-    
-    &.reduced { 
-      #header_menu {
-        margin-top: 1px;
-      }
-    }
-  }
-
-}
+//!!!!!DELETEME!!!!!!!!!

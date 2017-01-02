@@ -4,16 +4,16 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Студия Буржуа{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        {% stylesheets '@AppBundle/Resources/styles/main.css.scss' filter='sass' %}
+        {% stylesheets '@AppBundle/Resources/styles/*.scss' filter='sass' %}
             <link rel="stylesheet" href="{{ asset_url }}">
         {% endstylesheets %}
+        {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-        {% javascripts '@AppBundle/Resources/js/main.js' %}
+        {% javascripts '@AppBundle/Resources/js/*.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
     </head>
@@ -34,9 +34,33 @@
                     </div>
                     <div class="navbar-collapse collapse" id="header_menu">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/"><small>УСЛУГИ</small></a></li>
-                            <li><a href="/"><small>ВЫПОЛНЕННЫЕ РАБОТЫ</small></a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#contacts">
+                            <li class="dropdown">
+                                <a href="/" class="header_link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <small>УСЛУГИ<span class="caret"></span></small>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('show_service', {'slug': 'ремонт-квартир-и-ванных-комнат'}) }}">Ремонт квартир и ванных комнат</a></li>
+                                    <li><a href="{{ path('show_service', {'slug': 'ремонт-офисов'}) }}">Ремонт офисов</a></li>
+                                    <li><a href="{{ path('show_service', {'slug': 'частичный-ремонт'}) }}">Частичный ремонт</a></li>
+                                    <li><a href="{{ path('show_service', {'slug': 'продажа-материалов'}) }}">Продажа материалов</a></li>
+                                    <li><a href="{{ path('show_service', {'slug': 'утепление-помещений'}) }}">Утепление помещений</a></li>
+                                    <li><a href="{{ path('show_service', {'slug': 'строительство'}) }}">Строительство</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="/" class="header_link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <small>ВЫПОЛНЕННЫЕ РАБОТЫ<span class="caret"></span></small>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('show_work', {'slug': 'ванные-комнаты'}) }}">Ванные комнаты</a></li>
+                                    <li><a href="{{ path('show_work', {'slug': 'квартиры'}) }}">Квартиры</a></li>
+                                    <li><a href="{{ path('show_work', {'slug': 'нежилые-помещения'}) }}">Нежилые помещения</a></li>
+                                    <li><a href="{{ path('show_work', {'slug': 'дизайн-проекты'}) }}">Дизайн проекты</a></li>
+                                    <li><a href="{{ path('show_work', {'slug': 'бани-сауны'}) }}">Бани, сауны</a></li>
+                                    <li><a href="{{ path('show_work', {'slug': 'коттеджи'}) }}">Коттеджи</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" class="header_link" data-toggle="modal" data-target="#contacts">
                                 <small>КОНТАКТЫ</small>
                             </a></li>
                         </ul>
@@ -87,22 +111,21 @@
             </section>
         </header>
 
-        <main role="main">{% block body %}{% endblock %}</main>
+        <main role="main">{% block main %}{% endblock %}</main>
 
         <footer>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-md-3 col-sm-6">
                         <div class="footer_heading">
                             <small><strong>КОМПАНИЯ</strong></small>
                         </div>
                         <ul>
-                            <li><a href="#">О нас</a></li>
-                            <li><a href="#">Цены</a></li>
-                            <li><a href="#">Выполненные работы</a></li>
+                            <li><a href="{{ path('aboutpage') }}">О нас</a></li>
+                            <li><a href="{{ path('prices') }}">Цены</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-md-3 col-sm-6">
                         <div class="footer_heading">
                             <small><strong>УСЛУГИ</strong></small>
                         </div>
@@ -115,7 +138,20 @@
                             <li><a href="#">Строительство</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footer_heading">
+                            <small><strong>ВЫПОЛНЕННЫЕ РАБОТЫ</strong></small>
+                        </div>
+                        <ul>
+                            <li><a href="#">Ванные комнаты</a></li>
+                            <li><a href="#">Квартиры</a></li>
+                            <li><a href="#">Нежилые помещения</a></li>
+                            <li><a href="#">Дизайн проекты</a></li>
+                            <li><a href="#">Бани, сауны</a></li>
+                            <li><a href="#">Коттеджи</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
                         <div class="footer_heading">
                             <small><strong>КОНТАКТЫ</strong></small>
                         </div>
@@ -162,7 +198,6 @@
             </div>
         </footer>
 
-        {% block javascripts %}
-        {% endblock %}
+        {% block javascripts %}{% endblock %}
     </body>
 </html>

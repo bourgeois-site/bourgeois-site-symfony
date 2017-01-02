@@ -14,4 +14,12 @@ class DefaultController extends Controller
     {
         return $this->render('default/index.html.twig');
     }
+
+    /**
+     * @Route("/компания", name="aboutpage")
+     */
+    public function aboutAction()
+    {
+        return $this->render('default/about.html.twig');
+    }
 }

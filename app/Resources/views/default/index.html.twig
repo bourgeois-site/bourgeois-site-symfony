@@ -1,20 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block main %}
 <section id="jumbotron">
     <div class="container-fluid">
         <div class="row">
             <div class="jumbotron col-md-6 col-md-offset-3">
                 <h1>Студия Буржуа</h1>
                 <p>Мы предлагаем услуги включающие в себя все работы по частичному ремонту и ремонту "под ключ"</p>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a href="/" class="btn btn-default btn-lg btn-block">О компании</a>
-                    </div>
-                    <div class="col-sm-6">
-                        <a href="#call_form" class="btn btn-warning btn-lg btn-block">Вызов замерщика</a>
-                    </div>
-                </div>
+                <a href="{{ path('aboutpage') }}" class="btn btn-warning btn-lg">О компании</a>
             </div>
         </div>
     </div>
@@ -29,7 +22,7 @@
     </div>
     <div class="row">
     <div class="col-md-4 col-sm-6 service">
-        <a href="/">
+        <a href="{{ path('show_service', {'slug': 'ремонт-квартир-и-ванных-комнат'}) }}">
             <span class="service_caption">
                 <h3>Ремонт квартир и ванных комнат</h3>
                 <p class="service_description">
@@ -40,7 +33,7 @@
         </a>
     </div>
     <div class="col-md-4 col-sm-6 service">
-        <a href="/">
+        <a href="{{ path('show_service', {'slug': 'ремонт-офисов'}) }}">
             <span class="service_caption">
                 <h3>Ремонт офисов</h3>
                 <p class="service_description">
@@ -51,7 +44,7 @@
         </a>
     </div>
     <div class="col-md-4 col-sm-6 service">
-        <a href="/">
+        <a href="{{ path('show_service', {'slug': 'частичный-ремонт'}) }}">
             <span class="service_caption">
                 <h3>Частичный ремонт</h3>
                 <p class="service_description">
@@ -62,7 +55,7 @@
         </a>
     </div>
     <div class="col-md-4 col-sm-6 service">
-        <a href="/">
+        <a href="{{ path('show_service', {'slug': 'продажа-материалов'}) }}">
             <span class="service_caption">
                 <h3>Продажа материалов</h3>
                 <p class="service_description">
@@ -73,7 +66,7 @@
         </a>
     </div>
     <div class="col-md-4 col-sm-6 service">
-        <a href="/">
+        <a href="{{ path('show_service', {'slug': 'утепление-помещений'}) }}">
             <span class="service_caption">
                 <h3>Утепление помещений</h3>
                 <p class="service_description">
@@ -84,7 +77,7 @@
         </a>
     </div>
     <div class="col-md-4 col-sm-6 service">
-        <a href="/">
+        <a href="{{ path('show_service', {'slug': 'строительство'}) }}">
             <span class="service_caption">
                 <h3>Строительство</h3>
                 <p class="service_description">
