@@ -36,6 +36,7 @@ $(document).ready(function() {
     var img = $(this).find('img');
     img.css('opacity', '0.1');
   });
+
   $('main #services .service').mouseleave(function() {
     var caption = $(this).find('.service_caption');
     caption.css('color', '#fff');
