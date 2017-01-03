@@ -1,11 +1,17 @@
-var setHeight = function() {
+var setCustomerHeight = function() {
   var element = $('main #customers .customer_logo');
   element.css('height', element.css('width'));
 }
 
-var setHeightJumbotron = function() {
+var setFullScreenHeight = function(element) {
   var windowHeight = $(window).height();
-  $('main #jumbotron').css('height', String(windowHeight) + "px");
+  $(element).css('height', String(windowHeight) + "px");
+}
+
+var setServicesHeight = function() {
+  var headingHeight = $('#services .heading').height() + 100 + 40; // paddings
+  var imageHeight = $(window).height() - headingHeight;
+  $('#services .item img').css('height', String(imageHeight) + "px");
 }
 
 var cutServiceDescriptions = function() {
@@ -16,10 +22,6 @@ var cutServiceDescriptions = function() {
 }
 
 $(document).ready(function() {
-  $('main #services .service_description').slideUp(300);
-  cutServiceDescriptions();
-  setHeightJumbotron();
-  setHeight();
   $(window).scroll(function() {
     if($(this).scrollTop() > 50) {
       $('header nav').addClass('reduced');
@@ -28,21 +30,8 @@ $(document).ready(function() {
     }
   });
 
-  $('main #services .service').mouseenter(function() {
-    var caption = $(this).find('.service_caption');
-    caption.css('color', '#000');
-    caption.css('text-shadow', 'none');
-    caption.children('.service_description').slideDown(300);
-    var img = $(this).find('img');
-    img.css('opacity', '0.1');
-  });
-
-  $('main #services .service').mouseleave(function() {
-    var caption = $(this).find('.service_caption');
-    caption.css('color', '#fff');
-    caption.css('text-shadow', '0 1px 1px #000');
-    caption.children('.service_description').slideUp(300);
-    var img = $(this).find('img');
-    img.css('opacity', '1.0');
-  });
+  setFullScreenHeight('#jumbotron');
+  setServicesHeight();
+  setCustomerHeight();
+  cutServiceDescriptions();
 });

@@ -1,82 +1,96 @@
 /*** header styles ***/
 
 $header_font_size: 1.3em;
+$bg_grey: #e7e7e7;
+$reduced_nav_height: 50px;
+$reduced_img_height: 42px;
+$opened_dropdown_bg: #f3f3f3;
+$transition_time: 0.5s;
+
 header {
   nav {
-    height: 92px;
-    background-color: #e7e7e7 !important;
+    height: $reduced_nav_height;
+    background: $bg_grey !important;
     box-shadow: 0px 3px 5px #888888;
-    transition: height 0.5s;
-
-    #header_menu li a {
-      padding-top: 12px;
-      padding-bottom: 12px;
-
-      &.header_link {
-        padding-top: 35px;
-        padding-bottom: 36px;
-        font-size: $header_font_size;
-        color: #414141;
-        transition: padding 0.5s;
-      }
-
-      &:hover {
-        color: #000;
-        background-color: #d8d8d8;
-      }
-    }
+    transition: height $transition_time;
 
     .navbar-brand {
-      transition: padding 0.5s;
+      padding: 4px 0px 4px 8px;
+      transition: padding $transition_time;
 
       img {
-        height: 68px;
-        transition: height 0.5s;
+        height: $reduced_img_height;
+        transition: height $transition_time;
       }
     }
 
-    .dropdown-menu a {
-      font-size: $header_font_size;
+    .navbar-toggle {
+      margin-top: 9px;
+    }
+
+    .dropdown.open {
+      .dropdown-toggle {
+        background-color: $opened_dropdown_bg !important;
+        @media (min-width: 768px) {
+          background-color: inherit !important;
+        }
+        color: #000 !important;
+      }
+    }
+
+    #header_menu {
+      background-color: #fff;
+      @media (max-width: 767px) {
+        border-top: 1px solid #aaa;
+      }
+
+      li a {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        color: #414141;
+        
+        &.header_link {
+          transition: padding $transition_time;
+        }
+
+        &:hover {
+          color: #000;
+        }
+      }
     }
 
     &.reduced {
-      height: 50px;
+      height: $reduced_nav_height;
 
       .navbar-brand {
-        padding: 3px;
-
         img {
-          height: 44px;
+          height: $reduced_img_height;
         }
       }
 
-      .navbar-toggle {
-        margin-top: 10px;
+      #header_menu {
+        @media (min-width: 768px) {
+          li a.header_link {
+            padding-top: 15px;
+            padding-bottom: 14px;
+          }
+        }
       }
-
-      #header_menu li a.header_link {
-        padding-top: 14px;
-        padding-bottom: 15px;
-      }
-
     }
   }
 
   #contacts {
     p {
       margin-left: 30px;
-      font-size: 1.1em;
     }
 
     #dzer_contact {
       padding-bottom: 15px;
       border-bottom: 1px solid #dadada;
-      margin-left: 20px;
     }
 
     #nn_contact {
       margin-top: 15px;
-      margin-left: 20px;
     }
 
     #dzer_map, #nn_map {
@@ -85,37 +99,72 @@ header {
   }
 }
 
-@media (max-width: 991px) {
-  nav {
-    #header_menu {
-      background: #e7e7e7;
-      margin-top: 23px;
+@media (min-width: 768px) {
+  header {
+    nav {
+      height: 72px;
+      background: $bg_grey !important;
+      background: linear-gradient(45deg, $bg_grey 35%, white 50%) !important;
 
-      li a {
-        padding-top: 12px !important;
-        padding-bottom: 12px !important;
-        &:hover {
-          border-color: #e7e7e7;
+      .navbar-brand {
+        img {
+          height: 64px;
+        }
+      }
+
+      #header_menu {
+        background: inherit;
+
+        li a {
+          font-size: $header_font_size;
+
+          &.header_link {
+            padding-top: 26px;
+            padding-bottom: 25px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  header {
+    nav {
+      height: 92px;
+
+      #header_menu {
+        li a {
+          &.header_link {
+            padding-top: 36px;
+            padding-bottom: 35px;
+          }
+        }
+      }
+
+      .navbar-brand {
+        img {
+          height: 84px;
         }
       }
     }
 
-    .navbar-toggle {
-      border: none !important;
-      margin-top: 30px;
-      transition: margin-top 0.5s;
-    }
-    
-    &.reduced { 
-      #header_menu {
-        margin-top: 1px;
+    #contacts {
+      #dzer_contact {
+        margin-left: 20px;
+      }
+
+      #nn_contact {
+        margin-left: 20px;
       }
     }
   }
+}
 
-  #contacts {
-    #nn_contact, #dzer_contact {
-      margin-left: 0px !important;
+@media (min-width: 1200px) {
+  header {
+    nav {
+      background: linear-gradient(45deg, $bg_grey 45%, white 55%) !important;
     }
   }
 }

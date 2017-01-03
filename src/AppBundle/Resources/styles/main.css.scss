@@ -32,31 +32,16 @@ main {
       background: inherit !important;
       text-align: center;
     }
+
+    a {
+      margin-bottom: 3px !important;
+    }
   }
 
   #services {
-    padding-bottom: 0;
-
     img {
-      min-width: 100%;
-      opacity: 1;
-      transition: opacity 0.5s;
-    }
-
-    .col-md-4 {
-      padding: 0 !important;
-      overflow: hidden;
-      height: 200px;
-    }
-
-    .service_caption {
-      position: absolute;
-      text-align: center;
-      bottom: 5%;
-      left: 10%;
-      width: 80%;
-      color: #fff;
-      text-shadow: 0 1px 1px #000;
+      margin: auto;
+      max-width: none;
     }
   }
 
