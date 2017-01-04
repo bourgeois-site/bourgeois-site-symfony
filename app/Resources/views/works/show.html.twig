@@ -1,8 +1,138 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Выполненные работы - {{ work}} - {{ parent() }}{% endblock %}
+
 {% block main %}
-<div id="iamnotready">
-    <h1>Выполненные работы - {{ service }}</h1>
-    <p>Здесь будет все о {{ service }}</p>
+<div id="page_header">
+    <h1>{{ work|upper }}</h1>
+    <div class="divider"></div>
 </div>
+
+<section class="subsection container">
+    <div class="heading">
+        <h1>Без названия</h1>
+        <!-- if no text -->
+    </div>
+    <div id="first_carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#first_carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#first_carousel" data-slide-to="1"></li>
+            <li data-target="#first_carousel" data-slide-to="2"></li>
+            <li data-target="#first_carousel" data-slide-to="3"></li>
+            <li data-target="#first_carousel" data-slide-to="4"></li>
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/dsc_0426.jpg">
+            </div>
+            <div class="item">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/dsc_0430.jpg">
+            </div>
+            <div class="item">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/dsc_0431.jpg">
+            </div>
+            <div class="item">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/dsc_0432.jpg">
+            </div>
+            <div class="item">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/dsc_0439.jpg">
+            </div>
+        </div>
+
+        <a class="left carousel-control" href="#first_carousel" role="button" data-slide="prev">
+            <span class="icon-prev" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="right carousel-control" href="#first_carousel" role="button" data-slide="next">
+            <span class="icon-next" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+
+<section class="subsection container">
+    <div class="heading">
+        <h1>Тогда-то там-то</h1>
+        <h2 class="h4">Значит, дело было так: ...  </h2>
+    </div>
+    <div id="second_carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#second_carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#second_carousel" data-slide-to="1"></li>
+            <li data-target="#second_carousel" data-slide-to="2"></li>
+            <li data-target="#second_carousel" data-slide-to="3"></li>
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/dscn0306.jpg">
+            </div>
+            <div class="item">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/dscn0307.jpg">
+            </div>
+            <div class="item">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/dscn0308.jpg">
+            </div>
+            <div class="item">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/dscn0309.jpg">
+            </div>
+        </div>
+
+        <a class="left carousel-control" href="#second_carousel" role="button" data-slide="prev">
+            <span class="icon-prev" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="right carousel-control" href="#second_carousel" role="button" data-slide="next">
+            <span class="icon-next" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+
+<section class="subsection container">
+    <div class="heading">
+        <h1>В другом месте</h1>
+        <h2 class="h4">А я такой ей и говорю: "Мадам, ...</h2>
+    </div>
+    <div id="third_carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#third_carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#third_carousel" data-slide-to="1"></li>
+            <li data-target="#third_carousel" data-slide-to="2"></li>
+            <li data-target="#third_carousel" data-slide-to="3"></li>
+            <li data-target="#third_carousel" data-slide-to="4"></li>
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/img_0222.jpg">
+            </div>
+            <div class="item">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/img_0223.jpg">
+            </div>
+            <div class="item">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/img_0225.jpg">
+            </div>
+            <div class="item">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/img_0226.jpg">
+            </div>
+            <div class="item">
+                <img src="http://студия-буржуа.рф/assets/galleries/21/img_0227.jpg">
+            </div>
+        </div>
+
+        <a class="left carousel-control" href="#third_carousel" role="button" data-slide="prev">
+            <span class="icon-prev" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="right carousel-control" href="#third_carousel" role="button" data-slide="next">
+            <span class="icon-next" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
 {% endblock %}

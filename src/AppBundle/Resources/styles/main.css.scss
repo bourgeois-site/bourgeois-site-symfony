@@ -1,19 +1,38 @@
 body {
   font-family: Open Sans, Helvetica, Arial, sans-serif;
 
-  .form_in_well {
-    input, textarea {
-      margin-bottom: 15px;
-    }
+  .well {
+    margin-bottom: 0;
 
-    textarea {
-      min-height: 100px;
+    form {
+      input, textarea {
+        margin-bottom: 15px;
+      }
+
+      textarea {
+        min-height: 100px;
+      }
     }
   }
 }
 
 main {
   background-color: #f0f0f0;
+  padding-bottom: 40px;
+
+  #page_header {
+    padding-top: 100px;
+    padding-bottom: 30px;
+    margin: 0;
+    text-align: center;
+
+    .divider {
+      margin: auto;
+      width: 50px;
+      height: 3px;
+      background-color: brown;
+    }
+  }
 
   .heading {
     text-align: center;
@@ -92,11 +111,30 @@ main {
       background-color: #fff !important;
     }
   }
+
+  .subsection {
+    p, li {
+      font-size: 1.2em;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
 }
 
-//!!!!!DELETEME!!!!!!!!!
-#iamnotready {
-  margin-top: 100px;
-  text-align: center;
+@media (min-width: 768px) {
+  main {
+    #page_header {
+      padding-top: 122px;
+    }
+  }
 }
-//!!!!!DELETEME!!!!!!!!!
+
+@media (min-width: 992px) {
+  main {
+    #page_header {
+      padding-top: 142px;
+    }
+  }
+}

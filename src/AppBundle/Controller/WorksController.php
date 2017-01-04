@@ -12,6 +12,6 @@ class WorksController extends Controller
      */
     public function showAction($slug)
     {
-        return $this->render('works/show.html.twig', ['service' => $slug]);
+        return $this->render('works/show.html.twig', ['work' => $slug]);
     }
 }
