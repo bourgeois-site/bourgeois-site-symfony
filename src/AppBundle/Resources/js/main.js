@@ -4,7 +4,7 @@ var setFullScreenHeight = function(element) {
 }
 
 var setWorksHeight = function() {
-  var headingHeight = $('#works .heading').height() + 80 + 30 + 50; // paddings + header
+  var headingHeight = $('#works .heading').height() + 75 + 20 + 50; // paddings + header
   var imageHeight = $(window).height() - headingHeight;
   $('#works .item img').css('height', String(imageHeight) + "px");
 }
@@ -18,7 +18,7 @@ var cutServiceDescriptions = function() {
 
 var setServicesHeight = function() {
   var width = $(window).width();
-  var headingHeight = $('#services .heading').height() + 80 + 30 + 50; // paddings + header
+  var headingHeight = $('#services .heading').height() + 75 + 20 + 50; // paddings + header
   var workHeight = 200; // default
   if (width > 767 && width < 992) {
     workHeight = ($(window).height() - headingHeight) / 3;

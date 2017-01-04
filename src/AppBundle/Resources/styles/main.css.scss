@@ -21,32 +21,34 @@ main {
   padding-bottom: 40px;
 
   #page_header {
+    background: url('../images/bg/under_header.png') bottom center no-repeat;
     padding-top: 100px;
-    padding-bottom: 30px;
+    padding-bottom: 55px;
     margin: 0;
     text-align: center;
-
-    .divider {
-      margin: auto;
-      width: 50px;
-      height: 3px;
-      background-color: brown;
-    }
   }
 
   .heading {
     text-align: center;
-    padding-top: 80px;
-    padding-bottom: 30px;
-    border-top: 1px solid #d7d7d7;
-    background: #f0f0f0 url('../images/bg/over_heading.png') top center no-repeat;
+    padding-top: 75px;
+    padding-bottom: 20px;
 
-    h1, h2 {
+    .divider {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 15px;
+      margin-bottom: 45px;
+      width: 50px;
+      height: 3px;
+      background-color: brown;
+    }
+
+    h1 {
       margin-top: 0;
     }
 
     h2 {
-     opacity: 0.7;
+      opacity: 0.7;
     }
   }
 
