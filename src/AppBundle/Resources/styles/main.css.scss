@@ -1,15 +1,26 @@
 body {
   font-family: Open Sans, Helvetica, Arial, sans-serif;
+
+  .form_in_well {
+    input, textarea {
+      margin-bottom: 15px;
+    }
+
+    textarea {
+      min-height: 100px;
+    }
+  }
 }
 
 main {
+  background-color: #f0f0f0;
+
   .heading {
     text-align: center;
-    padding-top: 100px;
-    padding-bottom: 40px;
-    background-image: url('../images/bg/over_heading.png');
-    background-position: center top;
-    background-repeat: no-repeat;
+    padding-top: 80px;
+    padding-bottom: 30px;
+    border-top: 1px solid #d7d7d7;
+    background: #f0f0f0 url('../images/bg/over_heading.png') top center no-repeat;
 
     h1, h2 {
       margin-top: 0;
@@ -38,40 +49,47 @@ main {
     }
   }
 
-  #services {
+  #works {
     img {
       margin: auto;
       max-width: none;
     }
-  }
 
-  #customers {
-    background-color: #e7e7e7;
-    padding-bottom: 40px;
-
-    .customer_logo {
-      text-align: center;
-      overflow: hidden;
-      opacity: 0.7;
-      transition: opacity 0.5s;
-      &:hover {
-        opacity: 1;
+    @media (max-width: 767px) {
+      .container {
+        padding: 0px;
       }
     }
+  }
+
+  #services {
+    padding-bottom: 0;
 
     img {
       min-width: 100%;
-      margin-top: 35%;
+      opacity: 1.0;
+      transition: opacity 0.5s;
+    }
+    
+    .service {
+      padding: 0 !important;
+      overflow: hidden;
+    }
+
+    .service_caption {
+      position: absolute;
+      text-align: center;
+      bottom: 5%;
+      left: 10%;
+      width: 80%;
+      color: #fff;
+      text-shadow: 0 1px 1px #000;
     }
   }
 
   #call_form {
-    background: linear-gradient(to bottom right, #b96835, #bf8418);
-    padding-bottom: 40px;
-    color: #fff;
-
-    input, textarea {
-      margin-bottom: 15px;
+    .well {
+      background-color: #fff !important;
     }
   }
 }

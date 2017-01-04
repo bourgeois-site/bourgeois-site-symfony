@@ -68,7 +68,7 @@
                 </div>
             </nav>
             <section id="contacts" class="modal fade" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -77,33 +77,64 @@
                             <h1 class="h3 text-center">Контактная информация</h1>
                         </div>
                         <div class="modal-body">
-                            <div class="row" id="dzer_contact">
-                                <div class="contact_info col-md-4">
-                                    <h2 class="h3">г. Дзержинск</h2>
-                                    <h3 class="h4">Адрес:</h3>
-                                    <p>ул. Грибоедова 22/11</p>
-                                    <h3 class="h4">Тел.:</h3>
-                                    <p>+7 (8313) 23-46-46</p>
-                                    <p>+7 (904) 782-65-46</p>
-                                    <h3 class="h4">Часы работы:</h3>
-                                    <p>Пн-Пт - 9:00-18:00</p>
-                                    <p>Сб-Вс - 10:00-16:00</p>
+                            <div class="contact">
+                                <div class="contact_info">
+                                    <h2 class="h3 contact_header">г. Дзержинск</h2>
+                                    <h3 class="h4">Адрес:
+                                        <small>г. Дзержинск, ул. Грибоедова 22/11</small>
+                                    </h3>
+                                    <h3 class="h4">Тел.:
+                                        <small>+7 (8313) 23-46-46</small>
+                                        ,
+                                        <small>+7 (904) 782-65-46</small>
+                                    </h3>
+                                    <h3 class="h4">Часы работы:
+                                        <small>Пн-Пт - 9:00-18:00</small>
+                                        ,
+                                        <small>Сб-Вс - 10:00-16:00</small>
+                                    </h3>
                                 </div>
-                                <div id="dzer_map" class="col-md-8"></div>
+                                <div id="dzer_map"></div>
                             </div>
-                            <div class="row" id="nn_contact">
-                                <div class="contact_info col-md-4">
-                                    <h2 class="h3">г. Нижний Новгород</h2>
-                                    <h3 class="h4">Адрес:</h3>
-                                    <p>пр. Бусыгина 42</p>
-                                    <h3 class="h4">Тел.:</h3>
-                                    <p>+7 (831) 230-36-36</p>
-                                    <p>+7 (902) 306-46-36</p>
-                                    <h3 class="h4">Часы работы:</h3>
-                                    <p>Пн-Пт - 9:00-18:00</p>
-                                    <p>Сб-Вс - 10:00-16:00</p>
+                            <div class="contact">
+                                <div class="contact_info">
+                                    <h2 class="h3 contact_header">г. Нижний Новгород</h2>
+                                    <h3 class="h4">Адрес:
+                                        <small>г. Нижний Новгород, пр. Бусыгина 42</small>
+                                    </h3>
+                                    <h3 class="h4">Тел.:
+                                        <small>+7 (831) 230-36-36</small>
+                                        ,
+                                        <small>+7 (902) 306-46-36</small>
+                                    </h3>
+                                    <h3 class="h4">Часы работы:
+                                        <small>Пн-Пт - 9:00-18:00</small>
+                                        ,
+                                        <small>Сб-Вс - 10:00-16:00</small>
+                                    </h3>
                                 </div>
-                                <div id="nn_map" class="col-md-8"></div>
+                                <div id="nn_map"></div>
+                            </div>
+                            <div class="contact">
+                                <h2 class="h3 contact_header">Электронная почта</h2>
+                                <h3 class="h4">
+                                    <a href="mailto:your@email.com">your@email.com</a>
+                                </h3>
+                            </div>
+                            <div class="contact">
+                                <h2 class="h3 contact_header">Социальные сети</h2>
+                                <div class="text-center">
+                                    <a href="#"><span class="glyphicon glyphicon-cloud"></span></a>
+                                    <a href="#"><span class="glyphicon glyphicon-cloud"></span></a>
+                                    <a href="#"><span class="glyphicon glyphicon-cloud"></span></a>
+                                    <a href="#"><span class="glyphicon glyphicon-cloud"></span></a>
+                                </div>
+                            </div>
+                            <div class="contact">
+                                <h2 class="h3 contact_header">Вызвать замерщика</h2>
+                                <div class="well">
+                                    {{ include('default/call_form.html.twig') }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -158,6 +189,21 @@
                         <div id="footer_email">
                             <span class="glyphicon glyphicon-envelope"></span>
                             <a href="mailto:your@email.com">your@email.com</a>
+                        </div>
+                        <br>
+                        <div id="social_links">
+                            <a onclick="alert('First')">
+                                <span class="glyphicon glyphicon-cloud"></span>
+                            </a>
+                            <a onclick="alert('Second')">
+                                <span class="glyphicon glyphicon-cloud"></span>
+                            </a>
+                            <a onclick="alert('Third')">
+                                <span class="glyphicon glyphicon-cloud"></span>
+                            </a>
+                            <a onclick="alert('Fourth')">
+                                <span class="glyphicon glyphicon-cloud"></span>
+                            </a>
                         </div>
                         <ul class="contact">
                             <li>

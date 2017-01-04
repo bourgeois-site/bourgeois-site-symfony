@@ -80,17 +80,22 @@ header {
   }
 
   #contacts {
-    p {
-      margin-left: 30px;
+    .h3, .h4 {
+      text-align: center;
     }
 
-    #dzer_contact {
+    .modal-body {
+      padding-top: 0px !important;
+    }
+
+    .contact {
       padding-bottom: 15px;
       border-bottom: 1px solid #dadada;
     }
 
-    #nn_contact {
-      margin-top: 15px;
+    .contact_header {
+      padding-bottom: 15px;
+      padding-top: 15px;
     }
 
     #dzer_map, #nn_map {
@@ -146,16 +151,6 @@ header {
         img {
           height: 84px;
         }
-      }
-    }
-
-    #contacts {
-      #dzer_contact {
-        margin-left: 20px;
-      }
-
-      #nn_contact {
-        margin-left: 20px;
       }
     }
   }
