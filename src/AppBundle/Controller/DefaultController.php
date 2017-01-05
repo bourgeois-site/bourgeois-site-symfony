@@ -12,7 +12,14 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('default/index.html.twig');
+        $aboutCategory = $this->getDoctrine()->
+            getRepository('AppBundle:Category')->
+            findOneByType('about');
+        $about = $this->getDoctrine()->
+            getRepository('AppBundle:Section')->
+            findOneByCategory($aboutCategory)->getTitle();
+
+        return $this->render('default/index.html.twig', ['about' => $about]);
     }
 
     /**
@@ -20,6 +27,13 @@ class DefaultController extends Controller
      */
     public function aboutAction()
     {
-        return $this->render('default/about.html.twig');
+        $category = $this->getDoctrine()->
+            getRepository('AppBundle:Category')->
+            findOneByType('about');
+        $title = $category->getTitle();
+        $sections = $category->getSections();
+
+        return $this->render('default/about.html.twig',
+            ['title' => $title, 'sections' => $sections]);
     }
 }
