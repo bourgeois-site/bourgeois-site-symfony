@@ -22,11 +22,18 @@ set :symfony_console_flags, '--no-debug'
 set :controllers_to_clear, ['app_*.php', 'config.php']
 
 after 'deploy:symlink:release', 'symfony:clear_cache'
+before 'deploy:cleanup', 'symfony:dump_assets'
 
 namespace :symfony do
   task :clear_cache do
-	on roles(:web) do
-	  symfony_console "cache:clear", "--env=prod --no-debug"
-	end
+    on roles(:web) do
+      symfony_console "cache:clear", "--env=prod --no-debug"
+    end
+  end
+
+  task :dump_assets do
+    on roles(:web) do
+      symfony_console "assetic:dump", "--env=prod"
+    end
   end
 end
