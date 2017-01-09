@@ -2,10 +2,13 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="photos")
+ * @Vich\Uploadable
  */
 class Photo
 {
@@ -28,8 +31,24 @@ class Photo
 
     /**
      * @ORM\Column(type="string")
+     *
+     * @var string
      */
     private $filename;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \Datetime
+     */
+    private $updatedAt;
+
+    /**
+     * @Vich\UploadableField(mapping="photos", fileNameProperty="filename")
+     *
+     * @var File
+     */
+    private $file;
 
     /**
      * @ORM\ManyToOne(targetEntity="Section", inversedBy="photos")
@@ -141,5 +160,53 @@ class Photo
     public function getSection()
     {
         return $this->section;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Photo
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Photo
+     */
+    public function setFile(File $image = null)
+    {
+        $this->file = $image;
+
+        if ($image) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getFile()
+    {
+        return $this->file();
     }
 }

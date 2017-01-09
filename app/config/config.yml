@@ -76,3 +76,11 @@ assetic:
         cssrewrite: ~
         sass:
             bin: /usr/bin/sass
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        photos:
+            uri_prefix: /photos
+            upload_destination: '%kernel.root_dir%/../web/images/photos'
+
