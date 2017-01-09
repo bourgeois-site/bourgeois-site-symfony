@@ -1,0 +1,58 @@
+{% for contact in contacts %}
+<div class="contact">
+    <div class="contact_info">
+        <h2 class="h3 contact_header">{{ contact.title }}</h2>
+        <h3 class="h4">Адрес:
+            <small>{{ contact.address }}</small>
+        </h3>
+        <h3 class="h4">Тел.:
+            <small>{{ contact.phoneNumbers }}</small>
+        </h3>
+        <h3 class="h4">Часы работы:
+            <small>{{ contact.workTime }}</small>
+        </h3>
+    </div>
+    <div id="{{ cycle(['dzer_map', 'nn_map'], contact.id) }}"></div>
+</div>
+{% endfor %}
+
+{% block javascripts %}
+<script>
+    $(document).ready(function() {
+      $('a[data-target="#contacts"]').on('click', function() {
+        if ($('#contacts').find('.ymaps-2-1-47-map').length == 0) {
+          ymaps.ready(function() {
+            var dzerCoord = [56.237328, 43.448866];
+            var nnCoord = [56.269391, 43.888957];
+            var zoomLevel = 17;
+            var hint = "Студия \"Буржуа\"";
+            var baloon = "<h4>Студия \"Буржуа\"</h4><p>Ремонт квартир и ванных комнат, отделочные работы</p>";
+
+            var dzerMap = new ymaps.Map("dzer_map", {
+              center: dzerCoord,
+              zoom: zoomLevel
+            });
+            var dzerPlacemark = new ymaps.Placemark(dzerCoord, {
+              hintContent: hint,
+              balloonContent: baloon
+            }, {
+              preset: 'islands#redGlyphIcon',
+            });
+            dzerMap.geoObjects.add(dzerPlacemark);
+            var nnMap = new ymaps.Map("nn_map", {
+              center: nnCoord,
+              zoom: zoomLevel
+            });
+            var nnPlacemark = new ymaps.Placemark(nnCoord, {
+              hintContent: hint,
+              balloonContent: baloon
+            }, {
+              preset: 'islands#redGlyphIcon',
+            });
+            nnMap.geoObjects.add(nnPlacemark);
+          });
+        }
+      });
+    });
+</script>
+{% endblock %}

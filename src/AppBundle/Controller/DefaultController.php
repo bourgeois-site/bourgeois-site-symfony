@@ -12,12 +12,9 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $aboutCategory = $this->getDoctrine()->
-            getRepository('AppBundle:Category')->
-            findOneByType('about');
         $about = $this->getDoctrine()->
-            getRepository('AppBundle:Section')->
-            findOneByCategory($aboutCategory)->getTitle();
+            getRepository('AppBundle:Category')->
+            findOneByType('landing')->getTitle();
 
         return $this->render('default/index.html.twig', ['about' => $about]);
     }
@@ -30,10 +27,39 @@ class DefaultController extends Controller
         $category = $this->getDoctrine()->
             getRepository('AppBundle:Category')->
             findOneByType('about');
+
         $title = $category->getTitle();
+
         $sections = $category->getSections();
 
         return $this->render('default/about.html.twig',
             ['title' => $title, 'sections' => $sections]);
+    }
+
+    /**
+     * @Route("/контакты", name="contacts")
+     */
+    public function contactsAction()
+    {
+        $title = "Контакты";
+
+        $real_contacts = $this->getDoctrine()->
+            getRepository('AppBundle:RealContact')->
+            findAll();
+
+        $email_contacts = $this->getDoctrine()->
+            getRepository('AppBundle:InternetContact')->
+            findByIsEmail(1);
+
+        $social_contacts = $this->getDoctrine()->
+            getRepository('AppBundle:InternetContact')->
+            findByIsEmail(0);
+
+        return $this->render('default/contacts.html.twig', [
+            'title' => $title,
+            'real_contacts' => $real_contacts,
+            'email_contacts' => $email_contacts,
+            'social_contacts' => $social_contacts
+        ]);
     }
 }

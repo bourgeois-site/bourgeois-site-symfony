@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }} - {{ parent() }}{% endblock %}
+
+{% block main %}
+<div id="page_header">
+    <h1>{{ title }}</h1>
+</div>
+
+<section id="contacts" class="container">
+    <div id="real_contacts" class="row">
+        {% for contact in real_contacts %}
+        <div class="contact col-md-6">
+            <div class="contact_info">
+                <h2 class="h3 contact_header">{{ contact.title }}</h2>
+                <h3 class="h4">Адрес:
+                    <small>{{ contact.address }}</small>
+                </h3>
+                <h3 class="h4">Тел.:
+                    <small>{{ contact.phoneNumbers }}</small>
+                </h3>
+                <h3 class="h4">Часы работы:
+                    <small>{{ contact.workTime }}</small>
+                </h3>
+            </div>
+            <div id="{{ cycle(['dzer_map', 'nn_map'], contact.id) }}"></div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="internet_contacts" class="row">
+        {% if email_contacts|length > 0 %}
+        <div class="contact col-md-6">
+            <h2 class="h3 contact_header">Электронная почта</h2>
+            <h3 class="h4">|
+            {% for contact in email_contacts %}
+            {% set email_address = contact.href %}
+                <a href="mailto:{{ email_address }}">{{ email_address }}</a>  |
+            {% endfor %}
+            </h3>
+        </div>
+        {% endif %}
+
+        {% if social_contacts|length > 0 %}
+        <div class="contact col-md-6">
+            <h2 class="h3 contact_header">Социальные сети</h2>
+            <h3 class="h4">|
+            {% for contact in social_contacts %}
+                <a href="{{ contact.href }}">{{ contact.title }}</a>  |
+            {% endfor %}
+            </h3>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $(document).ready(function() {
+      ymaps.ready(function() {
+        var dzerCoord = [56.237328, 43.448866];
+        var nnCoord = [56.269391, 43.888957];
+        var zoomLevel = 17;
+        var hint = "Студия \"Буржуа\"";
+        var baloon = "<h4>Студия \"Буржуа\"</h4><p>Ремонт квартир и ванных комнат, отделочные работы</p>";
+
+        var dzerMap = new ymaps.Map("dzer_map", {
+          center: dzerCoord,
+          zoom: zoomLevel
+        });
+        var dzerPlacemark = new ymaps.Placemark(dzerCoord, {
+          hintContent: hint,
+          balloonContent: baloon
+        }, {
+          preset: 'islands#redGlyphIcon',
+        });
+        dzerMap.geoObjects.add(dzerPlacemark);
+        var nnMap = new ymaps.Map("nn_map", {
+          center: nnCoord,
+          zoom: zoomLevel
+        });
+        var nnPlacemark = new ymaps.Placemark(nnCoord, {
+          hintContent: hint,
+          balloonContent: baloon
+        }, {
+          preset: 'islands#redGlyphIcon',
+        });
+        nnMap.geoObjects.add(nnPlacemark);
+      });
+    });
+</script>
+{% endblock %}

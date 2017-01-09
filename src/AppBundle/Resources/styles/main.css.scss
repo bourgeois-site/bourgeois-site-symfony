@@ -17,13 +17,13 @@ body {
 }
 
 main {
-  background-color: #f0f0f0;
+  background-color: #fff;
   padding-bottom: 40px;
 
   #page_header {
     background: url('../images/bg/under_header.png') bottom center no-repeat;
-    padding-top: 100px;
-    padding-bottom: 55px;
+    padding-top: 95px;
+    padding-bottom: 50px;
     margin: 0;
     text-align: center;
   }
@@ -108,12 +108,6 @@ main {
     }
   }
 
-  #call_form {
-    .well {
-      background-color: #fff !important;
-    }
-  }
-
   .subsection {
     p, li {
       font-size: 1.2em;
@@ -123,12 +117,37 @@ main {
       width: 100%;
     }
   }
+
+  #contacts {
+    .h3, .h4 {
+      text-align: center;
+    }
+
+    .contact {
+      padding-bottom: 15px;
+      border-bottom: 1px solid #dadada;
+    }
+
+    #internet_contacts .contact:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .contact_header {
+      padding-bottom: 15px;
+      padding-top: 15px;
+    }
+
+    #dzer_map, #nn_map {
+      height: 300px;
+    }
+  }
 }
 
 @media (min-width: 768px) {
   main {
     #page_header {
-      padding-top: 122px;
+      padding-top: 117px;
     }
   }
 }
@@ -136,7 +155,17 @@ main {
 @media (min-width: 992px) {
   main {
     #page_header {
-      padding-top: 142px;
+      padding-top: 137px;
+    }
+
+    #contacts {
+      .contact {
+        border-bottom: none;
+      }
+    }
+
+    #real_contacts {
+      border-bottom: 1px solid #dadada;
     }
   }
 }
