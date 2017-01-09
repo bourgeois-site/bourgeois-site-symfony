@@ -1,0 +1,74 @@
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-6">
+                <div class="footer_heading">
+                    <small><strong>КОМПАНИЯ</strong></small>
+                </div>
+                <ul>
+                    {% for title, link in company %}
+                    <li><a href="{{ link }}">{{ title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="footer_heading">
+                    <small><strong>УСЛУГИ</strong></small>
+                </div>
+                <ul>
+                    {% for service in services %}
+                    <li><a href="{{ path('show_service', { 'slug': service.title }) }}">{{ service.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="footer_heading">
+                    <small><strong>ВЫПОЛНЕННЫЕ РАБОТЫ</strong></small>
+                </div>
+                <ul>
+                    {% for work in works %}
+                    <li><a href="{{ path('show_work', { 'slug': work.title }) }}">{{ work.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="footer_heading">
+                    <small><strong>КОНТАКТЫ</strong></small>
+                </div>
+                <div id="footer_email">
+                    {% for contact in email_contacts %}
+                    {% set email_address = contact.href %}
+                    <span class="glyphicon glyphicon-envelope"></span>
+                    <a href="mailto:{{ email_address }}">{{ email_address }}</a>
+                    <br>
+                    {% endfor %}
+                </div>
+                <hr>
+                <div id="social_links">
+                    {% for contact in social_contacts %}
+                    <a href="{{ contact.href }}" >{{ contact.title }}</a> 
+                    {% endfor %}
+                </div>
+                <hr>
+                {% for contact in real_contacts %}
+                <ul class="contact">
+                    <li>
+                        <span class="glyphicon glyphicon-road"></span>
+                        {{ contact.address }}
+                    </li>
+                    <li>
+                        <span class="glyphicon glyphicon-earphone"></span>
+                        {{ contact.phoneNumbers }}
+                    </li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+        <hr/>
+        <div id="banners" class="row">
+            <div class="col-xs-12">
+                <p class="text-center">Место для баннера</p>
+            </div>
+        </div>
+    </div>
+</footer>

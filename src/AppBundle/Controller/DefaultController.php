@@ -20,7 +20,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/о-компании", name="aboutpage")
+     * @Route("/О компании", name="aboutpage")
      */
     public function aboutAction()
     {
@@ -37,7 +37,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/контакты", name="contacts")
+     * @Route("/Контакты", name="contacts")
      */
     public function contactsAction()
     {
@@ -60,6 +60,58 @@ class DefaultController extends Controller
             'real_contacts' => $real_contacts,
             'email_contacts' => $email_contacts,
             'social_contacts' => $social_contacts
+        ]);
+    }
+
+    public function headerAction()
+    {
+        $services = $this->getDoctrine()->
+            getRepository('AppBundle:Category')->
+            findByType('service');
+        $works = $this->getDoctrine()->
+            getRepository('AppBundle:Category')->
+            findByType('work');
+
+        return $this->render('default/header.html.twig', [
+            'services' => $services,
+            'works' => $works
+        ]);
+    }
+
+    public function footerAction()
+    {
+        $company = [
+            "О компании" => $this->generateUrl('aboutpage'),
+            "Цены" => $this->generateUrl('prices')
+        ];
+
+        $services = $this->getDoctrine()->
+            getRepository('AppBundle:Category')->
+            findByType('service');
+
+        $works = $this->getDoctrine()->
+            getRepository('AppBundle:Category')->
+            findByType('work');
+
+        $email_contacts = $this->getDoctrine()->
+            getRepository('AppBundle:InternetContact')->
+            findByIsEmail(1);
+
+        $social_contacts = $this->getDoctrine()->
+            getRepository('AppBundle:InternetContact')->
+            findByIsEmail(0);
+
+        $real_contacts = $this->getDoctrine()->
+            getRepository('AppBundle:RealContact')->
+            findAll();
+
+        return $this->render('default/footer.html.twig', [
+            'company' => $company,
+            'services' => $services,
+            'works' => $works,
+            'email_contacts' => $email_contacts,
+            'social_contacts' => $social_contacts,
+            'real_contacts' => $real_contacts
         ]);
     }
 }

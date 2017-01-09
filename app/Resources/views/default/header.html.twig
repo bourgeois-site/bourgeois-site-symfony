@@ -1,0 +1,44 @@
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header_menu" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">
+                    <img src="{{ asset('images/logo.jpg') }}" alt="Студия Буржуа">
+                </a>
+            </div>
+            <div class="navbar-collapse collapse" id="header_menu">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="/" class="header_link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <small>УСЛУГИ</small>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for service in services %}
+                            <li><a href="{{ path('show_service', {'slug': service.title }) }}">{{ service.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="/" class="header_link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <small>ВЫПОЛНЕННЫЕ РАБОТЫ</small>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for work in works %}
+                            <li><a href="{{ path('show_work', {'slug': work.title }) }}">{{ work.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li><a href="{{ path('contacts') }}" class="header_link">
+                        <small>КОНТАКТЫ</small>
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

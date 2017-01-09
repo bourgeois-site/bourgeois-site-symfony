@@ -8,10 +8,19 @@ use Symfony\Component\HttpFoundation\Request;
 class ServicesController extends Controller
 {
     /**
-     * @Route("/услуги/{slug}", name="show_service")
+     * @Route("/Услуги/{slug}", name="show_service")
      */
     public function showAction($slug)
     {
-        return $this->render('services/show.html.twig', ['service' => $slug]);
+        $service = $this->getDoctrine()->
+            getRepository('AppBundle:Category')->
+            findOneByTitle($slug);
+
+        $title = $service->getTitle();
+
+        $sections = $service->getSections();
+
+        return $this->render('services/show.html.twig',
+            ['title' => $title, 'sections' => $sections]);
     }
 }

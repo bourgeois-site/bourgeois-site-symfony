@@ -128,6 +128,12 @@ main {
       border-bottom: 1px solid #dadada;
     }
 
+    #real_contacts {
+      .contact {
+        margin-top: 30px;
+      }
+    }
+
     #internet_contacts .contact:last-child {
       padding-bottom: 0;
       border-bottom: none;
@@ -138,7 +144,7 @@ main {
       padding-top: 15px;
     }
 
-    #dzer_map, #nn_map {
+    .contact_map {
       height: 300px;
     }
   }

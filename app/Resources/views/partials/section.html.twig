@@ -1,0 +1,23 @@
+<section class="subsection container">
+    <div class="heading">
+        <h1 class="h2">{{ section.title }}</h1>
+        <div class="divider"></div>
+    </div>
+    {% if section.photos|length > 0 %}
+    {% set push_class = 'col-sm-push-4 col-md-push-6' %}
+    {% set pull_class = 'col-sm-pull-8 col-md-pull-6' %}
+    <div class="row">
+        <div class="col-sm-8 col-md-6 {{ cycle(['', push_class], section.id) }}">
+            <p>{{ section.description }}</p>
+        </div>
+        <div class="col-sm-4 col-md-6 {{ cycle(['', pull_class], section.id) }}">
+            {% for photo in section.photos %}
+            <img src="{{ photo.filename }}" alt="{{ photo.title }}">
+            <div class="caption">{{ photo.description }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <p>{{ section.description }}</p>
+    {% endif %}
+</section>
