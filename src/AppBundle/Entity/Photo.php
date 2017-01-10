@@ -207,6 +207,6 @@ class Photo
      */
     public function getFile()
     {
-        return $this->file();
+        return $this->file;
     }
 }

@@ -125,23 +125,12 @@ main {
 
     .contact {
       padding-bottom: 15px;
-      border-bottom: 1px solid #dadada;
     }
 
     #real_contacts {
-      .contact {
-        margin-top: 30px;
+      .contact:first-child {
+        margin-top: 70px;
       }
-    }
-
-    #internet_contacts .contact:last-child {
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-
-    .contact_header {
-      padding-bottom: 15px;
-      padding-top: 15px;
     }
 
     .contact_map {
@@ -164,14 +153,10 @@ main {
       padding-top: 137px;
     }
 
-    #contacts {
-      .contact {
-        border-bottom: none;
-      }
-    }
-
     #real_contacts {
-      border-bottom: 1px solid #dadada;
+      .contact {
+        margin-top: 70px;
+      }
     }
   }
 }
