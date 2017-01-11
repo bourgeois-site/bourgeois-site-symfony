@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Администратор - Студия Буржуа{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        {% stylesheets '@AppBundle/Resources/styles/admin/*.scss' filter='sass' %}
+            <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        {% javascripts '@AppBundle/Resources/js/admin/*.js' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    </head>
+    <body class="container-fluid">
+        <div class="row">
+            <header>
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#admin_header_menu" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a href="/" class="navbar-brand" title="Перейти на сайт">
+                                Студия Буржуа
+                            </a>
+                        </div>
+                        <div class="navbar-collapse collapse" id="admin_header_menu">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                        Выход
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <aside class="col-sm-4 col-md-3">
+                <div class="list-group">
+                    <a href="#" class="list-group-item">
+                        Заявки <span class="badge">2</span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        О компании
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Услуги
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Выполненные работы
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Контакты
+                    </a>
+                    <a href="#" class="list-group-item">
+                        Профиль
+                    </a>
+                </div>
+            </aside>
+
+            <main role="main" class="col-sm-8 col-md-9">{% block main %}{% endblock %}</main>
+        </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

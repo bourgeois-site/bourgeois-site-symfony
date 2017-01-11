@@ -72,7 +72,7 @@ class DefaultController extends Controller
             getRepository('AppBundle:Category')->
             findByType('work');
 
-        return $this->render('default/header.html.twig', [
+        return $this->render('partials/header.html.twig', [
             'services' => $services,
             'works' => $works
         ]);
@@ -105,7 +105,7 @@ class DefaultController extends Controller
             getRepository('AppBundle:RealContact')->
             findAll();
 
-        return $this->render('default/footer.html.twig', [
+        return $this->render('partials/footer.html.twig', [
             'company' => $company,
             'services' => $services,
             'works' => $works,
