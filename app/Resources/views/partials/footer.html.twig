@@ -46,7 +46,13 @@
                 <hr>
                 <div id="social_links">
                     {% for contact in social_contacts %}
-                    <a href="{{ contact.href }}" >{{ contact.title }}</a> 
+                    <a class="social_contact" href="{{ contact.href }}" title="{{ contact.title }}">
+                        {% if contact.socialName %}
+                            <i class="fa fa-lg fa-{{ contact.socialName }}"></i>
+                        {% else %}
+                            {{ contact.title }}
+                        {% endif %}
+                    </a> 
                     {% endfor %}
                 </div>
                 <hr>

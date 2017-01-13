@@ -32,6 +32,11 @@ class InternetContact
     private $isEmail;
 
     /**
+     * @ORM\Column(type="string", name="social_name")
+     */
+    private $socialName;
+    
+    /**
      * Get id
      *
      * @return integer
@@ -111,5 +116,29 @@ class InternetContact
     public function getIsEmail()
     {
         return $this->isEmail;
+    }
+
+    /**
+     * Set socialName
+     *
+     * @param string $socialName
+     *
+     * @return InternetContact
+     */
+    public function setSocialName($socialName)
+    {
+        $this->socialName = $socialName;
+
+        return $this;
+    }
+
+    /**
+     * Get socialName
+     *
+     * @return string
+     */
+    public function getSocialName()
+    {
+        return $this->socialName;
     }
 }
