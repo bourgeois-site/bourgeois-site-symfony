@@ -41,4 +41,8 @@ $(document).ready(function() {
     var img = $(this).find('img');
     img.css('opacity', '1.0');
   });
+
+  $('#call_form textarea').on('click', function() {
+    $(this).css('height', '200px');
+  });
 });

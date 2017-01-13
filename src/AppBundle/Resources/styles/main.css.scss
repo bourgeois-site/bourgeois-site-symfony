@@ -135,11 +135,9 @@ main {
     }
   }
 
-  #call_form {
+  #call_measurer {
     .well {
-      width: 100%;
-      margin: auto;
-      margin-bottom: 0;
+      margin: 20px;
 
       form {
         input, textarea {
@@ -147,7 +145,8 @@ main {
         }
 
         textarea {
-          min-height: 100px;
+          height: 35px;
+          transition: height 0.5s;
         }
       }
     }
@@ -187,12 +186,6 @@ main {
 
     #contacts {
       margin-top: 72px;
-    }
-
-    #call_form {
-      .well {
-        width: 600px;
-      }
     }
   }
 }

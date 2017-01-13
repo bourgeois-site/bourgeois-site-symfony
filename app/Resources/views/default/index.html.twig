@@ -79,16 +79,21 @@
     </div>
 </section>
 
-<section id="call_form">
+<section id="call_measurer">
     <div class="heading">
         <h1 class="h2">Вызвать замерщика</h1>
         <div class="divider"></div>
         <h2 class="h4">Оставьте вашу заявку</h2>
     </div>
     <div class="container">
-        <div class="well">
-            {{ include('partials/call_form.html.twig') }}
+        <div class="row">
+            <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#call_form">
+                    Вызвать замерщика
+                </button>
+            </div>
         </div>
+        {{ include('partials/call_form.html.twig') }}
     </div>
 </section>
 {% endblock %}
