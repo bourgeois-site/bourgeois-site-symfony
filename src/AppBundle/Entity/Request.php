@@ -47,6 +47,11 @@ class Request
     private $createdAt;
 
     /**
+     * @ORM\Column(type="boolean", name="is_archived", options={"default": false})
+     */
+    private $isArchived;
+
+    /**
      * Get id
      *
      * @return integer
@@ -198,5 +203,29 @@ class Request
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set isArchived
+     *
+     * @param boolean $isArchived
+     *
+     * @return Request
+     */
+    public function setIsArchived($isArchived)
+    {
+        $this->isArchived = $isArchived;
+
+        return $this;
+    }
+
+    /**
+     * Get isArchived
+     *
+     * @return boolean
+     */
+    public function getIsArchived()
+    {
+        return $this->isArchived;
     }
 }

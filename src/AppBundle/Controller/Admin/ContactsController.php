@@ -3,15 +3,15 @@ namespace AppBundle\Controller\Admin;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class ContactsController extends Controller
 {
     /**
-     * @Route("/админ", name="admin_homepage")
+     * @Route("/админ/контакты", name="admin_contacts")
      */
     public function indexAction()
     {
-        return $this->render('admin/default/index.html.twig');
+        return $this->render('admin/contacts/index.html.twig');
     }
 }
+

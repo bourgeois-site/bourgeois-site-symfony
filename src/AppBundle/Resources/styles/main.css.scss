@@ -1,19 +1,5 @@
 body {
   font-family: Open Sans, Helvetica, Arial, sans-serif;
-
-  .well {
-    margin-bottom: 0;
-
-    form {
-      input, textarea {
-        margin-bottom: 15px;
-      }
-
-      textarea {
-        min-height: 100px;
-      }
-    }
-  }
 }
 
 main {
@@ -113,8 +99,12 @@ main {
       font-size: 1.2em;
     }
 
-    img {
-      width: 100%;
+    .thumbnail {
+      max-width: 100%;
+
+      img {
+        width: 100%;
+      }
     }
   }
 
@@ -129,12 +119,30 @@ main {
 
     #real_contacts {
       .contact:first-child {
-        margin-top: 70px;
+        margin-top: 40px;
       }
     }
 
     .contact_map {
       height: 300px;
+    }
+  }
+
+  #call_form {
+    .well {
+      width: 100%;
+      margin: auto;
+      margin-bottom: 0;
+
+      form {
+        input, textarea {
+          margin-bottom: 15px;
+        }
+
+        textarea {
+          min-height: 100px;
+        }
+      }
     }
   }
 }
@@ -143,6 +151,28 @@ main {
   main {
     #page_header {
       padding-top: 117px;
+    }
+
+    .subsection {
+      .photo_left, .photo_right {
+        width: 40%;
+      }
+
+      .photo_left {
+        float: left;
+        margin-right: 40px;
+      }
+
+      .photo_right {
+        float: right;
+        margin-left: 40px;
+      }
+    }
+
+    #call_form {
+      .well {
+        width: 600px;
+      }
     }
   }
 }
@@ -153,9 +183,15 @@ main {
       padding-top: 137px;
     }
 
+    .subsection {
+      .photo_left, .photo_right {
+        width: 50%;
+      }
+    }
+
     #real_contacts {
       .contact {
-        margin-top: 70px;
+        margin-top: 40px;
       }
     }
   }
