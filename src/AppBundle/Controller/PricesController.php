@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 class PricesController extends Controller
 {
     /**
-     * @Route("/Цены", name="prices")
+     * @Route("/цены", name="prices")
      */
     public function indexAction()
     {

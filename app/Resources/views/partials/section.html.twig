@@ -13,8 +13,8 @@
                 </div>
             {% endfor %}
         </div>
-        <p>{{ section.description }}</p>
+        {{ section.description|raw }}
     {% else %}
-        <p>{{ section.description }}</p>
+        {{ section.description|raw }}
     {% endif %}
 </section>

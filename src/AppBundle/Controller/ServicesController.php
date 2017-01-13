@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ServicesController extends Controller
 {
     /**
-     * @Route("/Услуги/{slug}", name="show_service")
+     * @Route("/услуги/{slug}", name="show_service")
      */
     public function showAction($slug)
     {

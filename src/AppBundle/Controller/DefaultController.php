@@ -27,7 +27,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/О компании", name="aboutpage")
+     * @Route("/о компании", name="aboutpage")
      */
     public function aboutAction()
     {
@@ -44,7 +44,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/Контакты", name="contacts")
+     * @Route("/контакты", name="contacts")
      */
     public function contactsAction()
     {

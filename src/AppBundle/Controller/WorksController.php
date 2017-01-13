@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 class WorksController extends Controller
 {
     /**
-     * @Route("/Выполненные работы/{slug}", name="show_work")
+     * @Route("/выполненные работы/{slug}", name="show_work")
      */
     public function showAction($slug)
     {

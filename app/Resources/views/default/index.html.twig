@@ -27,9 +27,9 @@
                         <h3>{{ service.title }}</h3>
                         {% for section in service.sections %}
                         {% if loop.first %}
-                            <p class="service_description">
-                                {{ section }}
-                            </p>
+                            <div class="service_description">
+                                {{ section.description|raw }}
+                            </div>
                         {% endif %}
                         {% endfor %}
                     </span>
