@@ -12,11 +12,18 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $about = $this->getDoctrine()->
+        $services = $this->getDoctrine()->
             getRepository('AppBundle:Category')->
-            findOneByType('landing')->getTitle();
+            findByType('service');
 
-        return $this->render('default/index.html.twig', ['about' => $about]);
+        $works = $this->getDoctrine()->
+            getRepository('AppBundle:Category')->
+            findByType('work');
+
+        return $this->render('default/index.html.twig', [
+            'services' => $services,
+            'works' => $works
+        ]);
     }
 
     /**

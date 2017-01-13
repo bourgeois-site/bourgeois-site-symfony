@@ -6,7 +6,7 @@
         <div class="row">
             <div class="jumbotron col-md-6 col-md-offset-3">
                 <h1>Студия Буржуа</h1>
-                <p>{{ about }}</p>
+                <p>Мы предлагаем услуги, включающие в себя все работы по частичному ремонту и ремонту "под ключ"</p>
                 <a href="{{ path('aboutpage') }}" class="btn btn-default btn-lg">О компании</a>
             </div>
         </div>
@@ -21,77 +21,21 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4 col-sm-6 service">
-                <a href="{{ path('show_service', {'slug': 'ремонт-квартир-и-ванных-комнат'}) }}">
+            {% for service in services %}
+                <div class="service col-md-4 col-sm-6">
                     <span class="service_caption">
-                        <h3>Ремонт квартир и ванных комнат</h3>
-                        <p class="service_description">
-                        Ремонт квартиры представляет собой организационный процесс, состоящий из нескольких технологических этапов. Последние должны быть правильно разнесены во времени и корректно взаимоувязаны. Качественный результат ремонтно-отделочных работ можно получить только при условии соблюдения технологического процесса. В обратном случае, появляются дефекты, которые могут быть выявлены как в процессе приемки объекта, так и в течение периода времени (от недели до нескольких лет) после окончания ремонтных работ.
-                        </p>
+                        <h3>{{ service.title }}</h3>
+                        {% for section in service.sections %}
+                        {% if loop.first %}
+                            <p class="service_description">
+                                {{ section }}
+                            </p>
+                        {% endif %}
+                        {% endfor %}
                     </span>
-                    <img src="images/apartments_repair.jpg">
-                </a>
-            </div>
-
-            <div class="col-md-4 col-sm-6 service">
-                <a href="{{ path('show_service', {'slug': 'ремонт-офисов'}) }}">
-                    <span class="service_caption">
-                        <h3>Ремонт офисов</h3>
-                        <p class="service_description">
-                        Ваша организация решила произвести ремонт в своем офисе? Это достаточно серьезное и значимое событие, ведь внутренняя обстановка в офисе значительно влияет и на настроение самих сотрудников, и на внутренние ощущения ваших клиентов. К тому же перемены в обстановке могут создать толчок к улучшению результатов вашей деятельности и повышению производительности труда. Поэтому важно серьезно отнестись к процессу ремонта офиса и доверить его специализированной компании.
-                        </p>
-                    </span>
-                    <img src="images/offices_repair.jpg">
-                </a>
-            </div>
-
-            <div class="col-md-4 col-sm-6 service">
-                <a href="{{ path('show_service', {'slug': 'частичный-ремонт'}) }}">
-                    <span class="service_caption">
-                        <h3>Частичный ремонт</h3>
-                        <p class="service_description">
-                        «Студия Буржуа» принимает заказы на частичный ремонт квартир. Частичный ремонт квартир, как правило, подразумевает ремонт в помещениях,  в которых проживает заказчик. Также частичный ремонт удобен в тех случаях, когда у вас нет полной суммы для ремонта под ключ.
-                        </p>
-                    </span>
-                    <img src="images/partial_repair.jpg">
-                </a>
-            </div>
-
-            <div class="col-md-4 col-sm-6 service">
-                <a href="{{ path('show_service', {'slug': 'продажа-материалов'}) }}">
-                    <span class="service_caption">
-                        <h3>Продажа материалов</h3>
-                        <p class="service_description">
-                        Описание услуги
-                        </p>
-                    </span>
-                    <img src="images/selling_materials.jpg">
-                </a>
-            </div>
-
-            <div class="col-md-4 col-sm-6 service">
-                <a href="{{ path('show_service', {'slug': 'утепление-помещений'}) }}">
-                    <span class="service_caption">
-                        <h3>Утепление помещений</h3>
-                        <p class="service_description">
-                        Описание услуги
-                        </p>
-                    </span>
-                    <img src="images/insulation.jpg">
-                </a>
-            </div>
-
-            <div class="col-md-4 col-sm-6 service">
-                <a href="{{ path('show_service', {'slug': 'строительство'}) }}">
-                    <span class="service_caption">
-                        <h3>Строительство</h3>
-                        <p class="service_description">
-                        Описание услуги
-                        </p>
-                    </span>
-                    <img src="images/construction.png">
-                </a>
-            </div>
+                    <img src="{{ vich_uploader_asset(service.photo, 'file') }}">
+                </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -103,74 +47,23 @@
         <h2 class="h4">Вот что мы могём</h2>
     </div>
     <div class="container">
-        <div  id="works_carousel" class="carousel slide" data-ride="carousel">
+        <div id="works_carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="images/apartments_repair.jpg">
-                    <div class="carousel-caption">
-                        <h3>First</h3>
-                        <p class="work_description">
-                        blablabla
-                        </p>
-                        <a href="#" class="btn btn-default btn-sm">Подробнее</a>
+                <ol class="carousel-indicators">
+                    {% for work in works %}
+                    <li data-target="#works_carousel" data-slide-to="{{ loop.index - 1 }}" class="{% if loop.first %}active{% endif %}"></li>
+                    {% endfor %}
+                </ol>
+                {% for work in works %}
+                <div class="item {% if loop.first %}active{% endif %}">
+                        <a href="{{ path('show_work', {'slug': work.title }) }}">
+                            <img src="{{ vich_uploader_asset(work.photo, 'file') }}">
+                            <div class="carousel-caption">
+                                <h3>{{ work.title }}</h3>
+                            </div>
+                        </a>
                     </div>
-                </div>
-
-                <div class="item">
-                    <img src="images/offices_repair.jpg">
-                    <div class="carousel-caption">
-                        <h3>Second</h3>
-                        <p class="work_description">
-                            blablabla...
-                        </p>
-                        <a href="#" class="btn btn-default btn-sm">Подробнее</a>
-                    </div>
-                </div>
-
-
-                <div class="item">
-                    <img src="images/partial_repair.jpg">
-                    <div class="carousel-caption">
-                        <h3>Third</h3>
-                        <p class="work_description">
-                        blablabla...
-                        </p>
-                        <a href="#" class="btn btn-default btn-sm">Подробнее</a>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="images/selling_materials.jpg">
-                    <div class="carousel-caption">
-                        <h3>Fourth</h3>
-                        <p class="work_description">
-                            blablabla...
-                        </p>
-                        <a href="#" class="btn btn-default btn-sm">Подробнее</a>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="images/insulation.jpg">
-                    <div class="carousel-caption">
-                        <h3>Fifth</h3>
-                        <p class="work_description">
-                            blablabla...
-                        </p>
-                        <a href="#" class="btn btn-default btn-sm">Подробнее</a>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <img src="images/construction.png">
-                    <div class="carousel-caption">
-                        <h3>Sixth</h3>
-                        <p class="work_description">
-                            blablabla...
-                        </p>
-                        <a href="#" class="btn btn-default btn-sm">Подробнее</a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
             <a class="left carousel-control" href="#works_carousel" role="button" data-slide="prev">
@@ -192,8 +85,10 @@
         <div class="divider"></div>
         <h2 class="h4">Оставьте вашу заявку</h2>
     </div>
-    <div class="well">
-        {{ include('partials/call_form.html.twig') }}
+    <div class="container">
+        <div class="well">
+            {{ include('partials/call_form.html.twig') }}
+        </div>
     </div>
 </section>
 {% endblock %}

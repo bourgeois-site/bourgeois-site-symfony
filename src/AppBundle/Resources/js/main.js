@@ -3,29 +3,11 @@ var setFullScreenHeight = function(element) {
   $(element).css('height', String(windowHeight) + "px");
 }
 
-var setWorksHeight = function() {
-  var headingHeight = $('#works .heading').height() + 75 + 20 + 50; // paddings + header
-  var imageHeight = $(window).height() - headingHeight;
-  $('#works .item img').css('height', String(imageHeight) + "px");
-}
-
 var cutServiceDescriptions = function() {
   $('main #services .service_description').each(function() {
     var text = $(this).text();
     $(this).text(text.substring(0, 300) + "...");
   })
-}
-
-var setServicesHeight = function() {
-  var width = $(window).width();
-  var headingHeight = $('#services .heading').height() + 75 + 20 + 50; // paddings + header
-  var workHeight = 200; // default
-  if (width > 767 && width < 992) {
-    workHeight = ($(window).height() - headingHeight) / 3;
-  } else if (width > 991) {
-    workHeight = ($(window).height() - headingHeight) / 2;
-  }
-  $('#services .service').css('height', String(workHeight) + 'px');
 }
 
 $(document).ready(function() {
@@ -38,9 +20,7 @@ $(document).ready(function() {
   });
 
   setFullScreenHeight('#jumbotron');
-  setServicesHeight();
   cutServiceDescriptions();
-  setWorksHeight();
 
   $('#services .service_description').slideUp(300);
 

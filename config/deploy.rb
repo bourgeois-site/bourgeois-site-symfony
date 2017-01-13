@@ -6,7 +6,7 @@ set :repo_url, "git@github.com:bourgeois-site/bourgeois-site-symfony.git"
 set :deploy_to, "/home/deploy/#{fetch(:application)}"
 
 set :linked_files, %w(app/config/parameters.yml)
-set :linked_dirs, %w(var vendor)
+set :linked_dirs, %w(var vendor web/images)
 
 set :keep_releases, 5
 

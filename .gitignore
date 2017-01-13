@@ -22,3 +22,4 @@ Vagrantfile
 /log
 /.sass-cache
 *.php~
+/web/images/
