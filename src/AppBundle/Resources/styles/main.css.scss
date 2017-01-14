@@ -142,18 +142,19 @@ main {
   }
 
   #call_measurer {
-    .well {
-      margin: 20px;
+    .modal-header {
+      h3, p {
+        text-align: center;
+      }
+    }
 
-      form {
-        input, textarea {
-          margin-bottom: 15px;
-        }
+    .modal-body {
+      background: linear-gradient(-45deg, #fff, #e6e6e6);
+      padding: 20px;
 
-        textarea {
-          height: 35px;
-          transition: height 0.5s;
-        }
+      textarea {
+        height: 70px;
+        transition: height 0.5s;
       }
     }
   }
