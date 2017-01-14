@@ -8,13 +8,13 @@ use Symfony\Component\HttpFoundation\Request;
 class WorksController extends Controller
 {
     /**
-     * @Route("/выполненные работы/{slug}", name="show_work")
+     * @Route("/выполненные-работы/{slug}", name="show_work")
      */
     public function showAction($slug)
     {
         $work = $this->getDoctrine()->
             getRepository('AppBundle:Category')->
-            findOneByTitle($slug);
+            findOneBySlug($slug);
 
         $title = $work->getTitle();
 

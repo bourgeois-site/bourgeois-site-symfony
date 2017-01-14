@@ -17,7 +17,7 @@
                 </div>
                 <ul>
                     {% for service in services %}
-                    <li><a href="{{ path('show_service', { 'slug': service.title }) }}">{{ service.title }}</a></li>
+                    <li><a href="{{ path('show_service', { 'slug': service.slug }) }}">{{ service.title }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -27,7 +27,7 @@
                 </div>
                 <ul>
                     {% for work in works %}
-                    <li><a href="{{ path('show_work', { 'slug': work.title }) }}">{{ work.title }}</a></li>
+                    <li><a href="{{ path('show_work', { 'slug': work.slug }) }}">{{ work.title }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -46,7 +46,7 @@
                 <hr>
                 <div id="social_links">
                     {% for contact in social_contacts %}
-                    <a class="social_contact" href="{{ contact.href }}" title="{{ contact.title }}">
+                    <a class="social_contact" href="{{ contact.href }}" title="{{ contact.title }}" target="_blank">
                         {% if contact.socialName %}
                             <i class="fa fa-lg fa-{{ contact.socialName }}"></i>
                         {% else %}

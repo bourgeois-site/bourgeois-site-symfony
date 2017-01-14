@@ -14,7 +14,7 @@ class ServicesController extends Controller
     {
         $service = $this->getDoctrine()->
             getRepository('AppBundle:Category')->
-            findOneByTitle($slug);
+            findOneBySlug($slug);
 
         $title = $service->getTitle();
 

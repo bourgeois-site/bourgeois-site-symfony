@@ -4,9 +4,9 @@ var setFullScreenHeight = function(element) {
 }
 
 var cutServiceDescriptions = function() {
-  $('main #services .service_description').each(function() {
+  $('main #services .service_description .section_description').each(function() {
     var text = $(this).text();
-    $(this).text(text.substring(0, 300) + "...");
+    $(this).text(text.substring(0, 200) + "...");
   })
 }
 

@@ -20,7 +20,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             {% for service in services %}
-                            <li><a href="{{ path('show_service', {'slug': service.title }) }}">{{ service.title }}</a></li>
+                            <li><a href="{{ path('show_service', {'slug': service.slug }) }}">{{ service.title }}</a></li>
                             {% endfor %}
                         </ul>
                     </li>
@@ -30,7 +30,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             {% for work in works %}
-                            <li><a href="{{ path('show_work', {'slug': work.title }) }}">{{ work.title }}</a></li>
+                            <li><a href="{{ path('show_work', {'slug': work.slug }) }}">{{ work.title }}</a></li>
                             {% endfor %}
                         </ul>
                     </li>

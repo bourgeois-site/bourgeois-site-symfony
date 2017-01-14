@@ -28,12 +28,17 @@
                         {% for section in service.sections %}
                         {% if loop.first %}
                             <div class="service_description">
-                                {{ section.description|raw }}
+                                <h4 class="section_title">{{ section.title }}</h4>
+                                <div class="section_description">
+                                    {{ section.description|raw }}
+                                </div>
                             </div>
                         {% endif %}
                         {% endfor %}
                     </span>
-                    <img src="{{ vich_uploader_asset(service.photo, 'file') }}">
+                    <a href="{{ path('show_service', {'slug': service.slug }) }}">
+                        <img src="{{ vich_uploader_asset(service.photo, 'file') }}">
+                    </a>
                 </div>
             {% endfor %}
         </div>
@@ -56,7 +61,7 @@
                 </ol>
                 {% for work in works %}
                 <div class="item {% if loop.first %}active{% endif %}">
-                        <a href="{{ path('show_work', {'slug': work.title }) }}">
+                        <a href="{{ path('show_work', {'slug': work.slug }) }}">
                             <img src="{{ vich_uploader_asset(work.photo, 'file') }}">
                             <div class="carousel-caption">
                                 <h3>{{ work.title }}</h3>

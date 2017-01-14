@@ -27,7 +27,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/о компании", name="aboutpage")
+     * @Route("/о-компании", name="aboutpage")
      */
     public function aboutAction()
     {
