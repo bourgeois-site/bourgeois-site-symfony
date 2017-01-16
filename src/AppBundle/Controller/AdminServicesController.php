@@ -11,6 +11,30 @@ class AdminServicesController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('admin/services/index.html.twig');
+        $services = $this->getDoctrine()->
+            getRepository('AppBundle:Category')->
+            findByType('service');
+
+        return $this->render('admin/services/index.html.twig', [
+            'services' => $services
+        ]);
+    }
+
+    /**
+     * @Route("/админ/услуги/редактировать/{slug}", name="admin_edit_service")
+     */
+    public function editAction($slug)
+    {
+        $service = $this->getDoctrine()->
+            getRepository('AppBundle:Category')->
+            findOneBySlug($slug);
+
+        if (!$service) {
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render('admin/services/edit.html.twig', [
+            'service' => $service
+        ]);
     }
 }

@@ -16,6 +16,10 @@ class WorksController extends Controller
             getRepository('AppBundle:Category')->
             findOneBySlug($slug);
 
+        if (!$work) {
+            throw $this->CreateNotFoundException();
+        }
+
         $title = $work->getTitle();
 
         $sections = $work->getSections();

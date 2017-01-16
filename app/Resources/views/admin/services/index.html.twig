@@ -1,5 +1,27 @@
 {% extends 'admin/layout.html.twig' %}
 
 {% block main %}
-<h1 class="page-header">Все услуги</h1>
+    <h1 class="page-header">
+        Услуги <span class="badge">{{ services|length }}</span>
+    </h1>
+
+    <button id="new_entity_link" class="btn btn-primary btn-lg" onclick="alert('Change me to link later')">
+        <span class="glyphicon glyphicon-plus"></span>
+        Создать новую услугу
+    </button>
+
+    <div class="list-group">
+        {% for service in services %}
+            <div class="list-group-item">
+                <h2 class="h3 entity_header">
+                    {{ service.title }}
+                </h2>
+                <div class="entity_body">
+                    <a href="{{ path('show_service', { 'slug': service.slug }) }}" class="btn btn-default" target="_blank">Просмотр на сайте</a>
+                    <a href="{{ path('admin_edit_service', { 'slug': service.slug }) }}" class="btn btn-info">Редактировать</a>
+                    <button class="btn btn-danger pull-right" onclick="alert('Delete it?')">Удалить</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

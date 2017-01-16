@@ -1,0 +1,7 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block main %}
+    <h1 class="page-header">Услуги - {{ service.title }}</h1>
+
+    {{ include('admin/partials/edit_category.html.twig', { 'object': service }) }}
+{% endblock %}

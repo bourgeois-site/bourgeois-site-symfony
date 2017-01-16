@@ -1,5 +1,27 @@
 {% extends 'admin/layout.html.twig' %}
 
 {% block main %}
-<h1 class="page-header">Все работы</h1>
+    <h1 class="page-header">
+        Выполненные работы <span class="badge">{{ works|length }}</span>
+    </h1>
+
+    <button id="new_entity_link" class="btn btn-primary btn-lg" onclick="alert('Change me to link later')">
+        <span class="glyphicon glyphicon-plus"></span>
+        Добавить выполненную работу
+    </button>
+
+    <div class="list-group">
+        {% for work in works %}
+            <div class="list-group-item">
+                <h2 class="h3 entity_header">
+                    {{ work.title }}
+                </h2>
+                <div class="entity_body">
+                    <a href="{{ path('show_work', { 'slug': work.slug }) }}" class="btn btn-default" target="_blank">Просмотр на сайте</a>
+                    <a href="{{ path('admin_edit_work', { 'slug': work.slug }) }}" class="btn btn-info">Редактировать</a>
+                    <button class="btn btn-danger pull-right" onclick="alert('Delete it')">Удалить</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

@@ -20,7 +20,17 @@ class AdminDefaultController extends Controller
      */
     public function aboutAction()
     {
-        return $this->render('admin/default/about.html.twig');
+        $object = $this->getDoctrine()->
+            getRepository('AppBundle:Category')->
+            findOneByType('about');
+
+        if (!$object) {
+            // create and set $object
+        }
+
+        return $this->render('admin/default/about.html.twig', [
+            'object' => $object
+        ]);
     }
 
     /**

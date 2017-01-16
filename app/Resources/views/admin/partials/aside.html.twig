@@ -11,10 +11,7 @@
             <ul class="dropdown-menu">
                 <li>
                     <a href="{{ path('admin_new_requests') }}">
-                        Новые
-                        {% if newRequestsCount > 0 %}
-                            <span class="badge"> {{ newRequestsCount }}</span>
-                        {% endif %}
+                        Новые <span class="badge"> {{ newRequestsCount }}</span>
                     </a>
                 </li>
                 <li><a href="{{ path('admin_archived_requests') }}">Архивированные</a></li>

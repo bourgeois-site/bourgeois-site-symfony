@@ -16,6 +16,10 @@ class ServicesController extends Controller
             getRepository('AppBundle:Category')->
             findOneBySlug($slug);
 
+        if (!$service) {
+            throw $this->createNotFoundException();
+        }
+
         $title = $service->getTitle();
 
         $sections = $service->getSections();

@@ -1,15 +1,17 @@
 {% extends 'admin/layout.html.twig' %}
 
 {% block main %}
-    {% if requests|length > 0 %}
-        <h1 class="page-header">
-            {{ type }} заявки <span class="badge">{{ requests|length }}</span>
-        </h1>
+    <h1 class="page-header">
+        {{ type }} заявки <span class="badge">{{ requests|length }}</span>
+    </h1>
 
+    {% if requests|length == 0 %}
+        <div class="alert alert-success">{{ type }} заявки отсутствуют</div>
+    {% else %}
         <div class="list-group">
             {% for request in requests %}
                 <div class="list-group-item">
-                    <h2 class="h3">
+                    <h2 class="h3 entity_header">
                         {% if type == "Новые" %}
                             <form class="pull-right">
                                 <button class="btn btn-link" style="padding-top: 3px">Архивировать</button>
@@ -20,24 +22,23 @@
                         {% endif %}
                         {{ request.name }}
                     </h2>
-                    <hr/>
-                    <h3 class="h4">Дата:
-                        <small>{{ request.createdAt.format('d-m-Y') }}</small>
-                    </h3>
-                    <h3 class="h4">Адрес:
-                        <small>{{ request.address }}</small>
-                    </h3>
-                    <h3 class="h4">Телефон:
-                        <small>{{ request.phoneNumber }}</small>
-                    </h3>
-                    <h3 class="h4">Комментарий:</h3>
-                    <blockquote>
-                        {{ request.comment }}
-                    </blockquote>
+                    <div class="entity_body">
+                        <h3 class="h4">Дата:
+                            <small>{{ request.createdAt.format('d-m-Y') }}</small>
+                        </h3>
+                        <h3 class="h4">Адрес:
+                            <small>{{ request.address }}</small>
+                        </h3>
+                        <h3 class="h4">Телефон:
+                            <small>{{ request.phoneNumber }}</small>
+                        </h3>
+                        <h3 class="h4">Комментарий:</h3>
+                        <blockquote>
+                            {{ request.comment }}
+                        </blockquote>
+                    </div>
                 </div>
             {% endfor %}
         </div>
-    {% else %}
-        <div class="alert alert-success">{{ type }} заявки отсутствуют</div>
     {% endif %}
 {% endblock %}

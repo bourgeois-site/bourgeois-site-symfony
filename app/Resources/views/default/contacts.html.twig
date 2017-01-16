@@ -80,19 +80,19 @@
         var map, coordinates, placemark;
 
         {% for contact in real_contacts %}
-        coordinates = [{{ contact.latitude }}, {{ contact.longitude }}];
-        map = new ymaps.Map("map_{{ contact.id }}", {
-            center: coordinates,
-            zoom: zoomLevel
-        });
-        placemark = new ymaps.Placemark(coordinates, {
-            hintContent: hint,
-            balloonContent: baloon
-        }, {
-            preset: 'islands#redGlyphIcon',
-        });
-        map.geoObjects.add(placemark);
-        map.behaviors.disable('scrollZoom');
+            coordinates = [{{ contact.latitude }}, {{ contact.longitude }}];
+            map = new ymaps.Map("map_{{ contact.id }}", {
+                center: coordinates,
+                zoom: zoomLevel
+            });
+            placemark = new ymaps.Placemark(coordinates, {
+                hintContent: hint,
+                balloonContent: baloon
+            }, {
+                preset: 'islands#redGlyphIcon',
+            });
+            map.geoObjects.add(placemark);
+            map.behaviors.disable('scrollZoom');
         {% endfor %}
     });
 </script>

@@ -35,6 +35,10 @@ class DefaultController extends Controller
             getRepository('AppBundle:Category')->
             findOneByType('about');
 
+        if (!$category) {
+            throw $this->createNotFoundException();
+        }
+
         $title = $category->getTitle();
 
         $sections = $category->getSections();
@@ -75,6 +79,7 @@ class DefaultController extends Controller
         $services = $this->getDoctrine()->
             getRepository('AppBundle:Category')->
             findByType('service');
+
         $works = $this->getDoctrine()->
             getRepository('AppBundle:Category')->
             findByType('work');

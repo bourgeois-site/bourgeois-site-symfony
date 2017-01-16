@@ -2,4 +2,6 @@
 
 {% block main %}
 <h1 class="page-header">О компании</h1>
+
+{{ include('admin/partials/edit_category.html.twig', {'object': object }) }}
 {% endblock %}
