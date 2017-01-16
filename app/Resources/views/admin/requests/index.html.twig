@@ -3,14 +3,14 @@
 {% block main %}
     {% if requests|length > 0 %}
         <h1 class="page-header">
-            Заявки ({{ type }}) <span class="badge">{{ requests|length }}</span>
+            {{ type }} заявки <span class="badge">{{ requests|length }}</span>
         </h1>
 
         <div class="list-group">
             {% for request in requests %}
                 <div class="list-group-item">
                     <h2 class="h3">
-                        {% if type == "новые" %}
+                        {% if type == "Новые" %}
                             <form class="pull-right">
                                 <button class="btn btn-link" style="padding-top: 3px">Архивировать</button>
                             </form>
@@ -38,6 +38,6 @@
             {% endfor %}
         </div>
     {% else %}
-        <div class="alert alert-success">На данный момент заявки отсутствуют</div>
+        <div class="alert alert-success">{{ type }} заявки отсутствуют</div>
     {% endif %}
 {% endblock %}

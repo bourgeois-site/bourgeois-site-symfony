@@ -1,10 +1,10 @@
 <?php
-namespace AppBundle\Controller\Admin;
+namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class ContactsController extends Controller
+class AdminContactsController extends Controller
 {
     /**
      * @Route("/админ/контакты", name="admin_contacts")

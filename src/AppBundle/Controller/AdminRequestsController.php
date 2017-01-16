@@ -1,11 +1,10 @@
 <?php
-namespace AppBundle\Controller\Admin;
+namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-// TODO: pagination, active links, archive possibility
-class RequestsController extends Controller
+class AdminRequestsController extends Controller
 {
     /**
      * @Route("/админ/заявки/новые", name="admin_new_requests")
@@ -17,7 +16,7 @@ class RequestsController extends Controller
             findByIsArchived(false, array('createdAt' => 'desc'));
 
         return $this->render('admin/requests/index.html.twig',
-            ['type' => 'новые', 'requests' => $requests]);
+            ['type' => 'Новые', 'requests' => $requests]);
     }
 
     /**
@@ -30,6 +29,6 @@ class RequestsController extends Controller
             findByIsArchived(true, array('createdAt' => 'desc'));
 
         return $this->render('admin/requests/index.html.twig',
-            ['type' => 'архив', 'requests' => $requests]);
+            ['type' => 'Архивированные', 'requests' => $requests]);
     }
 }
