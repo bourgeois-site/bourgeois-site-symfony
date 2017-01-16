@@ -3,6 +3,10 @@
 {% block title %}{{ title }} - {{ parent() }}{% endblock %}
 
 {% block main %}
+<div id="page_header">
+    <h1>{{ title }}</h1>
+</div>
+
 <section id="contacts" class="container">
     <div id="real_contacts" class="row">
         {% for contact in real_contacts %}
@@ -88,6 +92,7 @@
             preset: 'islands#redGlyphIcon',
         });
         map.geoObjects.add(placemark);
+        map.behaviors.disable('scrollZoom');
         {% endfor %}
     });
 </script>

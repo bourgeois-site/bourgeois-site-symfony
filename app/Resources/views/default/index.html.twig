@@ -7,7 +7,7 @@
             <div class="jumbotron col-md-6 col-md-offset-3">
                 <h1>Студия Буржуа</h1>
                 <p>Мы предлагаем услуги, включающие в себя все работы по частичному ремонту и ремонту "под ключ"</p>
-                <a href="{{ path('aboutpage') }}" class="btn btn-default btn-lg">О компании</a>
+                <a href="{{ path('aboutpage') }}" class="btn btn-danger btn-lg">О компании</a>
             </div>
         </div>
     </div>
@@ -28,6 +28,7 @@
                         {% for section in service.sections %}
                         {% if loop.first %}
                             <div class="service_description">
+                                <div class="divider"></div>
                                 <h4 class="section_title">{{ section.title }}</h4>
                                 <div class="section_description">
                                     {{ section.description|raw }}

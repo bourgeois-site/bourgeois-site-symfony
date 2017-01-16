@@ -7,9 +7,9 @@ main {
   padding-bottom: 40px;
 
   #page_header {
-    background: url('../images/bg/under_header.png') bottom center no-repeat;
+    border-bottom: 1px solid #eee;
     padding-top: 95px;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
     margin: 0;
     text-align: center;
   }
@@ -47,7 +47,7 @@ main {
 
     .jumbotron {
       margin-top: 200px;
-      background: inherit !important;
+      background-color: rgba(255, 255, 255, 0.5) !important;
       text-align: center;
     }
 
@@ -70,16 +70,21 @@ main {
   }
 
   #services {
-    img {
-      min-width: 100%;
-      opacity: 1.0;
-      transition: opacity 0.5s;
-    }
-
     .service {
+      background-color: #4a2323;
+      border: 1px solid #fff;
+      border-radius: 10px;
       padding: 0 !important;
       overflow: hidden;
       height: 300px;
+
+      img {
+        width: 100%;
+        display: block;
+        margin: auto;
+        opacity: 1.0;
+        transition: opacity 0.5s;
+      }
     }
 
     .service_caption {
@@ -90,6 +95,18 @@ main {
       width: 80%;
       color: #fff;
       text-shadow: 0 1px 1px #000;
+
+      .divider {
+        background-color: #fff;
+        margin: auto;
+        width: 50px;
+        height: 1px;
+        text-shadow: 0 1px 1px #000;
+      }
+
+      .section_title {
+        margin-top: 15px;
+      }
     }
   }
 
@@ -114,8 +131,6 @@ main {
   }
 
   #contacts {
-    margin-top: 50px;
-
     .h3, .h4 {
       text-align: center;
     }
@@ -149,11 +164,10 @@ main {
     }
 
     .modal-body {
-      background: linear-gradient(-45deg, #fff, #e6e6e6);
       padding: 20px;
 
       textarea {
-        height: 70px;
+        height: 36px;
         transition: height 0.5s;
       }
     }
@@ -163,7 +177,7 @@ main {
 @media (min-width: 768px) {
   main {
     #page_header {
-      padding-top: 117px;
+      padding-top: 125px;
     }
 
     .subsection {
@@ -183,6 +197,12 @@ main {
     }
 
     #services {
+      .service {
+        img {
+          height: 150%;
+          width: auto;
+        }
+      }
     }
 
     #works {
@@ -190,17 +210,13 @@ main {
         height: 400px;
       }
     }
-
-    #contacts {
-      margin-top: 72px;
-    }
   }
 }
 
 @media (min-width: 992px) {
   main {
     #page_header {
-      padding-top: 137px;
+      padding-top: 145px;
     }
 
     .subsection {
@@ -219,8 +235,6 @@ main {
     }
 
     #contacts {
-      margin-top: 92px;
-
       #real_contacts {
         .contact {
           margin-top: 40px;
