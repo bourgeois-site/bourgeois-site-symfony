@@ -99,7 +99,7 @@
                 </button>
             </div>
         </div>
-        {{ include('partials/call_form.html.twig') }}
+        {{ include('partials/call_form.html.twig', { 'callForm': callForm }) }}
     </div>
 </section>
 {% endblock %}

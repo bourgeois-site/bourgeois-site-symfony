@@ -30,7 +30,13 @@
 
                     <div class="entity_body">
                         <h3 class="h4">Дата:
-                            <small>{{ request.createdAt.format('H:i d/m/Y') }}</small>
+                            {% if request.createdAt.format('d/m/Y') == "now"|date('d/m/Y') %}
+                                <small>{{ request.createdAt.format('H:i') }} Сегодня</small>
+                            {% elseif request.createdAt.format('d/m/Y') == "yesterday"|date('d/m/Y') %}
+                                <small>{{ request.createdAt.format('H:i') }} Вчера</small>
+                            {% else %}
+                                <small>{{ request.createdAt.format('H:i d/m/Y') }}</small>
+                            {% endif %}
                         </h3>
                         <h3 class="h4">Адрес:
                             <small>{{ request.address }}</small>

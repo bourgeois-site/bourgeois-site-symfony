@@ -21,9 +21,10 @@ class AdminRequestsController extends Controller
 
         $pagesCount = ceil($allRequestsCount / $limit);
 
+        // Push older requests to top of the stack
         $query = $repo->createQueryBuilder('r')->
             where('r.isArchived = false')->
-            orderBy('r.createdAt', 'desc')->
+            orderBy('r.createdAt', 'asc')->
             setFirstResult($offset)->
             setMaxResults($limit)->
             getQuery();
@@ -54,6 +55,7 @@ class AdminRequestsController extends Controller
 
         $pagesCount = ceil($allRequestsCount / $limit);
 
+        // Recent archived requests are on the top
         $query = $repo->createQueryBuilder('r')->
             where('r.isArchived = true')->
             orderBy('r.createdAt', 'desc')->
@@ -87,6 +89,8 @@ class AdminRequestsController extends Controller
         }
 
         $request->setIsArchived(true);
+        $request->setCreatedAt(new \DateTime());
+
         $em->flush();
 
         $this->addFlash('notice', "Заявка от {$request->getName()} обработана и помещена в архив");

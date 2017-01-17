@@ -4,13 +4,18 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use AppBundle\Entity\Request as userRequest;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $services = $this->getDoctrine()->
             getRepository('AppBundle:Category')->
@@ -20,9 +25,44 @@ class DefaultController extends Controller
             getRepository('AppBundle:Category')->
             findByType('work');
 
+        $userRequest = new userRequest();
+        $callForm = $this->createFormBuilder($userRequest)->
+            add('name', TextType::class, array(
+                'label' => "Имя", 'attr' => array('class' => 'form-control')
+            ))->add('email', TextType::class, array(
+                'required' => false, 'label' => 'Email', 'attr' => array(
+                    'class' => 'form-control')
+            ))->add('address', TextType::class, array(
+                'required' => false, 'label' => "Адрес", 'attr' => array(
+                    'class' => 'form-control')
+            ))->add('phoneNumber', TextType::class, array(
+                'label' => "Телефон", 'attr' => array('class' => 'form-control')
+            ))->add('comment', TextareaType::class, array(
+                'required' => false, 'label' => "Комментарий", 'attr' => array(
+                    'class' => 'form-control')
+            ))->add('submit', SubmitType::class, array(
+                'label' => "Подтвердить", 'attr' => array(
+                    'class' => 'btn btn-primary')
+            ))->getForm();
+
+        $callForm->handleRequest($request);
+
+        if ($callForm->isSubmitted() && $callForm->isValid()) {
+            $userRequest = $callForm->getData();
+            $userRequest->setCreatedAt(new \DateTime());
+            $userRequest->setIsArchived(false);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($userRequest);
+            $em->flush();
+
+            $this->addFlash('notice', "Заявка получена и будет обработана в ближайшее время");
+            return $this->redirectToRoute('homepage');
+        }
+
         return $this->render('default/index.html.twig', [
             'services' => $services,
-            'works' => $works
+            'works' => $works,
+            'callForm' => $callForm->createView()
         ]);
     }
 
