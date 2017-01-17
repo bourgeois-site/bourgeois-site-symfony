@@ -19,7 +19,7 @@
                 <div class="entity_body">
                     <a href="{{ path('show_service', { 'slug': service.slug }) }}" class="btn btn-default" target="_blank">Просмотр на сайте</a>
                     <a href="{{ path('admin_edit_service', { 'slug': service.slug }) }}" class="btn btn-info">Редактировать</a>
-                    <button class="btn btn-danger pull-right" onclick="alert('Delete it?')">Удалить</a>
+                    <button class="btn btn-danger pull-right" onclick="alert('Delete it')">Удалить</button>
                 </div>
             </div>
         {% endfor %}

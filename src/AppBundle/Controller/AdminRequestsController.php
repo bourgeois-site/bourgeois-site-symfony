@@ -29,6 +29,6 @@ class AdminRequestsController extends Controller
             findByIsArchived(true, array('createdAt' => 'desc'));
 
         return $this->render('admin/requests/index.html.twig',
-            ['type' => 'Архивированные', 'requests' => $requests]);
+            ['type' => 'Обработанные', 'requests' => $requests]);
     }
 }

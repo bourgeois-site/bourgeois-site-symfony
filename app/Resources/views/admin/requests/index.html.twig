@@ -14,7 +14,7 @@
                     <h2 class="h3 entity_header">
                         {% if type == "Новые" %}
                             <form class="pull-right">
-                                <button class="btn btn-link" style="padding-top: 3px">Архивировать</button>
+                                <button class="btn btn-link archive_link">Архивировать</button>
                             </form>
                             <span class="label label-success pull-right">Новая</span>
                         {% else %}
@@ -22,6 +22,7 @@
                         {% endif %}
                         {{ request.name }}
                     </h2>
+
                     <div class="entity_body">
                         <h3 class="h4">Дата:
                             <small>{{ request.createdAt.format('d-m-Y') }}</small>

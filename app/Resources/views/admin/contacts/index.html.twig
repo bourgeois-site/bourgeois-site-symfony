@@ -1,5 +1,52 @@
 {% extends 'admin/layout.html.twig' %}
 
 {% block main %}
-<h1 class="page-header">Контакты</h1>
+    <h1 class="page-header">
+        Контакты <span class="badge">{{ internetCount + realCount }}</span>
+    </h1>
+
+    <button id="new_entity_link" class="btn btn-primary btn-lg" onclick="alert('Change me later')">
+        <span class="glyphicon glyphicon-plus"></span>
+        Добавить новый контакт
+    </button>
+
+    <div class="row">
+        <section id="admin_internet_contacts" class="col-md-6">
+            <h2 class="h2">
+                Интернет контакты <span class="badge">{{ internetCount }}</span>
+            </h2>
+            <div class="list-group">
+                {% for contact in internetContacts %}
+                    <div class="list-group-item">
+                        <h3 class="h3 entity_header">
+                            {{ contact.title }}
+                        </h3>
+                        <div class="entity_body">
+                            <a href="{{ path('admin_edit_internet_contact', { 'id': contact.id }) }}" class="btn btn-info">Редактировать</a>
+                            <button class="btn btn-danger pull-right" onclick="alert('Delete it')">Удалить</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="admin_real_contacts" class="col-md-6">
+            <h2 class="h2">
+                Адреса <span class="badge">{{ realCount }}</span>
+            </h2>
+            <div class="list-group">
+                {% for contact in realContacts %}
+                    <div class="list-group-item">
+                        <h3 class="h3 entity_header">
+                            {{ contact.title }}
+                        </h3>
+                        <div class="entity_body">
+                            <a href="{{ path('admin_edit_real_contact', { 'id': contact.id }) }}" class="btn btn-info">Редактировать</a>
+                            <button class="btn btn-danger pull-right" onclick="alert('Delete it')">Удалить</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
 {% endblock %}
