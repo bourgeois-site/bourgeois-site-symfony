@@ -1,1 +1,1 @@
-role :web, %w(deploy@vagrant)
+role :web, %w(deploy@pubvag)

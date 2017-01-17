@@ -74,8 +74,6 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
-        sass:
-            bin: /usr/bin/sass
 
 vich_uploader:
     db_driver: orm

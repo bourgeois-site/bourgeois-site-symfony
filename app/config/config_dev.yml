@@ -30,5 +30,10 @@ monolog:
         #    type:   chromephp
         #    level:  info
 
+assetic:
+    filters:
+        sass:
+            bin: /home/gentoo/.rbenv/versions/2.4.0/bin/sass
+
 #swiftmailer:
 #    delivery_address: me@example.com

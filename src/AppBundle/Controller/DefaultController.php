@@ -42,7 +42,7 @@ class DefaultController extends Controller
                     'class' => 'form-control')
             ))->add('submit', SubmitType::class, array(
                 'label' => "Подтвердить", 'attr' => array(
-                    'class' => 'btn btn-primary')
+                    'class' => 'btn btn-danger')
             ))->getForm();
 
         $callForm->handleRequest($request);

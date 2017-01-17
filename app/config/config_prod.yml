@@ -19,3 +19,8 @@ monolog:
             level: debug
         console:
             type:  console
+
+assetic:
+    filters:
+        sass:
+            bin: /usr/bin/sass
