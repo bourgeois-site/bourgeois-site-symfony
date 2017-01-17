@@ -2,10 +2,10 @@
 
 {% block main %}
     <h1 class="page-header">
-        {{ type }} заявки <span class="badge">{{ requests|length }}</span>
+        {{ type }} заявки <span class="badge">{{ allRequestsCount }}</span>
     </h1>
 
-    {% if requests|length == 0 %}
+    {% if allRequestsCount == 0 %}
         <div class="alert alert-success">{{ type }} заявки отсутствуют</div>
     {% else %}
         <div class="list-group">
@@ -41,5 +41,31 @@
                 </div>
             {% endfor %}
         </div>
+        
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                {% set previousPage = page - 1 %}
+                {% set nextPage = page + 1 %}
+                {% if page == 1 %}{% set previousPage = page %}{% endif %}
+                {% if page == pagesCount %}{% set nextPage = page %}{% endif %}
+                <li>
+                    <a href="{{ path(path, {'page': previousPage}) }}">
+                        Назад
+                    </a>
+                </li>
+                {% for number in 1..pagesCount %}
+                    <li {% if number == page %}class="active"{% endif %}>
+                        <a href="{{ path(path, {'page': number}) }}">
+                            {{ number }}
+                        </a>
+                    </li>
+                {% endfor %}
+                <li>
+                    <a href="{{ path(path, {'page': nextPage}) }}">
+                        Вперед
+                    </a>
+                </li>
+            </ul>
+        </nav>
     {% endif %}
 {% endblock %}
