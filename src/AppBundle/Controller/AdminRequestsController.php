@@ -3,6 +3,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class AdminRequestsController extends Controller
 {
@@ -70,5 +71,49 @@ class AdminRequestsController extends Controller
             'allRequestsCount' => $allRequestsCount,
             'requests' => $requests
         ]);
+    }
+
+    /**
+     * @Route("/админ/заявки/архивировать", name="admin_archive_request")
+     */
+    public function archiveRequestAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $request = $em->getRepository('AppBundle:Request')->
+            find($request->query->get('id'));
+
+        if (!$request) {
+            throw $this->createNotFoundException();
+        }
+
+        $request->setIsArchived(true);
+        $em->flush();
+
+        $this->addFlash('notice', "Заявка от {$request->getName()} обработана и помещена в архив");
+
+        return $this->redirectToRoute('admin_new_requests');
+    }
+
+    /**
+     * @Route("/админ/заявки/восстановить", name="admin_restore_request")
+     */
+    public function restoreRequestAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $request = $em->getRepository('AppBundle:Request')->
+            find($request->query->get('id'));
+
+        if (!$request) {
+            throw $this->createNotFoundException();
+        }
+
+        $request->setIsArchived(false);
+        $request->setCreatedAt(new \DateTime());
+
+        $em->flush();
+
+        $this->addFlash('notice', "Заявка от {$request->getName()} возвращена в список новых заявок");
+
+        return $this->redirectToRoute('admin_archived_requests');
     }
 }

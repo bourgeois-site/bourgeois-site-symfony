@@ -12,20 +12,25 @@
             {% for request in requests %}
                 <div class="list-group-item">
                     <h2 class="h3 entity_header">
-                        {% if type == "Новые" %}
-                            <form class="pull-right">
-                                <button class="btn btn-link archive_link">Архивировать</button>
-                            </form>
-                            <span class="label label-success pull-right">Новая</span>
-                        {% else %}
-                            <span class="label label-default pull-right">Обработана</span>
-                        {% endif %}
+                        <div class="pull-right">
+                            {% if type == "Новые" %}
+                                <form class="pull-right" action="{{ path('admin_archive_request', { 'id': request.id }) }}" method="post">
+                                    <input class="btn btn-link archive_link" type="submit" value="Архивировать">
+                                </form>
+                                <span class="label label-success">Новая</span>
+                            {% else %}
+                                <form class="pull-right" action="{{ path('admin_restore_request', { 'id': request.id }) }}" method="post">
+                                    <input class="btn btn-link restore_link" type="submit" value="Восстановить">
+                                </form>
+                                <span class="label label-default">Обработана</span>
+                            {% endif %}
+                        </div>
                         {{ request.name }}
                     </h2>
 
                     <div class="entity_body">
                         <h3 class="h4">Дата:
-                            <small>{{ request.createdAt.format('d-m-Y') }}</small>
+                            <small>{{ request.createdAt.format('H:i d/m/Y') }}</small>
                         </h3>
                         <h3 class="h4">Адрес:
                             <small>{{ request.address }}</small>
