@@ -1,6 +1,6 @@
 <aside class="col-sm-4 col-md-3">
     <ul class="nav nav-pills nav-stacked">
-        <li class="dropdown">
+        <li class="dropdown" id="zayavki_link">
             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-hashpopup="true" aria-expanded="false" href="#">
                 Заявки
                 {% if newRequestsCount > 0 %}
@@ -17,12 +17,20 @@
                 <li><a href="{{ path('admin_archived_requests') }}">Архив</a></li>
             </ul>
         </li>
-        <li>
+        <li id="uslugi_link">
             <a href="{{ path('admin_services') }}">Услуги</a>
         </li>
-        <li><a href="{{ path('admin_works') }}">Выполненные работы</a></li>
-        <li><a href="{{ path('admin_about') }}">О компании</a></li>
-        <li><a href="{{ path('admin_contacts') }}">Контакты</a></li>
-        <li><a href="{{ path('admin_profile') }}">Профиль</a></li>
+        <li id="vipolnyenniye-raboti_link">
+            <a href="{{ path('admin_works') }}">Выполненные работы</a>
+        </li>
+        <li id="o-kompanii_link">
+            <a href="{{ path('admin_about') }}">О компании</a>
+        </li>
+        <li id="kontakti_link">
+            <a href="{{ path('admin_contacts') }}">Контакты</a>
+        </li>
+        <li id="profil__link">
+            <a href="{{ path('admin_profile') }}">Профиль</a>
+        </li>
     </ul>
 </aside>
