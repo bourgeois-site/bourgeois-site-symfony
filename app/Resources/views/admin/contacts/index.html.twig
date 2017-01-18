@@ -5,10 +5,10 @@
         Контакты <span class="badge">{{ internetCount + realCount }}</span>
     </h1>
 
-    <button id="new_entity_link" class="btn btn-primary btn-lg" onclick="alert('Change me later')">
+    <a id="new_entity_link" class="btn btn-primary btn-lg" href="{{ path('admin_new_contact') }}">
         <span class="glyphicon glyphicon-plus"></span>
         Добавить новый контакт
-    </button>
+    </a>
 
     <div class="row">
         <section id="admin_internet_contacts" class="col-md-6">

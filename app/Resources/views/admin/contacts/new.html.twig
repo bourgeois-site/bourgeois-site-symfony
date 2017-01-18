@@ -1,0 +1,60 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block main %}
+    <h1 class="page-header">Новый контакт</h1>
+
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation" class="active">
+            <a href="#" id="new_internet_form_link">Интернет</a>
+        </li>
+        <li role="presentation">
+            <a href="#" id="new_real_form_link">Адрес</a>
+        </li>
+    </ul>
+
+    <div id="internet_contact_form">
+        {{ form_start(internetContactForm) }}
+        {{ form_widget(internetContactForm) }}
+        {{ form_end(internetContactForm) }}
+    </div>
+
+    <div id="real_contact_form">
+        {{ form_start(realContactForm) }}
+        {{ form_widget(realContactForm) }}
+        {{ form_end(realContactForm) }}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    #real_contact_form {
+        display: none;
+    }
+
+    .nav-justified {
+        margin-bottom: 40px;
+    }
+
+    form div {
+        margin-bottom: 15px;
+    }
+</style>
+{% endblock %} 
+
+{% block javascripts %}
+<script>
+  $('#new_internet_form_link').on('click', function() {
+    $('#real_contact_form').hide(300);
+    $('#internet_contact_form').show(300);
+    $('#new_real_form_link').parents('li').removeClass('active');
+    $(this).parents('li').addClass('active');
+  });
+
+  $('#new_real_form_link').on('click', function() {
+    $('#internet_contact_form').hide(300);
+    $('#real_contact_form').show(300);
+    $('#new_internet_form_link').parents('li').removeClass('active');
+    $(this).parents('li').addClass('active');
+  });
+</script>
+{% endblock %}

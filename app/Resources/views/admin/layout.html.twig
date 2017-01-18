@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Администратор - Студия Буржуа</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        {% stylesheets '@AppBundle/Resources/styles/admin/*.scss' filter='sass' %}
+        {% stylesheets '@AppBundle/Resources/styles/admin/*css.scss' filter='sass' %}
             <link rel="stylesheet" href="{{ asset_url }}">
         {% endstylesheets %}
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        {% javascripts '@AppBundle/Resources/js/admin/*.js' %}
+        {% javascripts '@AppBundle/Resources/js/admin/*js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
     </head>

@@ -5,6 +5,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -26,24 +27,24 @@ class DefaultController extends Controller
             findByType('work');
 
         $userRequest = new userRequest();
-        $callForm = $this->createFormBuilder($userRequest)->
-            add('name', TextType::class, array(
-                'label' => "Имя", 'attr' => array('class' => 'form-control')
-            ))->add('email', TextType::class, array(
-                'required' => false, 'label' => 'Email', 'attr' => array(
-                    'class' => 'form-control')
-            ))->add('address', TextType::class, array(
-                'required' => false, 'label' => "Адрес", 'attr' => array(
-                    'class' => 'form-control')
-            ))->add('phoneNumber', TextType::class, array(
-                'label' => "Телефон", 'attr' => array('class' => 'form-control')
-            ))->add('comment', TextareaType::class, array(
-                'required' => false, 'label' => "Комментарий", 'attr' => array(
-                    'class' => 'form-control')
-            ))->add('submit', SubmitType::class, array(
-                'label' => "Подтвердить", 'attr' => array(
-                    'class' => 'btn btn-danger')
-            ))->getForm();
+        $callForm = $this->createFormBuilder($userRequest)
+            ->add('name', TextType::class, array(
+                'label' => "Имя", 'attr' => array('class' => 'form-control')))
+            ->add('email', EmailType::class, array(
+                'required' => false, 'label' => 'Email',
+                'attr' => array('class' => 'form-control')))
+            ->add('address', TextType::class, array(
+                'required' => false, 'label' => "Адрес",
+                'attr' => array('class' => 'form-control')))
+            ->add('phoneNumber', TextType::class, array(
+                'label' => "Телефон", 'attr' => array('class' => 'form-control')))
+            ->add('comment', TextareaType::class, array(
+                'required' => false, 'label' => "Комментарий",
+                'attr' => array('class' => 'form-control')))
+            ->add('submit', SubmitType::class, array(
+                'label' => "Подтвердить",
+                'attr' => array('class' => 'btn btn-danger')))
+            ->getForm();
 
         $callForm->handleRequest($request);
 

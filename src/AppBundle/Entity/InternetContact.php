@@ -32,7 +32,7 @@ class InternetContact
     private $isEmail;
 
     /**
-     * @ORM\Column(type="string", name="social_name")
+     * @ORM\Column(type="string", name="social_name", nullable=true)
      */
     private $socialName;
     
