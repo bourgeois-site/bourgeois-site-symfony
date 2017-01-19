@@ -35,4 +35,9 @@ $(document).ready(function() {
   $('.restore_link').on('click', function() {
     $(this).parents('.list-group-item').hide(100);
   });
+
+  $('a[data-confirm]').on('click', function(e) {
+    var confirmation = confirm($(this).data('confirm'));
+    if (confirmation != true) { e.preventDefault(); }
+  });
 });

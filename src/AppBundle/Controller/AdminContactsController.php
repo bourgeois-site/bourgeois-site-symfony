@@ -54,12 +54,12 @@ class AdminContactsController extends Controller
                     'class' => 'form-control',
                     'placeholder' => "https://vk.com/remont_dzer")
             ))->add('isEmail', ChoiceType::class, array(
-                'label' => "Email?(Нет, если контакт - социальная сеть)", 'choices' => array(
+                'label' => "Email? (Нет, если контакт - социальная сеть)", 'choices' => array(
                     "Нет" => false,
                     "Да" => true
                 ), 'attr' => array('class' => 'form-control')
             ))->add('socialName', ChoiceType::class, array(
-                'label' => "Провайдер(выбор нужного значка)", 'choices' => array(
+                'label' => "Соц. сеть (выбор нужного значка)", 'choices' => array(
                     "Нет" => null,
                     "ВКонтакте" => 'vk',
                     "Одноклассники" => 'odnoklassniki',
@@ -114,7 +114,7 @@ class AdminContactsController extends Controller
             $em->persist($contact);
             $em->flush();
 
-            $this->addFlash('notice', "Контакт создан");
+            $this->addFlash('notice', "{$contact->getTitle()} добавлен в список контактов");
             return $this->redirectToRoute('admin_contacts');
         }
 
@@ -124,7 +124,7 @@ class AdminContactsController extends Controller
             $em->persist($contact);
             $em->flush();
 
-            $this->addFlash('notice', "Контакт создан");
+            $this->addFlash('notice', "{$contact->getTitle()} добавлен в список контактов");
             return $this->redirectToRoute('admin_contacts');
         }
 
@@ -135,7 +135,7 @@ class AdminContactsController extends Controller
     }
 
     /**
-     * @Route("/админ/контакты/интернет/редактировать/{id}", name="admin_edit_internet_contact")
+     * @Route("/админ/контакты/интернет/{id}/редактировать", name="admin_edit_internet_contact")
      */
     public function editInternetContactAction($id)
     {
@@ -149,7 +149,7 @@ class AdminContactsController extends Controller
     }
 
     /**
-     * @Route("/админ/контакты/адреса/редактировать/{id}", name="admin_edit_real_contact")
+     * @Route("/админ/контакты/адреса/{id}/редактировать", name="admin_edit_real_contact")
      */
     public function editRealContactAction($id)
     {
@@ -160,6 +160,46 @@ class AdminContactsController extends Controller
         return $this->render('admin/contacts/edit_real.html.twig', [
             'contact' => $contact
         ]);
+    }
+
+    /**
+     * @Route("/админ/контакты/интернет/{id}", name="admin_delete_internet_contact")
+     */
+    public function deleteInternetContactAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $contact = $em->getRepository('AppBundle:InternetContact')->find($id);
+
+        if (!$contact) {
+            throw $this->createNotFoundException();
+        }
+
+        $em->remove($contact);
+        $em->flush();
+
+        $this->addFlash('notice', "{$contact->getTitle()} удален из контактов");
+
+        return $this->redirectToRoute('admin_contacts');
+    }
+
+    /**
+     * @Route("/админ/контакты/адреса/{id}", name="admin_delete_real_contact")
+     */
+    public function deleteRealContactAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $contact = $em->getRepository('AppBundle:RealContact')->find($id);
+
+        if (!$contact) {
+            throw $this->createNotFoundException();
+        }
+
+        $em->remove($contact);
+        $em->flush();
+
+        $this->addFlash('notice', "{$contact->getTitle()} удален из контактов");
+
+        return $this->redirectToRoute('admin_contacts');
     }
 }
 

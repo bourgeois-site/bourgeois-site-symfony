@@ -23,7 +23,7 @@
                         </h3>
                         <div class="entity_body">
                             <a href="{{ path('admin_edit_internet_contact', { 'id': contact.id }) }}" class="btn btn-info">Редактировать</a>
-                            <button class="btn btn-danger pull-right" onclick="alert('Delete it')">Удалить</button>
+                            <a href="{{ path('admin_delete_internet_contact', { 'id': contact.id }) }}" class="btn btn-danger pull-right" data-confirm="Удалить {{ contact.title }}?">Удалить</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -42,7 +42,7 @@
                         </h3>
                         <div class="entity_body">
                             <a href="{{ path('admin_edit_real_contact', { 'id': contact.id }) }}" class="btn btn-info">Редактировать</a>
-                            <button class="btn btn-danger pull-right" onclick="alert('Delete it')">Удалить</button>
+                            <a href="{{ path('admin_delete_real_contact', { 'id': contact.id }) }}" class="btn btn-danger pull-right" data-confirm="Удалить {{ contact.title }}?">Удалить</a>
                         </div>
                     </div>
                 {% endfor %}
