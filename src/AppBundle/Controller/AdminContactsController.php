@@ -73,6 +73,10 @@ class AdminContactsController extends Controller
             getRepository('AppBundle:InternetContact')->
             findOneById($id);
 
+        if (!$contact) {
+            throw $this->createNotFoundException();
+        }
+
         $title = $contact->getTitle();
         $form = $this->getInternetContactForm($contact);
 
@@ -102,6 +106,10 @@ class AdminContactsController extends Controller
         $contact = $this->getDoctrine()->
             getRepository('AppBundle:RealContact')->
             findOneById($id);
+
+        if (!$contact) {
+            throw $this->createNotFoundException();
+        }
 
         $title = $contact->getTitle();
         $form = $this->getRealContactForm($contact);

@@ -12,14 +12,16 @@
 
     <div class="list-group">
         {% for work in works %}
+            {% set title = work.title %}
+            {% set slug = work.slug %}
             <div class="list-group-item">
                 <h2 class="h3 entity_header">
-                    {{ work.title }}
+                    {{ title }}
                 </h2>
                 <div class="entity_body">
-                    <a href="{{ path('show_work', { 'slug': work.slug }) }}" class="btn btn-default" target="_blank">Просмотр на сайте</a>
-                    <a href="{{ path('admin_edit_work', { 'slug': work.slug }) }}" class="btn btn-info">Редактировать</a>
-                    <button class="btn btn-danger pull-right" onclick="alert('Delete it')">Удалить</a>
+                    <a href="{{ path('show_work', { 'slug': slug }) }}" class="btn btn-default" target="_blank">Просмотр на сайте</a>
+                    <a href="{{ path('admin_edit_work', { 'slug': slug }) }}" class="btn btn-info">Редактировать</a>
+                    <a href="{{ path('admin_delete_work', { 'slug': slug }) }}"class="btn btn-danger pull-right" data-confirm="Удалить {{ title }}?">Удалить</a>
                 </div>
             </div>
         {% endfor %}

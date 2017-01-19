@@ -27,13 +27,13 @@ class Category
     private $type;
 
     /**
-     * @ORM\OneToOne(targetEntity="Photo")
+     * @ORM\OneToOne(targetEntity="Photo", cascade="all")
      * @ORM\JoinColumn(name="photo_id", referencedColumnName="id")
      */
     private $photo;
 
     /**
-     * @ORM\OneToMany(targetEntity="Section", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="Section", mappedBy="category", cascade="all")
      */
     private $sections;
 

@@ -27,7 +27,7 @@ class Section
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="Photo", mappedBy="section")
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="section", cascade="all")
      */
     private $photos;
 
