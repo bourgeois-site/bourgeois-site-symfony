@@ -39,7 +39,7 @@
                     {% for contact in email_contacts %}
                     {% set email_address = contact.href %}
                     <span class="glyphicon glyphicon-envelope"></span>
-                    <a href="mailto:{{ email_address }}">{{ email_address }}</a>
+                    <a href="mailto:{{ email_address }}" title="{{ contact.title }}">{{ email_address }}</a>
                     <br>
                     {% endfor %}
                 </div>

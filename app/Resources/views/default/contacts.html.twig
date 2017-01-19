@@ -36,12 +36,12 @@
             <div class="thumbnail">
                 <h2 class="h3">Электронная почта</h2>
                 <div class="caption">
-                    <h3 class="h4">
                     {% for contact in email_contacts %}
-                    {% set email_address = contact.href %}
-                        <a href="mailto:{{ email_address }}">{{ email_address }}</a>
+                        {% set email_address = contact.href %}
+                        <h3 class="h4">
+                            <a href="mailto:{{ email_address }}" title="{{ contact.title }}">{{ email_address }}</a>
+                        </h3>
                     {% endfor %}
-                    </h3>
                 </div>
             </div>
         </div>
@@ -53,15 +53,15 @@
                 <h2 class="h3">Социальные сети</h2>
                 <div class="caption">
                     <h3 class="h4">
-                    {% for contact in social_contacts %}
-                        <a class="social_contact" href="{{ contact.href }}" title="{{ contact.title }}" target="_blank">
-                            {% if contact.socialName %}
-                                <i class="fa fa-2x fa-{{ contact.socialName }}"></i>
-                            {% else %}
-                                {{ contact.title }}
-                            {% endif %}
-                        </a> 
-                    {% endfor %}
+                        {% for contact in social_contacts %}
+                            <a class="social_contact" href="{{ contact.href }}" title="{{ contact.title }}" target="_blank">
+                                {% if contact.socialName %}
+                                    <i class="fa fa-2x fa-{{ contact.socialName }}"></i>
+                                {% else %}
+                                    {{ contact.title }}
+                                {% endif %}
+                            </a>
+                        {% endfor %}
                     </h3>
                 </div>
             </div>

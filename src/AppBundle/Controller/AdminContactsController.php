@@ -168,11 +168,11 @@ class AdminContactsController extends Controller
     {
         $form = $this->createFormBuilder($contact)
             ->add('title', TextType::class, array(
-                'label' => "Заголовок(будет появляться при наведении пользователем на значок)", 'attr' => array(
+                'label' => "Заголовок (будет выскакивать при наведении пользователем на контакт)", 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => "Вконтакте")))
             ->add('href', TextType::class, array(
-                'label' => "Ссылка(адрес или email)", 'attr' => array(
+                'label' => "Ссылка (url или email)", 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => "https://vk.com/remont_dzer")))
             ->add('isEmail', ChoiceType::class, array(
