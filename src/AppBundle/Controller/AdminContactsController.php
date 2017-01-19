@@ -41,91 +41,21 @@ class AdminContactsController extends Controller
      */
     public function newInternetContactAction(Request $request)
     {
-        $internetContact = new InternetContact();
-        $realContact = new RealContact();
+        $internetContactForm = $this->getInternetContactForm(new InternetContact());
+        $realContactForm = $this->getRealContactForm(new RealContact());
 
-        $internetContactForm = $this->createFormBuilder($internetContact)->
-            add('title', TextType::class, array(
-                'label' => "Заголовок(будет появляться при наведении пользователем на значок)", 'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => "Вконтакте")
-            ))->add('href', TextType::class, array(
-                'label' => "Ссылка(адрес или email)", 'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => "https://vk.com/remont_dzer")
-            ))->add('isEmail', ChoiceType::class, array(
-                'label' => "Email? (Нет, если контакт - социальная сеть)", 'choices' => array(
-                    "Нет" => false,
-                    "Да" => true
-                ), 'attr' => array('class' => 'form-control')
-            ))->add('socialName', ChoiceType::class, array(
-                'label' => "Соц. сеть (выбор нужного значка)", 'choices' => array(
-                    "Нет" => null,
-                    "ВКонтакте" => 'vk',
-                    "Одноклассники" => 'odnoklassniki',
-                    "Facebook" => 'facebook',
-                    "Instagram" => 'instagram',
-                    "YouTube" => 'youtube',
-                    "Telegram" => 'telegram',
-                    "Twitter" => 'twitter',
-                    "Skype" => 'skype'
-                ), 'attr' => array('class' => 'form-control')
-            ))->add('submit', SubmitType::class, array(
-                'label' => "Создать", 'attr' => array(
-                    'class' => 'btn btn-primary btn-lg')
-            ))->getForm();
+        foreach ([$internetContactForm, $realContactForm] as $form) {
+            $form->handleRequest($request);
 
-        $realContactForm = $this->createFormBuilder($realContact)->
-            add('title', TextType::class, array(
-                'label' => "Заголовок", 'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => "г. Дзержинск")
-            ))->add('address', TextType::class, array(
-                'label' => "Адрес", 'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => "г. Дзержинск, ул. Грибоедова 22/11")
-            ))->add('phoneNumbers', TextType::class, array(
-                'label' => "Телефонные номера", 'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => '+7 (8313) 23-46-46, +7 (904) 782-65-46')
-            ))->add('workTime', TextType::class, array(
-                'label' => "Часы работы", 'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => "Пн-Пт: 9:00-19:00, Сб-Вс: 10:00-16:00")
-            ))->add('latitude', NumberType::class, array(
-                'label' => "Широта(latitude) - для показа точки на карте", 'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => '56.237328')
-            ))->add('longitude', NumberType::class, array(
-                'label' => "Долгота(longitude) - для показа точки на карте", 'attr' => array(
-                    'class' => 'form-control',
-                    'placeholder' => '43.448866')
-            ))->add('submit', SubmitType::class, array(
-                'label' => "Создать", 'attr' => array(
-                    'class' => 'btn btn-primary btn-lg')
-            ))->getForm();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $contact = $form->getData();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($contact);
+                $em->flush();
 
-        $internetContactForm->handleRequest($request);
-        $realContactForm->handleRequest($request);
-
-        if ($internetContactForm->isSubmitted() && $internetContactForm->isValid()) {
-            $contact = $internetContactForm->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($contact);
-            $em->flush();
-
-            $this->addFlash('notice', "{$contact->getTitle()} добавлен в список контактов");
-            return $this->redirectToRoute('admin_contacts');
-        }
-
-        if ($realContactForm->isSubmitted() && $realContactForm->isValid()) {
-            $contact = $realContactForm->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($contact);
-            $em->flush();
-
-            $this->addFlash('notice', "{$contact->getTitle()} добавлен в список контактов");
-            return $this->redirectToRoute('admin_contacts');
+                $this->addFlash('notice', "{$contact->getTitle()} добавлен в список контактов");
+                return $this->redirectToRoute('admin_contacts');
+            }
         }
 
         return $this->render('admin/contacts/new.html.twig', [
@@ -137,28 +67,60 @@ class AdminContactsController extends Controller
     /**
      * @Route("/админ/контакты/интернет/{id}/редактировать", name="admin_edit_internet_contact")
      */
-    public function editInternetContactAction($id)
+    public function editInternetContactAction($id, Request $request)
     {
         $contact = $this->getDoctrine()->
             getRepository('AppBundle:InternetContact')->
             findOneById($id);
 
-        return $this->render('admin/contacts/edit_internet.html.twig', [
-            'contact' => $contact
+        $title = $contact->getTitle();
+        $form = $this->getInternetContactForm($contact);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $contact = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contact);
+            $em->flush();
+
+            $this->addFlash('notice', "{$title} обновлен");
+
+            return $this->redirectToRoute('admin_contacts');
+        }
+
+        return $this->render('admin/contacts/edit.html.twig', [
+            'title' => $title,
+            'form' => $form->createView()
         ]);
     }
 
     /**
      * @Route("/админ/контакты/адреса/{id}/редактировать", name="admin_edit_real_contact")
      */
-    public function editRealContactAction($id)
+    public function editRealContactAction($id, Request $request)
     {
         $contact = $this->getDoctrine()->
             getRepository('AppBundle:RealContact')->
             findOneById($id);
 
-        return $this->render('admin/contacts/edit_real.html.twig', [
-            'contact' => $contact
+        $title = $contact->getTitle();
+        $form = $this->getRealContactForm($contact);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $contact = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($contact);
+            $em->flush();
+
+            $this->addFlash('notice', "{$title} обновлен");
+
+            return $this->redirectToRoute('admin_contacts');
+        }
+
+        return $this->render('admin/contacts/edit.html.twig', [
+            'title' => $title,
+            'form' => $form->createView()
         ]);
     }
 
@@ -200,6 +162,75 @@ class AdminContactsController extends Controller
         $this->addFlash('notice', "{$contact->getTitle()} удален из контактов");
 
         return $this->redirectToRoute('admin_contacts');
+    }
+
+    private function getInternetContactForm($contact)
+    {
+        $form = $this->createFormBuilder($contact)
+            ->add('title', TextType::class, array(
+                'label' => "Заголовок(будет появляться при наведении пользователем на значок)", 'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => "Вконтакте")))
+            ->add('href', TextType::class, array(
+                'label' => "Ссылка(адрес или email)", 'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => "https://vk.com/remont_dzer")))
+            ->add('isEmail', ChoiceType::class, array(
+                'label' => "Email? (Нет, если контакт - социальная сеть)", 'choices' => array(
+                    "Нет" => false,
+                    "Да" => true
+                ), 'attr' => array('class' => 'form-control')))
+            ->add('socialName', ChoiceType::class, array(
+                'label' => "Соц. сеть - выбор нужного значка (Нет, если контакт - email)", 'choices' => array(
+                    "Нет" => null,
+                    "ВКонтакте" => 'vk',
+                    "Одноклассники" => 'odnoklassniki',
+                    "Facebook" => 'facebook',
+                    "Instagram" => 'instagram',
+                    "YouTube" => 'youtube',
+                    "Telegram" => 'telegram',
+                    "Twitter" => 'twitter',
+                    "Skype" => 'skype'
+                ), 'attr' => array('class' => 'form-control')))
+            ->add('submit', SubmitType::class, array(
+                'label' => "Подтвердить", 'attr' => array(
+                    'class' => 'btn btn-primary btn-lg')));
+
+        return $form->getForm();
+    }
+
+    private function getRealContactForm($contact)
+    {
+        $form = $this->createFormBuilder($contact)
+            ->add('title', TextType::class, array(
+                'label' => "Заголовок", 'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => "г. Дзержинск")))
+            ->add('address', TextType::class, array(
+                'label' => "Адрес", 'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => "г. Дзержинск, ул. Грибоедова 22/11")))
+            ->add('phoneNumbers', TextType::class, array(
+                'label' => "Телефонные номера", 'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => '+7 (8313) 23-46-46, +7 (904) 782-65-46')))
+            ->add('workTime', TextType::class, array(
+                'label' => "Часы работы", 'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => "Пн-Пт: 9:00-19:00, Сб-Вс: 10:00-16:00")))
+            ->add('latitude', NumberType::class, array(
+                'label' => "Широта(latitude) - для показа точки на карте", 'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => '56.237328')))
+            ->add('longitude', NumberType::class, array(
+                'label' => "Долгота(longitude) - для показа точки на карте", 'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => '43.448866')))
+            ->add('submit', SubmitType::class, array(
+                'label' => "Подтвердить", 'attr' => array(
+                    'class' => 'btn btn-primary btn-lg')));
+
+        return $form->getForm();
     }
 }
 

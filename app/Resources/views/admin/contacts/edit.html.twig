@@ -1,0 +1,9 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block main %}
+    <h1 class="page-header">Редактировать {{ title }}</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
