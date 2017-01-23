@@ -6,6 +6,10 @@ body {
       margin-bottom: 20px;
     }
 
+    .subsection {
+      max-width: 100%;
+    }
+
     .list-group-item {
       .entity_header {
         border-bottom: 1px solid #eee;
@@ -36,6 +40,12 @@ body {
 
     form div {
       margin-bottom: 15px;
+    }
+
+    .section_description {
+      textarea {
+        min-height: 300px;
+      }
     }
 
     @media (min-width: 768px) {

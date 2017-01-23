@@ -188,4 +188,13 @@ class Category
     {
         return $this->slug;
     }
+
+    public function generateSlug()
+    {
+        $title = $this->getTitle();
+        $slug = preg_replace('/[\"\'\,\.\!\?\(\)]+/', '', $title);
+        $slug = mb_strtolower(preg_replace('/\s+/', '-', $slug));
+
+        return $slug;
+    }
 }

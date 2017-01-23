@@ -1,0 +1,79 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block main %}
+    <h1 class="page-header">
+        {{ category.title }}
+        <button id="edit_category_link" class="btn btn-default pull-right">
+            <span class="glyphicon glyphicon-pencil"></span>
+            Редактировать
+        </button>
+    </h1>
+
+    <div id="edit_category_form">
+    </div>
+
+    {% for section in category.sections %}
+        {% set sectionId = section.id %}
+        <button id="edit_section_link_{{ sectionId }}" class="btn btn-default pull-right">
+            <span class="glyphicon glyphicon-pencil"></span>
+            Редактировать
+        </button>
+        <div id="show_section_{{ sectionId }}">
+            {{ include('partials/section.html.twig', { 'section': section }) }}
+        </div>
+
+        <button id="new_photo_link_{{ sectionId }}" class="btn btn-success new_photo_link">
+            <span class="glyphicon glyphicon-plus"></span>
+            Добавить фото
+        </button>
+        <div id="edit_section_form_{{ sectionId }}" class="edit_section_form">
+        </div>
+        <hr>
+    {% endfor %}
+
+    <div class="text-right">
+        <button class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-plus"></span>
+            Новый абзац
+        </button>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    #edit_category_form, .edit_section_form, .new_photo_link {
+        display: none;
+    }
+
+    .edit_section_form {
+        margin-top: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    var toggleTime = 300;
+
+    $('#edit_category_link').on('click', function() {
+        $.ajax({url: "{{ path('admin_edit_category', { 'type': category.type, 'slug': category.slug }) }}",
+            success: function(result) {
+                $('#edit_category_form').html(result).slideDown(toggleTime);
+        }});
+    });
+
+    {% for section in category.sections %}
+        {% set sectionId = section.id %}
+        $('#edit_section_link_{{ sectionId }}').on('click', function() {
+            $.ajax({url: "{{ path('admin_edit_section', { 'id': sectionId }) }}",
+                success: function(result) {
+                    $('#show_section_{{ sectionId }}').slideUp(toggleTime);
+                    $('#edit_section_form_{{ sectionId }}').html(result).slideDown(toggleTime);
+                    $('#new_photo_link_{{ sectionId }}').slideDown(toggleTime);
+                }, error: function(error) {
+                    alert(error.error);
+                } });
+        });
+    {% endfor %}
+</script>
+{% endblock %}

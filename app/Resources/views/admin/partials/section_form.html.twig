@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+{{ form_row(form.title) }}
+<div class="section_description">
+    {{ form_row(form.description) }}
+</div>
+
+{% if form.photos|length > 0 %}
+    <h2>{{ form_label(form.photos) }}</h2>
+    <div class="row">
+        {% for photo in form.photos %}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                {{ form_row(photo.title) }}
+                {{ form_row(photo.description) }}
+                {{ form_widget(photo.file) }}
+                <hr>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="hidden">
+        {{ form_row(form.photos) }}
+    </div>
+{% endif %}
+{{ form_end(form) }}

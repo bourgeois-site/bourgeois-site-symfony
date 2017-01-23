@@ -5,10 +5,10 @@
         Услуги <span class="badge">{{ services|length }}</span>
     </h1>
 
-    <button id="new_entity_link" class="btn btn-primary btn-lg" onclick="alert('Change me to link later')">
+    <a href="{{ path('admin_new_service') }}" id="new_entity_link" class="btn btn-primary btn-lg">
         <span class="glyphicon glyphicon-plus"></span>
         Создать новую услугу
-    </button>
+    </a>
 
     <div class="list-group">
         {% for service in services %}

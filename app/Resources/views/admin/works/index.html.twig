@@ -5,10 +5,10 @@
         Выполненные работы <span class="badge">{{ works|length }}</span>
     </h1>
 
-    <button id="new_entity_link" class="btn btn-primary btn-lg" onclick="alert('Change me to link later')">
+    <a href="{{ path('admin_new_work') }}" id="new_entity_link" class="btn btn-primary btn-lg">
         <span class="glyphicon glyphicon-plus"></span>
         Добавить выполненную работу
-    </button>
+    </a>
 
     <div class="list-group">
         {% for work in works %}
