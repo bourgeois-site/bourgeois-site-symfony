@@ -29,6 +29,8 @@
                 </div>
             {% endfor %}
             {% block main %}{% endblock %}
+
+            {{ include('partials/phone.html.twig') }}
         </main>
 
         {{ render(controller('AppBundle:Default:footer')) }}
