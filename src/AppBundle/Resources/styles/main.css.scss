@@ -183,12 +183,12 @@ main {
 
   #phone {
     position: fixed;
-    bottom: 5px;
-    left: 5px;
+    bottom: -15px;
+    left: -15px;
     background: #fff;
     border: 1px solid #000;
-    border-radius: 5px;
-    padding: 15px !important;
+    border-top-right-radius: 45px;
+    padding: 10px 10px 20px 20px;
     color: #000;
   }
 }
@@ -267,6 +267,10 @@ main {
           margin-top: 40px;
         }
       }
+    }
+
+    #phone {
+      display: none;
     }
   }
 }
