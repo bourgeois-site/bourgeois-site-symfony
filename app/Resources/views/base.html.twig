@@ -29,11 +29,10 @@
                 </div>
             {% endfor %}
             {% block main %}{% endblock %}
-
-            {{ include('partials/phone.html.twig') }}
         </main>
 
         {{ render(controller('AppBundle:Default:footer')) }}
+        {{ include('partials/phone.html.twig') }}
 
         {% block javascripts %}{% endblock %}
     </body>

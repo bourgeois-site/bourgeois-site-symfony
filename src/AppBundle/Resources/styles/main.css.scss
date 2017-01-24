@@ -54,7 +54,7 @@ main {
     background-size: cover;
 
     .jumbotron {
-      margin-top: 200px;
+      margin-top: 150px;
       background-color: rgba(255, 255, 255, 0.5) !important;
       text-align: center;
     }
@@ -180,16 +180,22 @@ main {
       }
     }
   }
+}
 
-  #phone {
-    position: fixed;
-    bottom: -15px;
-    left: -15px;
-    background: #fff;
-    border: 1px solid #000;
-    border-top-right-radius: 45px;
-    padding: 10px 10px 20px 20px;
-    color: #000;
+#phone {
+  position: fixed;
+  bottom: -5px;
+  left: -5px;
+  background: rgba(71, 71, 71, 0.5);
+  border: 1px solid #fff;
+  border-top-right-radius: 35px;
+  padding: 10px;
+  color: #fff;
+  transition: bottom ease-in-out 0.7s, left ease-in-out 0.7s;
+
+  &:active {
+    bottom: -30px;
+    left: -30px;
   }
 }
 
@@ -201,6 +207,12 @@ main {
 
     #page_header {
       padding-top: 125px;
+    }
+
+    #jumbotron {
+      .jumbotron {
+        margin-top: 180px;
+      }
     }
 
     .subsection {
@@ -252,7 +264,10 @@ main {
       }
     }
 
-    #services {
+    #jumbotron {
+      .jumbotron {
+        margin-top: 200px;
+      }
     }
 
     #works {
@@ -268,9 +283,9 @@ main {
         }
       }
     }
+  }
 
-    #phone {
-      display: none;
-    }
+  #phone {
+    display: none;
   }
 }

@@ -11,6 +11,8 @@ var cutServiceDescriptions = function() {
 }
 
 $(document).ready(function() {
+  $('[title]').tooltip({ placement: 'top'});
+
   $(window).scroll(function() {
     if($(this).scrollTop() > 50) {
       $('header nav').addClass('reduced');
