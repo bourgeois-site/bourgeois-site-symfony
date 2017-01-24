@@ -20,6 +20,7 @@
         </button>
         <div id="show_section_{{ sectionId }}">
             {{ include('partials/section.html.twig', { 'section': section }) }}
+            <hr>
         </div>
 
         <button id="new_photo_link_{{ sectionId }}" class="btn btn-success new_photo_link">
@@ -28,11 +29,13 @@
         </button>
         <div id="edit_section_form_{{ sectionId }}" class="edit_section_form">
         </div>
-        <hr>
     {% endfor %}
 
+    <div id="new_section_forms">
+    </div>
+
     <div class="text-right">
-        <button class="btn btn-primary btn-lg">
+        <button id="new_section_link" class="btn btn-primary btn-lg">
             <span class="glyphicon glyphicon-plus"></span>
             Новый абзац
         </button>
@@ -75,5 +78,14 @@
                 } });
         });
     {% endfor %}
+
+    $('#new_section_link').on('click', function() {
+        $.ajax({url: "{{ path('admin_new_section', {'categoryId': category.id }) }}",
+            success: function(result) {
+                $('#new_section_forms').append(result);
+            }, error: function(error) {
+                alert(error.error);
+            } });
+    });
 </script>
 {% endblock %}

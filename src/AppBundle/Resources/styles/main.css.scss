@@ -191,12 +191,6 @@ main {
   border-top-right-radius: 35px;
   padding: 10px;
   color: #fff;
-  transition: bottom ease-in-out 0.7s, left ease-in-out 0.7s;
-
-  &:active {
-    bottom: -30px;
-    left: -30px;
-  }
 }
 
 @media (min-width: 768px) {

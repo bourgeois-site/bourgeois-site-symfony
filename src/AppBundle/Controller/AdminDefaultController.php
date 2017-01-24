@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 use AppBundle\Form\Type\CategoryType;
 use AppBundle\Form\Type\SectionType;
 use AppBundle\Entity\Category;
+use AppBundle\Entity\Section;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -110,6 +111,42 @@ class AdminDefaultController extends Controller
 
         return $this->render('admin/partials/category_form.html.twig', [
             'category' => $category,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/админ/{categoryId}/абзац/новый", name="admin_new_section")
+     */
+    public function newSectionAction($categoryId, Request $request)
+    {
+        $section = new Section();
+
+        $em = $this->getDoctrine()->getManager();
+        $category = $em->getRepository('AppBundle:Category')->find($categoryId);
+
+        if (!$category) {
+            throw $this->createNotFoundException();
+        }
+
+        $form = $this->createForm(SectionType::class, $section, array(
+            'action' => $this->generateUrl('admin_new_section', ['categoryId' => $categoryId])
+        ));
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $section = $form->getData();
+            $section->setCategory($category);
+            $em->persist($section);
+            $em->flush();
+
+            $this->addFlash('notice', "'{$section->getTitle()}' добавлен в '{$category->getTitle()}'");
+
+            return $this->redirect($request->server->get('HTTP_REFERER'));
+        }
+
+        return $this->render('admin/partials/section_form.html.twig', [
             'form' => $form->createView()
         ]);
     }
