@@ -97,7 +97,7 @@ class AdminServicesController extends Controller
         $em->remove($service);
         $em->flush();
 
-        $this->addFlash('notice', "Услуга {$service->getTitle()} удалена");
+        $this->addFlash('notice', "Услуга '{$service->getTitle()}' удалена");
 
         return $this->redirectToRoute('admin_services');
     }

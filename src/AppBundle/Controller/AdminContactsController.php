@@ -53,7 +53,7 @@ class AdminContactsController extends Controller
                 $em->persist($contact);
                 $em->flush();
 
-                $this->addFlash('notice', "{$contact->getTitle()} добавлен в список контактов");
+                $this->addFlash('notice', "'{$contact->getTitle()}' добавлен в список контактов");
                 return $this->redirectToRoute('admin_contacts');
             }
         }
@@ -87,7 +87,7 @@ class AdminContactsController extends Controller
             $em->persist($contact);
             $em->flush();
 
-            $this->addFlash('notice', "{$title} обновлен");
+            $this->addFlash('notice', "'{$title}' обновлен");
 
             return $this->redirectToRoute('admin_contacts');
         }
@@ -121,7 +121,7 @@ class AdminContactsController extends Controller
             $em->persist($contact);
             $em->flush();
 
-            $this->addFlash('notice', "{$title} обновлен");
+            $this->addFlash('notice', "'{$title}' обновлен");
 
             return $this->redirectToRoute('admin_contacts');
         }
@@ -139,6 +139,7 @@ class AdminContactsController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $contact = $em->getRepository('AppBundle:InternetContact')->find($id);
+        $title = $contact->getTitle();
 
         if (!$contact) {
             throw $this->createNotFoundException();
@@ -147,7 +148,7 @@ class AdminContactsController extends Controller
         $em->remove($contact);
         $em->flush();
 
-        $this->addFlash('notice', "{$contact->getTitle()} удален из контактов");
+        $this->addFlash('notice', "'{$title}' удален из контактов");
 
         return $this->redirectToRoute('admin_contacts');
     }
@@ -159,6 +160,7 @@ class AdminContactsController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $contact = $em->getRepository('AppBundle:RealContact')->find($id);
+        $title = $contact->getTitle();
 
         if (!$contact) {
             throw $this->createNotFoundException();
@@ -167,7 +169,7 @@ class AdminContactsController extends Controller
         $em->remove($contact);
         $em->flush();
 
-        $this->addFlash('notice', "{$contact->getTitle()} удален из контактов");
+        $this->addFlash('notice', "'{$title}' удален из контактов");
 
         return $this->redirectToRoute('admin_contacts');
     }

@@ -29,9 +29,6 @@ $(document).ready(function() {
   });
 
   setActiveLink();
-  setTimeout(function() {
-    $('div.alert').hide(300);
-  }, 5000);
 
   $('.archive_link').on('click', function() {
     $(this).parents('.list-group-item').hide(100);

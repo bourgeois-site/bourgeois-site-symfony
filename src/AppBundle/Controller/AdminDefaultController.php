@@ -71,19 +71,41 @@ class AdminDefaultController extends Controller
             getRepository('AppBundle:Category')->
             findOneBy(array('type' => $type, 'slug' => $slug));
 
-        $form = $this->createForm(CategoryType::class, $category);
+        $title = $category->getTitle();
+
+        $form = $this->createForm(CategoryType::class, $category, array(
+            'action' => $this->generateUrl('admin_edit_category', [
+                'type' => $type, 'slug' => $slug])
+        ));
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
-            $category->generateSlug();
+
+            if ($category->getType() != 'about') {
+                $category->generateSlug();
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
-            // add flash 
-            // ajax response
-            return $this->redirectToRoute('admin_about'); //temporary
+
+            $this->addFlash('notice', "Изменения в '{$title}' произведены");
+
+            switch($type) {
+            case 'about':
+                return $this->redirectToRoute('admin_about');
+                break;
+            case 'service':
+                return $this->redirectToRoute('admin_services');
+                break;
+            case 'work':
+                return $this->redirectToRoute('admin_works');
+                break;
+            default:
+                return $this->redirectToRoute('admin_homepage');
+            }
         }
 
         return $this->render('admin/partials/category_form.html.twig', [
@@ -101,7 +123,11 @@ class AdminDefaultController extends Controller
             getRepository('AppBundle:Section')->
             find($id);
 
-        $form = $this->createForm(SectionType::class, $section);
+        $title = $section->getTitle();
+
+        $form = $this->createForm(SectionType::class, $section, array(
+            'action' => $this->generateUrl('admin_edit_section', ['id' => $id])
+        ));
 
         $form->handleRequest($request);
 
@@ -110,9 +136,25 @@ class AdminDefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($section);
             $em->flush();
-            // add flash 
-            // ajax response
-            return $this->redirectToRoute('admin_about'); //temporary
+
+            $category = $section->getCategory();
+            $type = $category->getType();
+
+            $this->addFlash('notice', "Изменения в '{$category->getTitle()} > {$title}' произведены");
+
+            switch($type) {
+            case 'about':
+                return $this->redirectToRoute('admin_about');
+                break;
+            case 'service':
+                return $this->redirectToRoute('admin_services');
+                break;
+            case 'work':
+                return $this->redirectToRoute('admin_works');
+                break;
+            default:
+                return $this->redirectToRoute('admin_homepage');
+            }
         }
 
         return $this->render('admin/partials/section_form.html.twig', [

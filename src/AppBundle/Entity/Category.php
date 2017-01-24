@@ -193,8 +193,8 @@ class Category
     {
         $title = $this->getTitle();
         $slug = preg_replace('/[\"\'\,\.\!\?\(\)]+/', '', $title);
-        $slug = mb_strtolower(preg_replace('/\s+/', '-', $slug));
+        $this->slug = mb_strtolower(preg_replace('/\s+/', '-', $slug));
 
-        return $slug;
+        return $this;
     }
 }
