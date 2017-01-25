@@ -48,20 +48,20 @@ body {
         min-height: 300px;
       }
     }
+  }
+}
 
-    @media (min-width: 768px) {
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+  .list-group-item {
+    .entity_header {
+      margin: 15px 20px 25px 20px;
     }
-
-    @media (min-width: 992px) {
-      .list-group-item {
-        .entity_header {
-          margin: 15px 20px 25px 20px;
-        }
-        
-        .entity_body {
-          margin: 20px 20px 10px 20px;
-        }
-      }
+    
+    .entity_body {
+      margin: 20px 20px 10px 20px;
     }
   }
 }

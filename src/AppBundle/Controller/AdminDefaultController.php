@@ -99,10 +99,10 @@ class AdminDefaultController extends Controller
                 return $this->redirectToRoute('admin_about');
                 break;
             case 'service':
-                return $this->redirectToRoute('admin_services');
+                return $this->redirectToRoute('admin_show_service', ['slug' => $category->getSlug()]);
                 break;
             case 'work':
-                return $this->redirectToRoute('admin_works');
+                return $this->redirectToRoute('admin_show_work', ['slug' => $category->getSlug()]);
                 break;
             default:
                 return $this->redirectToRoute('admin_homepage');
@@ -168,6 +168,9 @@ class AdminDefaultController extends Controller
 
             $category = $section->getCategory();
             $type = $category->getType();
+            if ($title == "") {
+                $title = $section->getTitle();
+            }
 
             $this->addFlash('notice', "Изменения в '{$category->getTitle()} > {$title}' произведены");
 
@@ -176,10 +179,10 @@ class AdminDefaultController extends Controller
                 return $this->redirectToRoute('admin_about');
                 break;
             case 'service':
-                return $this->redirectToRoute('admin_services');
+                return $this->redirectToRoute('admin_show_service', ['slug' => $category->getSlug()]);
                 break;
             case 'work':
-                return $this->redirectToRoute('admin_works');
+                return $this->redirectToRoute('admin_show_work', ['slug' => $category->getSlug()]);
                 break;
             default:
                 return $this->redirectToRoute('admin_homepage');
