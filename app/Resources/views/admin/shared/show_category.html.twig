@@ -3,10 +3,10 @@
 {% block main %}
     <h1 class="page-header">
         {{ category.title }}
-        <button id="edit_category_link" class="btn btn-default pull-right">
+        <a id="edit_category_link" class="btn btn-default pull-right" href="#">
             <span class="glyphicon glyphicon-pencil"></span>
             Редактировать
-        </button>
+        </a>
     </h1>
 
     <div id="edit_category_form">
@@ -14,19 +14,17 @@
 
     {% for section in category.sections %}
         {% set sectionId = section.id %}
-        <button id="edit_section_link_{{ sectionId }}" class="btn btn-default pull-right">
-            <span class="glyphicon glyphicon-pencil"></span>
-            Редактировать
-        </button>
+        <div class="text-right">
+            <a id="edit_section_link_{{ sectionId }}" class="btn btn-default" href="#">
+                <span class="glyphicon glyphicon-pencil"></span>
+                Редактировать
+            </a>
+        </div>
         <div id="show_section_{{ sectionId }}">
             {{ include('partials/section.html.twig', { 'section': section }) }}
             <hr>
         </div>
 
-        <button id="new_photo_link_{{ sectionId }}" class="btn btn-success new_photo_link">
-            <span class="glyphicon glyphicon-plus"></span>
-            Добавить фото
-        </button>
         <div id="edit_section_form_{{ sectionId }}" class="edit_section_form">
         </div>
     {% endfor %}
@@ -35,21 +33,21 @@
     </div>
 
     <div class="text-right">
-        <button id="new_section_link" class="btn btn-primary btn-lg">
+        <a id="new_section_link" class="btn btn-primary btn-lg" href="#">
             <span class="glyphicon glyphicon-plus"></span>
             Новый абзац
-        </button>
+        </a>
     </div>
 {% endblock %}
 
 {% block stylesheets %}
 <style>
-    #edit_category_form, .edit_section_form, .new_photo_link {
+    #edit_category_form, .edit_section_form {
         display: none;
     }
 
-    .edit_section_form {
-        margin-top: 20px;
+    .new_photo_link {
+        margin-top: 5px;
     }
 </style>
 {% endblock %}
@@ -58,7 +56,8 @@
 <script>
     var toggleTime = 300;
 
-    $('#edit_category_link').on('click', function() {
+    $('#edit_category_link').on('click', function(e) {
+        e.preventDefault();
         $.ajax({url: "{{ path('admin_edit_category', { 'type': category.type, 'slug': category.slug }) }}",
             success: function(result) {
                 $('#edit_category_form').html(result).slideDown(toggleTime);
@@ -67,7 +66,8 @@
 
     {% for section in category.sections %}
         {% set sectionId = section.id %}
-        $('#edit_section_link_{{ sectionId }}').on('click', function() {
+        $('#edit_section_link_{{ sectionId }}').on('click', function(e) {
+            e.preventDefault();
             $.ajax({url: "{{ path('admin_edit_section', { 'id': sectionId }) }}",
                 success: function(result) {
                     $('#show_section_{{ sectionId }}').slideUp(toggleTime);
@@ -79,8 +79,9 @@
         });
     {% endfor %}
 
-    $('#new_section_link').on('click', function() {
-        $.ajax({url: "{{ path('admin_new_section', {'categoryId': category.id }) }}",
+    $('#new_section_link').on('click', function(e) {
+        e.preventDefault();
+        $.ajax({url: "{{ path('admin_new_section', {'slug': category.slug }) }}",
             success: function(result) {
                 $('#new_section_forms').append(result);
             }, error: function(error) {

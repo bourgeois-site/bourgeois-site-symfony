@@ -46,7 +46,9 @@ class AdminServicesController extends Controller
 
             $this->addFlash('notice', "Добавлена новая услуга");
 
-            return $this->redirectToRoute('admin_services');
+            return $this->redirectToRoute('admin_show_service', [
+                'slug' => $category->getSlug()
+            ]);
         }
 
         return $this->render('admin/shared/new_category.html.twig', [

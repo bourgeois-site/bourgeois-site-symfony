@@ -46,7 +46,9 @@ class AdminWorksController extends Controller
 
             $this->addFlash('notice', "Добавлена новая выполненная работа");
 
-            return $this->redirectToRoute('admin_works');
+            return $this->redirectToRoute('admin_show_work', [
+                'slug' => $category->getSlug()
+            ]);
         }
 
         return $this->render('admin/shared/new_category.html.twig', [

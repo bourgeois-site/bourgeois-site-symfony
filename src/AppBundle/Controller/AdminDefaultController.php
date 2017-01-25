@@ -25,20 +25,20 @@ class AdminDefaultController extends Controller
     public function aboutAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository('AppBundle:Category')->
+        $about = $em->getRepository('AppBundle:Category')->
             findOneByType('about');
 
-        if (!$category) {
-            $category = new Category();
-            $category->setTitle("О компании");
-            $category->setType('about');
-            $category->setSlug('о-компании');
-            $em->persist($category);
+        if (!$about) {
+            $about = new Category();
+            $about->setTitle("О компании");
+            $about->setType('about');
+            $about->setSlug('о-компании');
+            $em->persist($about);
             $em->flush();
         }
 
         return $this->render('admin/shared/show_category.html.twig', [
-            'category' => $category,
+            'category' => $about,
         ]);
     }
 
@@ -116,38 +116,30 @@ class AdminDefaultController extends Controller
     }
 
     /**
-     * @Route("/админ/{categoryId}/абзац/новый", name="admin_new_section")
+     * @Route("/админ/{slug}/абзац/новый", name="admin_new_section")
      */
-    public function newSectionAction($categoryId, Request $request)
+    public function newSectionAction($slug)
     {
         $section = new Section();
 
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository('AppBundle:Category')->find($categoryId);
+        $category = $em->getRepository('AppBundle:Category')->findOneBySlug($slug);
 
         if (!$category) {
             throw $this->createNotFoundException();
         }
 
+        $section->setCategory($category);
+        $em->persist($section);
+        $em->flush();
+        
         $form = $this->createForm(SectionType::class, $section, array(
-            'action' => $this->generateUrl('admin_new_section', ['categoryId' => $categoryId])
+            'action' => $this->generateUrl('admin_edit_section', ['id' => $section->getId()])
         ));
 
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $section = $form->getData();
-            $section->setCategory($category);
-            $em->persist($section);
-            $em->flush();
-
-            $this->addFlash('notice', "'{$section->getTitle()}' добавлен в '{$category->getTitle()}'");
-
-            return $this->redirect($request->server->get('HTTP_REFERER'));
-        }
-
         return $this->render('admin/partials/section_form.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'section' => $section
         ]);
     }
 
