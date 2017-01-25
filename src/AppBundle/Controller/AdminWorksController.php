@@ -57,9 +57,9 @@ class AdminWorksController extends Controller
     }
 
     /**
-     * @Route("/админ/выполненные-работы/{slug}/редактировать", name="admin_edit_work")
+     * @Route("/админ/выполненные-работы/{slug}/редактировать", name="admin_show_work")
      */
-    public function editAction($slug)
+    public function showAction($slug)
     {
         $work = $this->getDoctrine()->
             getRepository('AppBundle:Category')->

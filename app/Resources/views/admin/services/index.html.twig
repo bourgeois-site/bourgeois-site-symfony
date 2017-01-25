@@ -18,10 +18,14 @@
                 <h2 class="h3 entity_header">
                     {{ title }}
                 </h2>
-                <div class="entity_body">
-                    <a href="{{ path('show_service', { 'slug': slug }) }}" class="btn btn-default" target="_blank">Просмотр на сайте</a>
-                    <a href="{{ path('admin_edit_service', { 'slug': slug }) }}" class="btn btn-info">Редактировать</a>
-                    <a href="{{ path('admin_delete_service', { 'slug': slug }) }}"class="btn btn-danger pull-right" data-confirm="Удалить {{ title }}?">Удалить</a>
+                <div class="entity_body row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="{{ vich_uploader_asset(service.photo, 'file') }}">
+                    </div>
+                    <div class="col-sm-6 col-md-8 text-right">
+                        <a href="{{ path('admin_show_service', { 'slug': slug }) }}" class="btn btn-default">Просмотр</a>
+                        <a href="{{ path('admin_delete_service', { 'slug': slug }) }}"class="btn btn-danger" data-confirm="Удалить {{ title }}?">Удалить</a>
+                    </div>
                 </div>
             </div>
         {% endfor %}

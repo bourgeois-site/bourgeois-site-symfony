@@ -57,9 +57,9 @@ class AdminServicesController extends Controller
     }
 
     /**
-     * @Route("/админ/услуги/{slug}/редактировать", name="admin_edit_service")
+     * @Route("/админ/услуги/{slug}/редактировать", name="admin_show_service")
      */
-    public function editAction($slug)
+    public function showAction($slug)
     {
         $service = $this->getDoctrine()->
             getRepository('AppBundle:Category')->
