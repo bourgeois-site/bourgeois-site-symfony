@@ -13,7 +13,11 @@
 
     {% for section in category.sections %}
         {% set sectionId = section.id %}
-        <div class="text-right">
+        <a id="new_photo_link_{{ sectionId }}" class="btn btn-success new_photo_link pull-left" href="#">
+            <span class="glyphicon glyphicon-plus"></span>
+            Добавить фото
+        </a>
+        <div class="text-right" style="margin-bottom: 15px">
             <a id="edit_section_link_{{ sectionId }}" class="btn btn-default edit_link" href="#" title="Редактировать">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a>
@@ -52,7 +56,7 @@
     }
 
     .new_photo_link {
-        margin-top: 5px;
+        display: none;
     }
 
     button[type="submit"] {
@@ -83,6 +87,7 @@
         {% set sectionId = section.id %}
         $('#edit_section_link_{{ sectionId }}').on('click', function(e) {
             e.preventDefault();
+            $('#new_photo_link_{{ sectionId }}').css('display', 'block');
             $.ajax({url: "{{ path('admin_edit_section', { 'id': sectionId }) }}",
                 success: function(result) {
                     $('#show_section_{{ sectionId }}').slideUp(toggleTime);
@@ -112,5 +117,19 @@
     $('#global_submit').on('click', function() {
         $('form').submit();
     });
+
+    //------------------- photos
+    {% for section in category.sections %}
+        {% set sectionId = section.id %}
+        $('#new_photo_link_{{ sectionId }}').on('click', function(e) {
+            e.preventDefault();
+            $.ajax({url: "{{ path('admin_new_photo', { 'sectionId': sectionId }) }}",
+                success: function(result) {
+                    $('#photos_{{ sectionId }}').append(result);
+                }, error: function(error) {
+                    alert(error.error);
+                } });
+        });
+    {% endfor %}
 </script>
 {% endblock %}

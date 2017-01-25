@@ -1,22 +1,25 @@
 {{ form_start(form) }}
-    <div class="row">
-        <div class="col-md-6">
-            <h2>{{ form_label(form.title) }}</h2>
-            {{ form_widget(form.title) }}
-            <h2>{{ form_label(form.photo) }}</h2>
-            {{ form_row(form.photo.title) }}
-            {{ form_row(form.photo.description) }}
-            {{ form_widget(form.photo.file) }}
-        </div>
-        <div class="col-md-6">
-            {% if category.photo %}
-                <div class="thumbnail" id="category_photo">
-                    <img src="{{ vich_uploader_asset(category.photo, 'file') }}">
-                </div>
-            {% else %}
-                <h2>Место для фотографии</h2>
-            {% endif %}
-        </div>
+<div class="row">
+    <div class="col-md-6">
+        <h2>{{ form_label(form.title) }}</h2>
+        {{ form_widget(form.title) }}
+        <h2>{{ form_label(form.photo) }}</h2>
+        {{ form_row(form.photo.title) }}
+        {{ form_row(form.photo.description) }}
+        {{ form_widget(form.photo.file) }}
     </div>
+    <div class="col-md-6">
+        {% if category.photo %}
+            <div class="thumbnail" id="category_photo">
+                <img src="{{ vich_uploader_asset(category.photo, 'file') }}">
+            </div>
+        {% else %}
+            <h2>Место для фотографии</h2>
+        {% endif %}
+    </div>
+</div>
+<div class="hidden">
+    {{ form_row(form.photo) }}
+</div>
 {{ form_end(form) }}
 <hr>

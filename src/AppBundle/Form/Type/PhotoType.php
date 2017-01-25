@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PhotoType extends AbstractType
 {
@@ -25,6 +26,11 @@ class PhotoType extends AbstractType
             'label' => "Файл",
             'required' => false,
             'allow_delete' => false
+        ));
+        $builder->add('submit', SubmitType::class, array(
+            'label' => "Подтвердить", 'attr' => array(
+                'class' => 'btn btn-primary btn-lg'
+            )
         ));
     }
 

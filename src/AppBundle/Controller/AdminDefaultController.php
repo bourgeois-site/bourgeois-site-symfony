@@ -3,8 +3,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\Type\CategoryType;
 use AppBundle\Form\Type\SectionType;
+use AppBundle\Form\Type\PhotoType;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Section;
+use AppBundle\Entity\Photo;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -235,5 +237,87 @@ class AdminDefaultController extends Controller
         default:
             return $this->redirectToRoute('admin_homepage');
         }
+    }
+
+    /**
+     * @Route("/админ/{sectionId}/фото/новое", name="admin_new_photo")
+     */
+    public function newPhotoAction($sectionId)
+    {
+        $photo = new Photo();
+
+        $em = $this->getDoctrine()->getManager();
+        $section = $em->getRepository('AppBundle:Section')->find($sectionId);
+
+        if (!$section) {
+            throw $this->createNotFoundException();
+        }
+
+        $photo->setSection($section);
+        $em->persist($photo);
+        $em->flush();
+
+        $form = $this->createForm(PhotoType::class, $photo, array(
+            'action' => $this->generateUrl('admin_edit_photo', ['id' => $photo->getId()])
+        ));
+
+        return $this->render('admin/partials/photo_form.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/админ/фото/{id}/редактировать", name="admin_edit_photo")
+     */
+    public function editPhotoAction($id, Request $request)
+    {
+        $photo = $this->getDoctrine()->
+            getRepository('AppBundle:Photo')->find($id);
+
+        if (!$photo) {
+            throw $this->createNotFoundException();
+        }
+
+        $category = $photo->getSection()->getCategory();
+        $type = $category->getType();
+        $slug = $category->getSlug();
+
+        $form = $this->createForm(PhotoType::class, $photo, array(
+            'action' => $this->generateUrl('admin_edit_photo', ['id' => $id])
+        ));
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $photo = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($photo);
+            $em->flush();
+
+            switch($type) {
+            case 'about':
+                return $this->redirectToRoute('admin_about');
+                break;
+            case 'service':
+                return $this->redirectToRoute('admin_show_service', ['slug' => $category->getSlug()]);
+                break;
+            case 'work':
+                return $this->redirectToRoute('admin_show_work', ['slug' => $category->getSlug()]);
+                break;
+            default:
+                return $this->redirectToRoute('admin_homepage');
+            }
+        }
+
+        return $this->render('admin/partials/photo_form.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/админ/фото/{id}/удалить", name="admin_delete_photo")
+     */
+    public function deletePhotoAction($id)
+    {
     }
 }

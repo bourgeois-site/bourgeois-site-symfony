@@ -4,13 +4,9 @@
     {{ form_row(form.description) }}
 </div>
 
-<a id="new_photo_link_{{ section.id }}" class="btn btn-success new_photo_link pull-right" href="#">
-    <span class="glyphicon glyphicon-plus"></span>
-    Добавить фото
-</a>
 <h2>{{ form_label(form.photos) }}</h2>
-{% if form.photos|length > 0 %}
-    <div class="row">
+<div class="row" id="photos_{{ section.id }}">
+    {% if form.photos|length > 0 %}
         {% for photo in form.photos %}
             <div class="col-sm-6 col-md-4 col-lg-3">
                 {{ form_row(photo.title) }}
@@ -19,11 +15,11 @@
                 <hr>
             </div>
         {% endfor %}
-    </div>
-{% else %}
-    <div class="hidden">
-        {{ form_row(form.photos) }}
-    </div>
-{% endif %}
+    {% else %}
+    {% endif %}
+</div>
+<div class="hidden">
+    {{ form_row(form.photos) }}
+</div>
 {{ form_end(form) }}
 <hr>
