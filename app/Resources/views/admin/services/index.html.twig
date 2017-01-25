@@ -23,8 +23,14 @@
                         <img src="{{ vich_uploader_asset(service.photo, 'file') }}">
                     </div>
                     <div class="col-sm-6 col-md-8 text-right">
-                        <a href="{{ path('admin_show_service', { 'slug': slug }) }}" class="btn btn-default">Просмотр</a>
-                        <a href="{{ path('admin_delete_service', { 'slug': slug }) }}"class="btn btn-danger" data-confirm="Удалить {{ title }}?">Удалить</a>
+                        <a href="{{ path('admin_show_service', { 'slug': slug }) }}" class="btn btn-default">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            Просмотр
+                        </a>
+                        <a href="{{ path('admin_delete_service', { 'slug': slug }) }}"class="btn btn-danger" data-confirm='Удалить "{{ title }}"?'>
+                            <span class="glyphicon glyphicon-trash"></span>
+                            Удалить
+                        </a>
                     </div>
                 </div>
             </div>

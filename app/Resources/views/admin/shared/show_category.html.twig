@@ -3,9 +3,8 @@
 {% block main %}
     <h1 class="page-header">
         {{ category.title }}
-        <a id="edit_category_link" class="btn btn-default pull-right edit_link" href="#">
+        <a id="edit_category_link" class="btn btn-default pull-right edit_link" href="#" title="Редактировать">
             <span class="glyphicon glyphicon-pencil"></span>
-            Редактировать
         </a>
     </h1>
 
@@ -15,9 +14,11 @@
     {% for section in category.sections %}
         {% set sectionId = section.id %}
         <div class="text-right">
-            <a id="edit_section_link_{{ sectionId }}" class="btn btn-default edit_link" href="#">
+            <a id="edit_section_link_{{ sectionId }}" class="btn btn-default edit_link" href="#" title="Редактировать">
                 <span class="glyphicon glyphicon-pencil"></span>
-                Редактировать
+            </a>
+            <a class="btn btn-danger" href="{{ path('admin_delete_section', { 'id': sectionId }) }}" data-confirm='Удалить "{{ section.title }}"?' title="Удалить">
+                <span class="glyphicon glyphicon-trash"></span>
             </a>
         </div>
         <div id="show_section_{{ sectionId }}">

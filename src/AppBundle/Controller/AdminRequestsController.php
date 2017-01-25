@@ -93,7 +93,7 @@ class AdminRequestsController extends Controller
 
         $em->flush();
 
-        $this->addFlash('notice', "Заявка от {$request->getName()} обработана и помещена в архив");
+        $this->addFlash('notice', "Заявка от \"{$request->getName()}\" обработана и помещена в архив");
 
         return $this->redirectToRoute('admin_new_requests');
     }
@@ -116,7 +116,7 @@ class AdminRequestsController extends Controller
 
         $em->flush();
 
-        $this->addFlash('notice', "Заявка от {$request->getName()} возвращена в список новых заявок");
+        $this->addFlash('notice', "Заявка от \"{$request->getName()}\" возвращена в список новых заявок");
 
         return $this->redirectToRoute('admin_archived_requests');
     }

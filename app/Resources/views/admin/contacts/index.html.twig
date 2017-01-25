@@ -22,8 +22,14 @@
                             {{ contact.title }}
                         </h3>
                         <div class="entity_body">
-                            <a href="{{ path('admin_edit_internet_contact', { 'id': contact.id }) }}" class="btn btn-info">Редактировать</a>
-                            <a href="{{ path('admin_delete_internet_contact', { 'id': contact.id }) }}" class="btn btn-danger pull-right" data-confirm="Удалить {{ contact.title }}?">Удалить</a>
+                            <a href="{{ path('admin_edit_internet_contact', { 'id': contact.id }) }}" class="btn btn-default">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                Редактировать
+                            </a>
+                            <a href="{{ path('admin_delete_internet_contact', { 'id': contact.id }) }}" class="btn btn-danger pull-right" data-confirm='Удалить "{{ contact.title }}"?'>
+                                <span class="glyphicon glyphicon-trash"></span>
+                                Удалить
+                            </a>
                         </div>
                     </div>
                 {% endfor %}
@@ -41,8 +47,14 @@
                             {{ contact.title }}
                         </h3>
                         <div class="entity_body">
-                            <a href="{{ path('admin_edit_real_contact', { 'id': contact.id }) }}" class="btn btn-info">Редактировать</a>
-                            <a href="{{ path('admin_delete_real_contact', { 'id': contact.id }) }}" class="btn btn-danger pull-right" data-confirm="Удалить {{ contact.title }}?">Удалить</a>
+                            <a href="{{ path('admin_edit_real_contact', { 'id': contact.id }) }}" class="btn btn-default">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                Редактировать
+                            </a>
+                            <a href="{{ path('admin_delete_real_contact', { 'id': contact.id }) }}" class="btn btn-danger pull-right" data-confirm='Удалить "{{ contact.title }}"?'>
+                                <span class="glyphicon glyphicon-trash"></span>
+                                Удалить
+                            </a>
                         </div>
                     </div>
                 {% endfor %}

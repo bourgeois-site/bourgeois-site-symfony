@@ -92,7 +92,7 @@ class AdminDefaultController extends Controller
             $em->persist($category);
             $em->flush();
 
-            $this->addFlash('notice', "Изменения в '{$title}' произведены");
+            $this->addFlash('notice', "Изменения в \"{$title}\" произведены");
 
             switch($type) {
             case 'about':
@@ -169,10 +169,10 @@ class AdminDefaultController extends Controller
             $category = $section->getCategory();
             $type = $category->getType();
             if ($title == "") {
-                $title = $section->getTitle();
+                $this->addFlash('notice', "Изменения в \"{$category->getTitle()}\" произведены");
+            } else {
+                $this->addFlash('notice', "Изменения в \"{$category->getTitle()} > {$title}\" произведены");
             }
-
-            $this->addFlash('notice', "Изменения в '{$category->getTitle()} > {$title}' произведены");
 
             switch($type) {
             case 'about':
@@ -193,5 +193,47 @@ class AdminDefaultController extends Controller
             'section' => $section,
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/админ/абзац/{id}", name="admin_delete_section")
+     */
+    public function deleteSectionAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $section = $em->getRepository('AppBundle:Section')->find($id);
+
+        $title = $section->getTitle();
+        $category = $section->getCategory();
+        $slug = $category->getSlug();
+        $type = $category->getType();
+
+        if (!$section) {
+            throw $this->createNotFoundException();
+        }
+
+        foreach ($section->getPhotos() as $photo) {
+            $em->remove($photo);
+        }
+        $em->flush();
+
+        $em->remove($section);
+        $em->flush();
+
+        $this->addFlash('notice', "Абзац \"{$title}\" удален");
+
+        switch($type) {
+        case 'about':
+            return $this->redirectToRoute('admin_about');
+            break;
+        case 'service':
+            return $this->redirectToRoute('admin_show_service', ['slug' => $slug]);
+            break;
+        case 'work':
+            return $this->redirectToRoute('admin_show_work', ['slug' => $slug]);
+            break;
+        default:
+            return $this->redirectToRoute('admin_homepage');
+        }
     }
 }
