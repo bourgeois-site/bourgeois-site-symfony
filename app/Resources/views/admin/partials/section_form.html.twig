@@ -1,7 +1,13 @@
 {{ form_start(form) }}
 {{ form_row(form.title) }}
 <div class="section_description">
-    {{ form_row(form.description) }}
+    <div class="edit_description_bar">
+        <span class="glyphicon glyphicon-bold"></span>
+        <span class="glyphicon glyphicon-italic"></span>
+        <span class="glyphicon glyphicon-header"></span>
+        <span class="glyphicon glyphicon-list"></span>
+    </div>
+    {{ form_widget(form.description) }}
 </div>
 
 <h2>{{ form_label(form.photos) }}</h2>
@@ -12,6 +18,9 @@
                 {{ form_row(photo.title) }}
                 {{ form_row(photo.description) }}
                 {{ form_widget(photo.file) }}
+                <a href="{{ path('admin_delete_photo', { 'id': photo.vars.value.id }) }}" class="btn btn-danger" id="delete_photo_link_{{ photo.vars.value.id }}" data-confirm="Удалить?">
+                    Удалить
+                </a>
                 <hr>
             </div>
         {% endfor %}

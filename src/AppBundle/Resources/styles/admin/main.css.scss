@@ -44,6 +44,12 @@ body {
     }
 
     .section_description {
+      .edit_description_bar {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 0;
+      }
+
       textarea {
         min-height: 300px;
       }

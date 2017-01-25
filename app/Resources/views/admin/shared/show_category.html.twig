@@ -97,6 +97,16 @@
                     alert(error.error);
                 } });
         });
+        //------------------- photos
+        $('#new_photo_link_{{ sectionId }}').on('click', function(e) {
+            e.preventDefault();
+            $.ajax({url: "{{ path('admin_new_photo', { 'sectionId': sectionId }) }}",
+                success: function(result) {
+                    $('#photos_{{ sectionId }}').append(result);
+                }, error: function(error) {
+                    alert(error.error);
+                } });
+        });
     {% endfor %}
 
     $('#new_section_link').on('click', function(e) {
@@ -117,19 +127,5 @@
     $('#global_submit').on('click', function() {
         $('form').submit();
     });
-
-    //------------------- photos
-    {% for section in category.sections %}
-        {% set sectionId = section.id %}
-        $('#new_photo_link_{{ sectionId }}').on('click', function(e) {
-            e.preventDefault();
-            $.ajax({url: "{{ path('admin_new_photo', { 'sectionId': sectionId }) }}",
-                success: function(result) {
-                    $('#photos_{{ sectionId }}').append(result);
-                }, error: function(error) {
-                    alert(error.error);
-                } });
-        });
-    {% endfor %}
 </script>
 {% endblock %}

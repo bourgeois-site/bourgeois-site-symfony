@@ -205,14 +205,14 @@ class AdminDefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $section = $em->getRepository('AppBundle:Section')->find($id);
 
+        if (!$section) {
+            throw $this->createNotFoundException();
+        }
+
         $title = $section->getTitle();
         $category = $section->getCategory();
         $slug = $category->getSlug();
         $type = $category->getType();
-
-        if (!$section) {
-            throw $this->createNotFoundException();
-        }
 
         foreach ($section->getPhotos() as $photo) {
             $em->remove($photo);
@@ -319,5 +319,34 @@ class AdminDefaultController extends Controller
      */
     public function deletePhotoAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $photo = $em->getRepository('AppBundle:Photo')->find($id);
+
+        if (!$photo) {
+            throw $this->createNotFoundException();
+        }
+
+        $category = $photo->getSection()->getCategory();
+        $type = $category->getType();
+        $slug = $category->getSlug();
+
+        $em->remove($photo);
+        $em->flush();
+
+        $this->addFlash('notice', "Фото удалено");
+
+        switch($type) {
+        case 'about':
+            return $this->redirectToRoute('admin_about');
+            break;
+        case 'service':
+            return $this->redirectToRoute('admin_show_service', ['slug' => $slug]);
+            break;
+        case 'work':
+            return $this->redirectToRoute('admin_show_work', ['slug' => $slug]);
+            break;
+        default:
+            return $this->redirectToRoute('admin_homepage');
+        }
     }
 }
