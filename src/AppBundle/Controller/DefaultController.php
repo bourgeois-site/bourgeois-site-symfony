@@ -18,16 +18,14 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $services = $this->getDoctrine()->
-            getRepository('AppBundle:Category')->
-            findByType('service');
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('AppBundle:Category');
 
-        $works = $this->getDoctrine()->
-            getRepository('AppBundle:Category')->
-            findByType('work');
+        $about = $repo->findOneByType('about');
+        $services = $repo->findByType('service');
+        $works = $repo->findByType('work');
 
-        $userRequest = new userRequest();
-        $callForm = $this->createFormBuilder($userRequest)
+        $callForm = $this->createFormBuilder(new userRequest())
             ->add('name', TextType::class, array(
                 'label' => "Имя", 'attr' => array('class' => 'form-control')))
             ->add('email', EmailType::class, array(
@@ -52,7 +50,6 @@ class DefaultController extends Controller
             $userRequest = $callForm->getData();
             $userRequest->setCreatedAt(new \DateTime());
             $userRequest->setIsArchived(false);
-            $em = $this->getDoctrine()->getManager();
             $em->persist($userRequest);
             $em->flush();
 
@@ -61,6 +58,7 @@ class DefaultController extends Controller
         }
 
         return $this->render('default/index.html.twig', [
+            'about' => $about,
             'services' => $services,
             'works' => $works,
             'callForm' => $callForm->createView()

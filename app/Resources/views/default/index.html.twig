@@ -5,9 +5,16 @@
     <div class="container-fluid">
         <div class="row">
             <div class="jumbotron col-md-6 col-md-offset-3">
-                <h1>Студия Буржуа</h1>
-                <p>Мы предлагаем услуги, включающие в себя все работы по частичному ремонту и ремонту "под ключ"</p>
-                <a href="{{ path('aboutpage') }}" class="btn btn-danger btn-lg">О компании</a>
+                {% if about.photo %}
+                    <h1>{{ about.photo.title }}</h1>
+                    <p>{{ about.photo.description }}</p>
+                {% else %}
+                    <h1>Студия Буржуа</h1>
+                    <p>Мы предлагаем услуги, включающие в себя все работы по частичному ремонту и ремонту "под ключ"</p>
+                {% endif %}
+                <a href="{{ path('aboutpage') }}" class="btn btn-danger btn-lg">
+                    {{ about.title }}
+                </a>
             </div>
         </div>
     </div>
@@ -102,4 +109,20 @@
         {{ include('partials/call_form.html.twig', { 'callForm': callForm }) }}
     </div>
 </section>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    #jumbotron {
+        {% if about.photo %}
+            background-image: url("{{ vich_uploader_asset(about.photo, 'file') }}");
+        {% else %}
+            background: #fff;
+        {% endif %}
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
 {% endblock %}
