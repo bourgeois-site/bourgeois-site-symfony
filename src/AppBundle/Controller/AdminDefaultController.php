@@ -247,6 +247,7 @@ class AdminDefaultController extends Controller
         ));
 
         return $this->render('admin/partials/photo_form.html.twig', [
+            'photo' => $photo,
             'form' => $form->createView()
         ]);
     }
@@ -295,6 +296,7 @@ class AdminDefaultController extends Controller
         }
 
         return $this->render('admin/partials/photo_form.html.twig', [
+            'photo' => $photo,
             'form' => $form->createView()
         ]);
     }

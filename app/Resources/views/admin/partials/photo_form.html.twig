@@ -1,14 +1,31 @@
 <div class="col-sm-6 col-md-4 col-lg-3">
     {{ form_start(form) }}
-    {{ form_row(form.title) }}
-    {{ form_row(form.description) }}
-    {{ form_widget(form.file) }}
+        <a href="{{ path('admin_delete_photo', { 'id': form.vars.value.id }) }}" class="btn btn-link text-danger pull-right" id="delete_photo_link_{{ form.vars.value.id }}" data-confirm-remote="Отменить создание фото?" title="Отмена создания фото">
+            Отмена
+        </a>
+        {{ form_row(form.title) }}
+        {{ form_row(form.description) }}
+        {{ form_widget(form.file) }}
+        <hr>
     {{ form_end(form) }}
-    <hr>
 </div>
 
 {% block javascripts %}
 <script>
     {{ include('admin/partials/common_form_js.js') }}
+
+    $('#delete_photo_link_{{ photo.id }}').on('click', function(e) {
+        e.preventDefault();
+        var confirmation = confirm($(this).data('confirm-remote'));
+        if (confirmation == true) {
+            var photoContainer = $(this).parent();
+            $.ajax({url: "{{ path('admin_delete_photo', { 'id': photo.id }) }}",
+                success: function(result) {
+                    photoContainer.replaceWith(result);
+                }, error: function(error) {
+                    alert(error.error);
+                } });
+        }
+    });
 </script>
 {% endblock %}

@@ -6,7 +6,7 @@
     {% if section.photos|length > 0 %}
         <div class="thumbnail {{ cycle(['photo_right', 'photo_left'], section.id) }}">
             {% for photo in section.photos %}
-                <img src="{{ vich_uploader_asset(photo, 'file') }}" alt="{{ photo.title }}">
+                <img src="{{ vich_uploader_asset(photo, 'file') }}">
                 <div class="caption">
                     <h3>{{ photo.title }}</h3>
                     <p>{{ photo.description }}</p>
