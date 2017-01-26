@@ -39,15 +39,16 @@ $(document).ready(function() {
   });
 
   // autohide social network 
-  if ($('#form_isEmail option[value="1"]').attr('selected') == "selected") {
-    $('#form_socialName').parent().css('display', 'none');
+  if ($('#internet_contact_isEmail option[value="1"]').attr('selected') == "selected") {
+    $('#internet_contact_socialName').parent().css('display', 'none');
   }
-  $('#form_isEmail option[value="0"]').on('click', function() {
-    $('#form_socialName').parent().slideDown(300);
+
+  $('#internet_contact_isEmail option[value="0"]').on('click', function() {
+    $('#internet_contact_socialName').parent().slideDown(300);
   });
 
-  $('#form_isEmail option[value="1"]').on('click', function() {
-    $('#form_socialName').parent().slideUp(300);
+  $('#internet_contact_isEmail option[value="1"]').on('click', function() {
+    $('#internet_contact_socialName').parent().slideUp(300);
   });
 
   $('#global_submit').on('click', function() {
