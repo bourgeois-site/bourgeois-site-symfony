@@ -94,7 +94,6 @@
                 var link = $(this);
                 $.ajax({url: "{{ path('admin_delete_section', { 'id': sectionId }) }}",
                     success: function(result) {
-                        $('#global_submit').css('display', 'none');
                         link.parent().remove();
                         $('#edit_section_form_{{ sectionId }}').remove();
                         $('#show_section_{{ sectionId }}').html(result).css('display', 'block');

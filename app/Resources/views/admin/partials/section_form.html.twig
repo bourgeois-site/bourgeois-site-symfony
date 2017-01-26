@@ -1,45 +1,70 @@
 {{ form_start(form) }}
-{{ form_row(form.title) }}
-<div class="section_description">
-    <div class="edit_description_bar">
-        <span class="glyphicon glyphicon-bold"></span>
-        <span class="glyphicon glyphicon-italic"></span>
-        <span class="glyphicon glyphicon-header"></span>
-        <span class="glyphicon glyphicon-list"></span>
+    <a id="cancel_section_link_{{ section.id }}" class="btn btn-link text-danger pull-right" data-confirm-remote="Отменить создание нового абзаца?" href="#" title="Отменить создание абзаца">
+        Отмена
+    </a>
+    {{ form_row(form.title) }}
+    <div class="section_description">
+        <div class="edit_description_bar">
+            <span class="glyphicon glyphicon-bold"></span>
+            <span class="glyphicon glyphicon-italic"></span>
+            <span class="glyphicon glyphicon-header"></span>
+            <span class="glyphicon glyphicon-list"></span>
+        </div>
+        {{ form_widget(form.description) }}
     </div>
-    {{ form_widget(form.description) }}
-</div>
 
-<a id="new_photo_link_{{ section.id }}" class="btn btn-success new_photo_link pull-right" href="#">
-    <span class="glyphicon glyphicon-plus"></span>
-    Добавить фото
-</a>
-<h2>{{ form_label(form.photos) }}</h2>
-<div class="row" id="photos_{{ section.id }}">
-    {% if form.photos|length > 0 %}
-        {% for photo in form.photos %}
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <a href="{{ path('admin_delete_photo', { 'id': photo.vars.value.id }) }}" class="btn btn-link text-danger pull-right" id="delete_photo_link_{{ photo.vars.value.id }}" data-confirm-remote='Удалить "{{ photo.vars.value.title }}"?' title="Удалить фото">
-                    Удалить
-                </a>
-                {{ form_row(photo.title) }}
-                {{ form_row(photo.description) }}
-                {{ form_widget(photo.file) }}
-                <hr>
-            </div>
-        {% endfor %}
-    {% else %}
-    {% endif %}
-</div>
-<div class="hidden">
-    {{ form_row(form.photos) }}
-</div>
+    <a id="new_photo_link_{{ section.id }}" class="btn btn-success new_photo_link pull-right" href="#">
+        <span class="glyphicon glyphicon-plus"></span>
+        Добавить фото
+    </a>
+    <h2>
+        {{ form_label(form.photos) }}
+        <span class="badge">{{ section.photos|length }}</span>
+    </h2>
+    <div class="row" id="photos_{{ section.id }}">
+        {% if form.photos|length > 0 %}
+            {% for photo in form.photos %}
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <a href="{{ path('admin_delete_photo', { 'id': photo.vars.value.id }) }}" class="btn btn-link text-danger pull-right" id="delete_photo_link_{{ photo.vars.value.id }}" data-confirm-remote='Удалить "{{ photo.vars.value.title }}"?' title="Удалить фото">
+                        Удалить
+                    </a>
+                    {{ form_row(photo.title) }}
+                    {{ form_row(photo.description) }}
+                    {{ form_widget(photo.file) }}
+                    <hr>
+                </div>
+            {% endfor %}
+        {% else %}
+        {% endif %}
+    </div>
+    <div class="hidden">
+        {{ form_row(form.photos) }}
+    </div>
 {{ form_end(form) }}
 <hr>
 
 {% block javascripts %}
 <script>
     {{ include('admin/partials/common_form_js.js') }}
+ 
+    var cancelSectionLink = $('#cancel_section_link_{{ section.id }}');
+    if (cancelSectionLink.parent().parent().hasClass('edit_section_form')) {
+        cancelSectionLink.css('display', 'none');
+    }
+
+    cancelSectionLink.on('click', function(e) {
+        e.preventDefault();
+        var confirmation = confirm($(this).data('confirm-remote'));
+        if (confirmation == true) {
+            var sectionContainer = $(this).parent();
+            $.ajax({url: "{{ path('admin_delete_section', { 'id': section.id }) }}",
+                success: function(result) {
+                    sectionContainer.replaceWith(result)
+                }, error: function(error) {
+                    alert(error.error);
+                } });
+        }
+    });
 
     $('#new_photo_link_{{ section.id }}').on('click', function(e) {
         e.preventDefault();
