@@ -10,6 +10,24 @@
         Добавить новый контакт
     </a>
 
+    <form class="pull-right">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-earphone"></span>
+                    Выбрать главный номер
+                </button>
+            </span>
+            <div class="form-group" style="margin-bottom: 0">
+                <label for="main_phone_number"></label>
+                <select id="main_phone_number" class="form-control">
+                    {% for contact in realContacts %}
+                        <option>{{ contact.mainPhone }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </form>
     <div class="row">
         <section id="admin_internet_contacts" class="col-md-6">
             <h2 class="h2">

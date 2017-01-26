@@ -16,52 +16,18 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('AppBundle:Category');
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Category');
 
         $about = $repo->findOneByType('about');
         $services = $repo->findByType('service');
         $works = $repo->findByType('work');
 
-        $callForm = $this->createFormBuilder(new userRequest())
-            ->add('name', TextType::class, array(
-                'label' => "Имя", 'attr' => array('class' => 'form-control')))
-            ->add('email', EmailType::class, array(
-                'required' => false, 'label' => 'Email',
-                'attr' => array('class' => 'form-control')))
-            ->add('address', TextType::class, array(
-                'required' => false, 'label' => "Адрес",
-                'attr' => array('class' => 'form-control')))
-            ->add('phoneNumber', TextType::class, array(
-                'label' => "Телефон", 'attr' => array('class' => 'form-control')))
-            ->add('comment', TextareaType::class, array(
-                'required' => false, 'label' => "Комментарий",
-                'attr' => array('class' => 'form-control')))
-            ->add('submit', SubmitType::class, array(
-                'label' => "Подтвердить",
-                'attr' => array('class' => 'btn btn-danger')))
-            ->getForm();
-
-        $callForm->handleRequest($request);
-
-        if ($callForm->isSubmitted() && $callForm->isValid()) {
-            $userRequest = $callForm->getData();
-            $userRequest->setCreatedAt(new \DateTime());
-            $userRequest->setIsArchived(false);
-            $em->persist($userRequest);
-            $em->flush();
-
-            $this->addFlash('notice', "Заявка получена и будет обработана в ближайшее время");
-            return $this->redirectToRoute('homepage');
-        }
-
         return $this->render('default/index.html.twig', [
             'about' => $about,
             'services' => $services,
-            'works' => $works,
-            'callForm' => $callForm->createView()
+            'works' => $works
         ]);
     }
 
@@ -163,6 +129,52 @@ class DefaultController extends Controller
             'email_contacts' => $email_contacts,
             'social_contacts' => $social_contacts,
             'real_contacts' => $real_contacts
+        ]);
+    }
+
+    /**
+     * @Route("/заявка", name="call_form")
+     */
+    public function callFormAction(Request $request)
+    {
+        $userRequest = new userRequest();
+
+        $form = $this->createFormBuilder($userRequest)
+            ->setAction($this->generateUrl('call_form'))
+            ->add('name', TextType::class, array(
+                'label' => "Имя", 'attr' => array('class' => 'form-control')))
+            ->add('email', EmailType::class, array(
+                'required' => false, 'label' => 'Email',
+                'attr' => array('class' => 'form-control')))
+            ->add('address', TextType::class, array(
+                'required' => false, 'label' => "Адрес",
+                'attr' => array('class' => 'form-control')))
+            ->add('phoneNumber', TextType::class, array(
+                'label' => "Телефон", 'attr' => array('class' => 'form-control')))
+            ->add('comment', TextareaType::class, array(
+                'required' => false, 'label' => "Комментарий",
+                'attr' => array('class' => 'form-control')))
+            ->add('submit', SubmitType::class, array(
+                'label' => "Подтвердить",
+                'attr' => array('class' => 'btn btn-danger')))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $userRequest = $form->getData();
+            $userRequest->setCreatedAt(new \DateTime());
+            $userRequest->setIsArchived(false);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($userRequest);
+            $em->flush();
+
+            $this->addFlash('notice', "Заявка получена и будет обработана в ближайшее время");
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('partials/call_form.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 }

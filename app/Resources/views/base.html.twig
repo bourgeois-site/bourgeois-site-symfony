@@ -29,7 +29,9 @@
         </main>
 
         {{ render(controller('AppBundle:Default:footer')) }}
+        {{ render(controller('AppBundle:Default:callForm')) }}
         {{ include('partials/phone.html.twig') }}
+        {{ include('partials/call_button.html.twig') }}
 
         {% block javascripts %}{% endblock %}
     </body>
