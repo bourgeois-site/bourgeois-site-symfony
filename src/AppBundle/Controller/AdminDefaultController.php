@@ -210,9 +210,6 @@ class AdminDefaultController extends Controller
         }
 
         $title = $section->getTitle();
-        $category = $section->getCategory();
-        $slug = $category->getSlug();
-        $type = $category->getType();
 
         foreach ($section->getPhotos() as $photo) {
             $em->remove($photo);
@@ -314,27 +311,11 @@ class AdminDefaultController extends Controller
             throw $this->createNotFoundException();
         }
 
-        $category = $photo->getSection()->getCategory();
-        $type = $category->getType();
-        $slug = $category->getSlug();
-
         $em->remove($photo);
         $em->flush();
 
-        $this->addFlash('notice', "Фото удалено");
-
-        switch($type) {
-        case 'about':
-            return $this->redirectToRoute('admin_about');
-            break;
-        case 'service':
-            return $this->redirectToRoute('admin_show_service', ['slug' => $slug]);
-            break;
-        case 'work':
-            return $this->redirectToRoute('admin_show_work', ['slug' => $slug]);
-            break;
-        default:
-            return $this->redirectToRoute('admin_homepage');
-        }
+        return $this->render('partials/flash_messages.html.twig', [
+            'flashBag' => ["Фото удалено"]
+        ]);
     }
 }

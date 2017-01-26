@@ -13,11 +13,7 @@
 
     {% for section in category.sections %}
         {% set sectionId = section.id %}
-        <a id="new_photo_link_{{ sectionId }}" class="btn btn-success new_photo_link pull-left" href="#">
-            <span class="glyphicon glyphicon-plus"></span>
-            Добавить фото
-        </a>
-        <div class="text-right" style="margin-bottom: 15px">
+        <div class="text-right">
             <a id="edit_section_link_{{ sectionId }}" class="btn btn-default edit_link" href="#" title="Редактировать">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a>
@@ -55,10 +51,6 @@
         display: none;
     }
 
-    .new_photo_link {
-        display: none;
-    }
-
     button[type="submit"] {
       display: none;
     }
@@ -87,12 +79,10 @@
         {% set sectionId = section.id %}
         $('#edit_section_link_{{ sectionId }}').on('click', function(e) {
             e.preventDefault();
-            $('#new_photo_link_{{ sectionId }}').css('display', 'block');
             $.ajax({url: "{{ path('admin_edit_section', { 'id': sectionId }) }}",
                 success: function(result) {
                     $('#show_section_{{ sectionId }}').slideUp(toggleTime);
                     $('#edit_section_form_{{ sectionId }}').html(result).slideDown(toggleTime);
-                    $('#new_photo_link_{{ sectionId }}').slideDown(toggleTime);
                 }, error: function(error) {
                     alert(error.error);
                 } });
@@ -106,23 +96,12 @@
                     success: function(result) {
                         $('#global_submit').css('display', 'none');
                         link.parent().remove();
-                        $('#new_photo_link_{{ sectionId }}').remove(); // temp
                         $('#edit_section_form_{{ sectionId }}').remove();
                         $('#show_section_{{ sectionId }}').html(result).css('display', 'block');
                     }, error: function(error) {
                         alert(error.error);
                     } });
             }
-        });
-        //------------------- photos
-        $('#new_photo_link_{{ sectionId }}').on('click', function(e) {
-            e.preventDefault();
-            $.ajax({url: "{{ path('admin_new_photo', { 'sectionId': sectionId }) }}",
-                success: function(result) {
-                    $('#photos_{{ sectionId }}').append(result);
-                }, error: function(error) {
-                    alert(error.error);
-                } });
         });
     {% endfor %}
 

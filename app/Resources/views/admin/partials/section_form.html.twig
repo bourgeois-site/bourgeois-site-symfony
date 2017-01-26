@@ -10,17 +10,21 @@
     {{ form_widget(form.description) }}
 </div>
 
+<a id="new_photo_link_{{ section.id }}" class="btn btn-success new_photo_link pull-right" href="#">
+    <span class="glyphicon glyphicon-plus"></span>
+    Добавить фото
+</a>
 <h2>{{ form_label(form.photos) }}</h2>
 <div class="row" id="photos_{{ section.id }}">
     {% if form.photos|length > 0 %}
         {% for photo in form.photos %}
             <div class="col-sm-6 col-md-4 col-lg-3">
+                <a href="{{ path('admin_delete_photo', { 'id': photo.vars.value.id }) }}" class="btn btn-link text-danger pull-right" id="delete_photo_link_{{ photo.vars.value.id }}" data-confirm-remote="Удалить?" title="Удалить фото">
+                    Удалить
+                </a>
                 {{ form_row(photo.title) }}
                 {{ form_row(photo.description) }}
                 {{ form_widget(photo.file) }}
-                <a href="{{ path('admin_delete_photo', { 'id': photo.vars.value.id }) }}" class="btn btn-danger" id="delete_photo_link_{{ photo.vars.value.id }}" data-confirm="Удалить?">
-                    Удалить
-                </a>
                 <hr>
             </div>
         {% endfor %}
@@ -32,3 +36,38 @@
 </div>
 {{ form_end(form) }}
 <hr>
+
+{% block javascripts %}
+<script>
+    $('textarea.photo_description').on('click', function() {
+        $(this).css('height', '150px');
+    });
+
+    $('#new_photo_link_{{ section.id }}').on('click', function(e) {
+        e.preventDefault();
+        $.ajax({url: "{{ path('admin_new_photo', { 'sectionId': section.id }) }}",
+            success: function(result) {
+                $('#photos_{{ section.id }}').append(result);
+            }, error: function(error) {
+                alert(error.error);
+            } });
+    });
+
+    {% for photo in section.photos %}
+        {% set photoId = photo.id %}
+        $('#delete_photo_link_{{ photoId }}').on('click', function(e) {
+            e.preventDefault();
+            var confirmation = confirm($(this).data('confirm-remote'));
+            if (confirmation == true) {
+                var photoContainer = $(this).parent();
+                $.ajax({url: "{{ path('admin_delete_photo', { 'id': photoId }) }}",
+                    success: function(result) {
+                        photoContainer.html(result);
+                    }, error: function(error) {
+                        alert(error.error);
+                    } });
+            }
+        });
+    {% endfor %}
+</script>
+{% endblock %}

@@ -54,6 +54,20 @@ body {
         min-height: 300px;
       }
     }
+
+    a.btn-link.text-danger {
+      color: #a94442;
+      padding: 0;
+    }
+
+    .new_photo_link {
+      margin-top: 5px;
+    }
+
+    .photo_description {
+      height: 35px;
+      transition: height 0.5s;
+    }
   }
 }
 

@@ -20,7 +20,7 @@ class PhotoType extends AbstractType
         ));
         $builder->add('description', TextareaType::class, array(
             'label' => "Описание", 'required' => false,
-            'attr' => array('class' => 'form-control')
+            'attr' => array('class' => 'form-control photo_description')
         ));
         $builder->add('file', VichImageType::class, array(
             'label' => "Файл",

@@ -49,4 +49,8 @@ $(document).ready(function() {
   $('#form_isEmail option[value="1"]').on('click', function() {
     $('#form_socialName').parent().slideUp(300);
   });
+
+  $('textarea.photo_description').on('click', function() {
+    $(this).css('height', '150px');
+  });
 });
