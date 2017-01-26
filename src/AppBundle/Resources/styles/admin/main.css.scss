@@ -48,10 +48,14 @@ body {
         border: 1px solid #ddd;
         padding: 15px;
         margin-bottom: 0;
+
+        .popover {
+          max-width: 400px;
+        }
       }
 
       textarea {
-        min-height: 300px;
+        min-height: 400px;
       }
     }
 

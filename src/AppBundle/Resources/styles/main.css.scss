@@ -37,11 +37,11 @@ main {
       background-color: brown;
     }
 
-    h1 {
+    h2 {
       margin-top: 0;
     }
 
-    h2 {
+    h3 {
       opacity: 0.7;
     }
   }
@@ -127,6 +127,10 @@ main {
   .subsection {
     p, li {
       font-size: 1.2em;
+    }
+
+    h1 {
+      font-size: 24px;
     }
 
     .thumbnail {

@@ -5,17 +5,29 @@
     {{ form_row(form.title) }}
     <div class="section_description">
         <div class="edit_description_bar">
-            <a href="#" class="btn btn-default">
-                <span class="glyphicon glyphicon-bold"></span>
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Жирный" data-content="<p>обычный текст</p><p>**<strong>жирный текст</strong>**</p>">
+                <span class="fa fa-bold"></span>
             </a>
-            <a href="#" class="btn btn-default">
-                <span class="glyphicon glyphicon-italic"></span>
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Курсив" data-content="<p>обычный текст</p><p>_<em>текст курсивом</em>_</p>">
+                <span class="fa fa-italic"></span>
             </a>
-            <a href="#" class="btn btn-default">
-                <span class="glyphicon glyphicon-header"></span>
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Заголовок" data-content="<h3># Заголовок</h3>">
+                <span class="fa fa-header"></span>
+            </a> |
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Маркированный список" data-content="<p>* один</p><p>* два</p><p>* три</p>">
+                <span class="fa fa-list-ul"></span>
             </a>
-            <a href="#" class="btn btn-default">
-                <span class="glyphicon glyphicon-list"></span>
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Нумерованный список" data-content="<p>1. один</p><p>2. два</p><p>3. три</p>">
+                <span class="fa fa-list-ol"></span>
+            </a> |
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Цитата" data-content="<p>> какая-то цитата</p><p>Результат:</p><blockquote>какая-то цитата</blockquote>">
+                <span class="fa fa-quote-left"></span>
+            </a>
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Ссылка" data-content="<p>перейдите по [ссылке](http://студия-буржуа.рф)</p><p>Результат:</p>перейдите по <a href='http://студия-буржуа.рф'>ссылке</a>">
+                <span class="fa fa-link"></span>
+            </a> |
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Переход на новую строку" data-content="Оставляйте одну пустую строку между двумя строками">
+                <span class="fa fa-chevron-down"></span>
             </a>
         </div>
         {{ form_widget(form.description) }}
@@ -103,5 +115,7 @@
             }
         });
     {% endfor %}
+
+    $('.edit_description_bar a').popover({'placement':'top', 'html':'true'});
 </script>
 {% endblock %}

@@ -1,6 +1,6 @@
 <section class="subsection container">
     <div class="heading">
-        <h1 class="h2">{{ section.title }}</h1>
+        <h2 class="h2">{{ section.title }}</h1>
         <div class="divider"></div>
     </div>
     {% if section.photos|length > 0 %}
@@ -13,8 +13,6 @@
                 </div>
             {% endfor %}
         </div>
-        {{ section.description|raw }}
-    {% else %}
-        {{ section.description|raw }}
     {% endif %}
+    {{ section.description|md2html }}
 </section>
