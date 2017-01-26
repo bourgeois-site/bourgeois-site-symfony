@@ -19,7 +19,14 @@
                         <small>{{ contact.address }}</small>
                     </h3>
                     <h3 class="h4">Тел.:
-                        <small>{{ contact.phoneNumbers }}</small>
+                        <a href="tel:{{ contact.mainPhone }}" data-rel="external">
+                            <small>{{ contact.mainPhone }}</small>
+                        </a>
+                        {% if contact.additionalPhone %} ,
+                            <a href="tel:{{ contact.additionalPhone }}" data-rel="external">
+                                <small>{{ contact.additionalPhone }}</small>
+                            </a>
+                        {% endif %}
                     </h3>
                     <h3 class="h4">Часы работы:
                         <small>{{ contact.workTime }}</small>

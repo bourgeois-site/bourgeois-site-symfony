@@ -31,7 +31,7 @@
                                 <div class="divider"></div>
                                 <h4 class="section_title">{{ section.title }}</h4>
                                 <div class="section_description">
-                                    {{ section.description|raw }}
+                                    {{ section.description|md2html }}
                                 </div>
                             </div>
                         {% endif %}

@@ -27,14 +27,19 @@ class RealContact
     private $address;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", name="main_phone")
      */
-    private $phone_numbers;
+    private $mainPhone;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", name="additional_phone", nullable=true)
      */
-    private $work_time;
+    private $additionalPhone;
+
+    /**
+     * @ORM\Column(type="string", name="work_time")
+     */
+    private $workTime;
 
     /**
      * @ORM\Column(type="decimal", precision=9, scale=6)
@@ -105,30 +110,6 @@ class RealContact
     }
 
     /**
-     * Set phoneNumbers
-     *
-     * @param string $phoneNumbers
-     *
-     * @return RealContact
-     */
-    public function setPhoneNumbers($phoneNumbers)
-    {
-        $this->phone_numbers = $phoneNumbers;
-
-        return $this;
-    }
-
-    /**
-     * Get phoneNumbers
-     *
-     * @return string
-     */
-    public function getPhoneNumbers()
-    {
-        return $this->phone_numbers;
-    }
-
-    /**
      * Set workTime
      *
      * @param string $workTime
@@ -137,7 +118,7 @@ class RealContact
      */
     public function setWorkTime($workTime)
     {
-        $this->work_time = $workTime;
+        $this->workTime = $workTime;
 
         return $this;
     }
@@ -149,7 +130,7 @@ class RealContact
      */
     public function getWorkTime()
     {
-        return $this->work_time;
+        return $this->workTime;
     }
 
     /**
@@ -198,5 +179,53 @@ class RealContact
     public function getLongitude()
     {
         return $this->longitude;
+    }
+
+    /**
+     * Set mainPhone
+     *
+     * @param string $mainPhone
+     *
+     * @return RealContact
+     */
+    public function setMainPhone($mainPhone)
+    {
+        $this->mainPhone = $mainPhone;
+
+        return $this;
+    }
+
+    /**
+     * Get mainPhone
+     *
+     * @return string
+     */
+    public function getMainPhone()
+    {
+        return $this->mainPhone;
+    }
+
+    /**
+     * Set additionalPhone
+     *
+     * @param string $additionalPhone
+     *
+     * @return RealContact
+     */
+    public function setAdditionalPhone($additionalPhone)
+    {
+        $this->additionalPhone = $additionalPhone;
+
+        return $this;
+    }
+
+    /**
+     * Get additionalPhone
+     *
+     * @return string
+     */
+    public function getAdditionalPhone()
+    {
+        return $this->additionalPhone;
     }
 }

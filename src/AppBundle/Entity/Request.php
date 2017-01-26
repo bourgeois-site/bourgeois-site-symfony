@@ -32,9 +32,9 @@ class Request
     private $address;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", name="phone_number")
      */
-    private $phone_number;
+    private $phoneNumber;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -142,7 +142,7 @@ class Request
      */
     public function setPhoneNumber($phoneNumber)
     {
-        $this->phone_number = $phoneNumber;
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }
@@ -154,7 +154,7 @@ class Request
      */
     public function getPhoneNumber()
     {
-        return $this->phone_number;
+        return $this->phoneNumber;
     }
 
     /**

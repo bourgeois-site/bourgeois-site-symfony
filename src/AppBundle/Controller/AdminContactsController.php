@@ -220,10 +220,14 @@ class AdminContactsController extends Controller
                 'label' => "Адрес", 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => "г. Дзержинск, ул. Грибоедова 22/11")))
-            ->add('phoneNumbers', TextType::class, array(
-                'label' => "Телефонные номера", 'attr' => array(
+            ->add('mainPhone', TextType::class, array(
+                'label' => "Главный номер", 'attr' => array(
                     'class' => 'form-control',
-                    'placeholder' => '+7 (8313) 23-46-46, +7 (904) 782-65-46')))
+                    'placeholder' => '+7 (8313) 23-46-46')))
+            ->add('additionalPhone', TextType::class, array(
+                'label' => "Дополнительный номер", 'required' => false, 'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => '+7 (904) 782-65-46')))
             ->add('workTime', TextType::class, array(
                 'label' => "Часы работы", 'attr' => array(
                     'class' => 'form-control',

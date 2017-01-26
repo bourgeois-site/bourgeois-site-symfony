@@ -63,9 +63,19 @@
                         {{ contact.address }}
                     </li>
                     <li>
-                        <span class="glyphicon glyphicon-earphone"></span>
-                        {{ contact.phoneNumbers }}
+                        <a href="tel:{{ contact.mainPhone }}" data-rel="external">
+                            <span class="glyphicon glyphicon-earphone"></span>
+                            {{ contact.mainPhone }}
+                        </a>
                     </li>
+                    {% if contact.additionalPhone %}
+                        <li>
+                            <a href="tel:{{ contact.additionalPhone }}" data-rel="external">
+                                <span class="glyphicon glyphicon-phone"></span>
+                                {{ contact.additionalPhone }}
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
                 {% endfor %}
             </div>

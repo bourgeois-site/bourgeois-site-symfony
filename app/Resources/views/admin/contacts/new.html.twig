@@ -27,14 +27,16 @@
 
 {% block javascripts %}
 <script>
-  $('#new_internet_form_link').on('click', function() {
+  $('#new_internet_form_link').on('click', function(e) {
+    e.preventDefault();
     $('#real_contact_form').hide(300);
     $('#internet_contact_form').show(300);
     $('#new_real_form_link').parents('li').removeClass('active');
     $(this).parents('li').addClass('active');
   });
 
-  $('#new_real_form_link').on('click', function() {
+  $('#new_real_form_link').on('click', function(e) {
+    e.preventDefault();
     $('#internet_contact_form').hide(300);
     $('#real_contact_form').show(300);
     $('#new_internet_form_link').parents('li').removeClass('active');
