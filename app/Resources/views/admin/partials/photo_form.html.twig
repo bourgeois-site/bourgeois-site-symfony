@@ -14,6 +14,10 @@
 <script>
     {{ include('admin/partials/common_form_js.js') }}
 
+    {% set section = photo.section %}
+    var photosCountContainer = $('#section_{{ section.id }}_photos_count');
+    photosCountContainer.html({{ section.photos|length }});
+
     $('#delete_photo_link_{{ photo.id }}').on('click', function(e) {
         e.preventDefault();
         var confirmation = confirm($(this).data('confirm-remote'));
@@ -22,6 +26,8 @@
             $.ajax({url: "{{ path('admin_delete_photo', { 'id': photo.id }) }}",
                 success: function(result) {
                     photoContainer.replaceWith(result);
+                    var decrementedCount = Number(photosCountContainer.html()) - 1;
+                    photosCountContainer.html(String(decrementedCount));
                 }, error: function(error) {
                     alert(error.error);
                 } });

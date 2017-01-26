@@ -5,10 +5,18 @@
     {{ form_row(form.title) }}
     <div class="section_description">
         <div class="edit_description_bar">
-            <span class="glyphicon glyphicon-bold"></span>
-            <span class="glyphicon glyphicon-italic"></span>
-            <span class="glyphicon glyphicon-header"></span>
-            <span class="glyphicon glyphicon-list"></span>
+            <a href="#" class="btn btn-default">
+                <span class="glyphicon glyphicon-bold"></span>
+            </a>
+            <a href="#" class="btn btn-default">
+                <span class="glyphicon glyphicon-italic"></span>
+            </a>
+            <a href="#" class="btn btn-default">
+                <span class="glyphicon glyphicon-header"></span>
+            </a>
+            <a href="#" class="btn btn-default">
+                <span class="glyphicon glyphicon-list"></span>
+            </a>
         </div>
         {{ form_widget(form.description) }}
     </div>
@@ -19,9 +27,9 @@
     </a>
     <h2>
         {{ form_label(form.photos) }}
-        <span class="badge">{{ section.photos|length }}</span>
+        <span class="badge" id="section_{{ section.id }}_photos_count">{{ section.photos|length }}</span>
     </h2>
-    <div class="row" id="photos_{{ section.id }}">
+    <div class="row" id="section_{{ section.id }}_photos">
         {% if form.photos|length > 0 %}
             {% for photo in form.photos %}
                 <div class="col-sm-6 col-md-4 col-lg-3">
@@ -70,7 +78,7 @@
         e.preventDefault();
         $.ajax({url: "{{ path('admin_new_photo', { 'sectionId': section.id }) }}",
             success: function(result) {
-                $('#photos_{{ section.id }}').append(result);
+                $('#section_{{ section.id }}_photos').append(result);
             }, error: function(error) {
                 alert(error.error);
             } });
@@ -86,6 +94,9 @@
                 $.ajax({url: "{{ path('admin_delete_photo', { 'id': photoId }) }}",
                     success: function(result) {
                         photoContainer.html(result);
+                        var photosCountContainer = $('#section_{{ section.id }}_photos_count');
+                        var decrementedCount = Number(photosCountContainer.html()) - 1;
+                        photosCountContainer.html(String(decrementedCount));
                     }, error: function(error) {
                         alert(error.error);
                     } });
