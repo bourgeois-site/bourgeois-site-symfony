@@ -50,7 +50,7 @@ $(document).ready(function() {
     $('#form_socialName').parent().slideUp(300);
   });
 
-  $('textarea.photo_description').on('click', function() {
-    $(this).css('height', '150px');
+  $('#global_submit').on('click', function() {
+      $('form').submit();
   });
 });

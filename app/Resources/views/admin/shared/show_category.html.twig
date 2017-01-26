@@ -107,21 +107,12 @@
 
     $('#new_section_link').on('click', function(e) {
         e.preventDefault();
-        $('#global_submit').css('display', 'block');
         $.ajax({url: "{{ path('admin_new_section', {'slug': category.slug }) }}",
             success: function(result) {
                 $('#new_section_forms').append(result);
             }, error: function(error) {
                 alert(error.error);
             } });
-    });
-
-    $('.edit_link').on('click', function() {
-        $('#global_submit').css('display', 'block');
-    });
-
-    $('#global_submit').on('click', function() {
-        $('form').submit();
     });
 </script>
 {% endblock %}

@@ -19,7 +19,7 @@
     {% if form.photos|length > 0 %}
         {% for photo in form.photos %}
             <div class="col-sm-6 col-md-4 col-lg-3">
-                <a href="{{ path('admin_delete_photo', { 'id': photo.vars.value.id }) }}" class="btn btn-link text-danger pull-right" id="delete_photo_link_{{ photo.vars.value.id }}" data-confirm-remote="Удалить?" title="Удалить фото">
+                <a href="{{ path('admin_delete_photo', { 'id': photo.vars.value.id }) }}" class="btn btn-link text-danger pull-right" id="delete_photo_link_{{ photo.vars.value.id }}" data-confirm-remote='Удалить "{{ photo.vars.value.title }}"?' title="Удалить фото">
                     Удалить
                 </a>
                 {{ form_row(photo.title) }}
@@ -39,9 +39,7 @@
 
 {% block javascripts %}
 <script>
-    $('textarea.photo_description').on('click', function() {
-        $(this).css('height', '150px');
-    });
+    {{ include('admin/partials/common_form_js.js') }}
 
     $('#new_photo_link_{{ section.id }}').on('click', function(e) {
         e.preventDefault();

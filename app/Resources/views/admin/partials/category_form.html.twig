@@ -23,3 +23,9 @@
 </div>
 {{ form_end(form) }}
 <hr>
+
+{% block javascripts %}
+<script>
+    {{ include('admin/partials/common_form_js.js') }}
+</script>
+{% endblock %}
