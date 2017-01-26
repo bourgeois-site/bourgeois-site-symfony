@@ -48,12 +48,7 @@
             {{ render(controller('AppBundle:AdminDefault:aside')) }}
 
             <main role="main" class="col-sm-8 col-md-9">
-                {% for message in app.session.flashBag.get('notice') %}
-                    <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        {{ message }}
-                    </div>
-                {% endfor %}
+                {{ include('partials/flash_messages.html.twig', { 'flashBag': app.session.flashBag.get('notice') }) }}
                 {% block main %}{% endblock %}
             </main>
         </div>

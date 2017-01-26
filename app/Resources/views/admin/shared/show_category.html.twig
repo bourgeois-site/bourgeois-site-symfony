@@ -21,7 +21,7 @@
             <a id="edit_section_link_{{ sectionId }}" class="btn btn-default edit_link" href="#" title="Редактировать">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a>
-            <a class="btn btn-danger" href="{{ path('admin_delete_section', { 'id': sectionId }) }}" data-confirm='Удалить "{{ section.title }}"?' title="Удалить">
+            <a id="delete_section_link_{{ sectionId }}" class="btn btn-danger" data-confirm-remote='Удалить "{{ section.title }}"?' href="#" title="Удалить">
                 <span class="glyphicon glyphicon-trash"></span>
             </a>
         </div>
@@ -96,6 +96,23 @@
                 }, error: function(error) {
                     alert(error.error);
                 } });
+        });
+        $('#delete_section_link_{{ sectionId }}').on('click', function(e) {
+            e.preventDefault();
+            var confirmation = confirm($(this).data('confirm-remote'));
+            if (confirmation == true) {
+                var link = $(this);
+                $.ajax({url: "{{ path('admin_delete_section', { 'id': sectionId }) }}",
+                    success: function(result) {
+                        $('#global_submit').css('display', 'none');
+                        link.parent().remove();
+                        $('#new_photo_link_{{ sectionId }}').remove(); // temp
+                        $('#edit_section_form_{{ sectionId }}').remove();
+                        $('#show_section_{{ sectionId }}').html(result).css('display', 'block');
+                    }, error: function(error) {
+                        alert(error.error);
+                    } });
+            }
         });
         //------------------- photos
         $('#new_photo_link_{{ sectionId }}').on('click', function(e) {

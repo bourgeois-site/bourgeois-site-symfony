@@ -222,21 +222,9 @@ class AdminDefaultController extends Controller
         $em->remove($section);
         $em->flush();
 
-        $this->addFlash('notice', "Абзац \"{$title}\" удален");
-
-        switch($type) {
-        case 'about':
-            return $this->redirectToRoute('admin_about');
-            break;
-        case 'service':
-            return $this->redirectToRoute('admin_show_service', ['slug' => $slug]);
-            break;
-        case 'work':
-            return $this->redirectToRoute('admin_show_work', ['slug' => $slug]);
-            break;
-        default:
-            return $this->redirectToRoute('admin_homepage');
-        }
+        return $this->render('partials/flash_messages.html.twig', [
+            'flashBag' => ["Абзац \"{$title}\" удален"]
+        ]);
     }
 
     /**

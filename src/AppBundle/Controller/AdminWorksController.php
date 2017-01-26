@@ -99,7 +99,7 @@ class AdminWorksController extends Controller
         $em->remove($work);
         $em->flush();
 
-        $this->addFlash('notice', "\"{$work->getTitle()}\" удалены из выполненных работ");
+        $this->addFlash('notice', "\"{$work->getTitle()}\" удалена из выполненных работ");
 
         return $this->redirectToRoute('admin_works');
     }
