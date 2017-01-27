@@ -1,3 +1,5 @@
-<a id="phone" href="tel:{{ mainPhone }}" data-rel="external" title="Сделать звонок">
-    <i class="fa fa-2x fa-phone"></i>
-</a>
+{% if mainPhone %}
+    <a id="phone" href="tel:{{ mainPhone }}" data-rel="external" title="Сделать звонок">
+        <i class="fa fa-2x fa-phone"></i>
+    </a>
+{% endif %}

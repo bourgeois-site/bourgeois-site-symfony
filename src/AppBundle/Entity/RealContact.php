@@ -52,7 +52,7 @@ class RealContact
     private $longitude;
 
     /**
-     * @ORM\Column(type="boolean", name="is_main_phone", options={"default": false})
+     * @ORM\Column(type="boolean", name="is_main_phone", nullable=true, options={"default": false})
      */
     private $isMainPhone;
 

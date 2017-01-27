@@ -4,8 +4,10 @@
         <h2>{{ form_label(form.title) }}</h2>
         {{ form_widget(form.title) }}
         <h2>{{ form_label(form.photo) }}</h2>
-        {{ form_row(form.photo.title) }}
-        {{ form_row(form.photo.description) }}
+        <div class="{% if category.type != 'about' %}hidden{% endif %}">
+            {{ form_row(form.photo.title) }}
+            {{ form_row(form.photo.description) }}
+        </div>
         {{ form_widget(form.photo.file) }}
     </div>
     <div class="col-md-6">

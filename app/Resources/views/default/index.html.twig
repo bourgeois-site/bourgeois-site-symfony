@@ -22,42 +22,40 @@
 
 <section id="services">
     <div class="heading">
-        <h2 class="h2">Наши услуги</h1>
+        <h2 class="h2">Наши услуги</h2>
         <div class="divider"></div>
-        <h3 class="h4">Мы предлагаем услуги включающие в себя все работы по частичному ремонту и ремонту "под ключ"</h2>
+        <h3 class="h4">Мы можем предложить различные варианты как отделки, так и отдельные виды работ</h3>
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            {% for service in services %}
-                <div class="service col-md-4 col-sm-6">
-                    <span class="service_caption">
-                        <h3>{{ service.title }}</h3>
-                        {% for section in service.sections %}
-                        {% if loop.first %}
-                            <div class="service_description">
-                                <div class="divider"></div>
-                                <h4 class="section_title">{{ section.title }}</h4>
-                                <div class="section_description">
-                                    {{ section.description|md2html }}
-                                </div>
+    <div class="container">
+        {% for service in services %}
+            <div class="service col-sm-6 col-md-4">
+                <span class="service_caption">
+                    <h3>{{ service.title }}</h3>
+                    {% for section in service.sections %}
+                    {% if loop.first %}
+                        <div class="service_description">
+                            <div class="divider"></div>
+                            <h4 class="section_title">{{ section.title }}</h4>
+                            <div class="section_description">
+                                {{ section.description|md2html }}
                             </div>
-                        {% endif %}
-                        {% endfor %}
-                    </span>
-                    <a href="{{ path('show_service', {'slug': service.slug }) }}">
-                        <img src="{{ vich_uploader_asset(service.photo, 'file') }}">
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
+                        </div>
+                    {% endif %}
+                    {% endfor %}
+                </span>
+                <a href="{{ path('show_service', {'slug': service.slug }) }}">
+                    <img src="{{ vich_uploader_asset(service.photo, 'file') }}">
+                </a>
+            </div>
+        {% endfor %}
     </div>
 </section>
 
 <section id="works">
     <div class="heading">
-        <h2 class="h2">Выполненные работы</h1>
+        <h2 class="h2">Выполненные работы</h2>
         <div class="divider"></div>
-        <h3 class="h4">Вот что мы могём</h2>
+        <h3 class="h4"></h3>
     </div>
     <div class="container">
         <div id="works_carousel" class="carousel slide" data-ride="carousel">
@@ -94,9 +92,9 @@
 
 <section id="call_measurer">
     <div class="heading">
-        <h2 class="h2">Вызвать замерщика</h1>
+        <h2 class="h2">Вызвать замерщика</h2>
         <div class="divider"></div>
-        <h3 class="h4">Оставьте вашу заявку</h2>
+        <h3 class="h4">Оставьте онлайн заявку на вызов специалиста</h3>
     </div>
     <div class="container">
         <div class="row">

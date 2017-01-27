@@ -3,31 +3,46 @@
         Отмена
     </a>
     {{ form_row(form.title) }}
+
+    {# text in popovers #}
+    {% set boldText = "<p>Выделите жирный текст ** с обеих сторон</p><p>обычный текст **<strong>жирный текст</strong>**</p>" %}
+    {% set italicText = "<p>Ограничьте текст курсивом _ с обеих сторон</p><p>обычный текст _<em>текст курсивом</em>_</p>" %}
+    {% set header = "<p>Для создания заголовка поместите перед текстом #</p><h3># Заголовок</h3>" %}
+    {% set unorderedList = "<p>* один</p><p>* два</p><p>* три</p>" %}
+    {% set orderedList = "<p>1. один</p><p>2. два</p><p>3. три</p>" %}
+    {% set quote = "<p>Чтобы вставить цитату, поставьте > перед ней</p><p>> какая-то цитата</p><p>Результат:</p><blockquote>какая-то цитата</blockquote>" %}
+    {% set link = "<p>Ссылка строится по следующей формуле:</p><p> [текст](адрес ссылки)</p><p>Пример:</p><p>перейдите по [ссылке](http://студия-буржуа.рф)</p><p>Результат:</p>перейдите по <a href='http://студия-буржуа.рф'>ссылке</a>" %}
+    {% set lineBreak = "Для переноса строки, оставляйте 2 пробела после или пустую строку" %}
+
     <div class="section_description">
         <div class="edit_description_bar">
-            <a type="button" class="btn btn-default" data-toggle="popover" title="Жирный" data-content="<p>обычный текст</p><p>**<strong>жирный текст</strong>**</p>">
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Жирный" data-content="{{ boldText }}">
                 <span class="fa fa-bold"></span>
             </a>
-            <a type="button" class="btn btn-default" data-toggle="popover" title="Курсив" data-content="<p>обычный текст</p><p>_<em>текст курсивом</em>_</p>">
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Курсив" data-content="{{ italicText }}">
                 <span class="fa fa-italic"></span>
             </a>
-            <a type="button" class="btn btn-default" data-toggle="popover" title="Заголовок" data-content="<h3># Заголовок</h3>">
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Заголовок" data-content="{{ header }}">
                 <span class="fa fa-header"></span>
             </a> |
-            <a type="button" class="btn btn-default" data-toggle="popover" title="Маркированный список" data-content="<p>* один</p><p>* два</p><p>* три</p>">
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Маркированный список" data-content="{{ unorderedList }}">
                 <span class="fa fa-list-ul"></span>
             </a>
-            <a type="button" class="btn btn-default" data-toggle="popover" title="Нумерованный список" data-content="<p>1. один</p><p>2. два</p><p>3. три</p>">
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Нумерованный список" data-content="{{ orderedList }}">
                 <span class="fa fa-list-ol"></span>
             </a> |
-            <a type="button" class="btn btn-default" data-toggle="popover" title="Цитата" data-content="<p>> какая-то цитата</p><p>Результат:</p><blockquote>какая-то цитата</blockquote>">
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Цитата" data-content="{{ quote }}">
                 <span class="fa fa-quote-left"></span>
             </a>
-            <a type="button" class="btn btn-default" data-toggle="popover" title="Ссылка" data-content="<p>перейдите по [ссылке](http://студия-буржуа.рф)</p><p>Результат:</p>перейдите по <a href='http://студия-буржуа.рф'>ссылке</a>">
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Ссылка" data-content="{{ link }}">
                 <span class="fa fa-link"></span>
             </a> |
-            <a type="button" class="btn btn-default" data-toggle="popover" title="Переход на новую строку" data-content="Оставляйте одну пустую строку между двумя строками">
+            <a type="button" class="btn btn-default" data-toggle="popover" title="Переход на новую строку" data-content="{{ lineBreak }}">
                 <span class="fa fa-chevron-down"></span>
+            </a> |
+            <a href="https://ru.wikipedia.org/wiki/Markdown" class="btn btn-default" target="_blank">
+                <span class="fa fa-info-circle"></span>
+                Справка о языке разметки
             </a>
         </div>
         {{ form_widget(form.description) }}

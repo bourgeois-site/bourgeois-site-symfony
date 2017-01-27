@@ -180,10 +180,15 @@ class DefaultController extends Controller
 
     public function phoneAction()
     {
-        $mainPhone = $this->getDoctrine()->
+        $mainPhone = false;
+
+        $contact = $this->getDoctrine()->
             getRepository('AppBundle:RealContact')->
-            findOneByIsMainPhone(true)->
-            getMainPhone();
+            findOneByIsMainPhone(true);
+
+        if ($contact) {
+            $mainPhone = $contact->getMainPhone();
+        }
 
         return $this->render('partials/phone.html.twig', [
             'mainPhone' => $mainPhone 
