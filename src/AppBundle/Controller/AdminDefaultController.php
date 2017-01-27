@@ -320,4 +320,32 @@ class AdminDefaultController extends Controller
             'flashBag' => ["Фото удалено"]
         ]);
     }
+
+    /**
+     * @Route("/админ/главный_номер", name="admin_main_phone")
+     */
+    public function mainPhoneAction(Request $request)
+    {
+        $number = $request->request->get('number');
+
+        $em = $this->getDoctrine()->getManager();
+        $contact = $em->getRepository('AppBundle:RealContact')->findOneByMainPhone($number);
+
+        if (!$contact) {
+            throw $this->createNotFoundException();
+        }
+
+        $allContacts = $em->getRepository('AppBundle:RealContact')->findAll();
+
+        foreach ($allContacts as $c) {
+            $c->setIsMainPhone(false);
+        }
+
+        $contact->setIsMainPhone(true);
+        $em->flush();
+
+        $this->addFlash('notice', "Номер обновлен");
+
+        return $this->redirectToRoute('admin_contacts');
+    }
 }

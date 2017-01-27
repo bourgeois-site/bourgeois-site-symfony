@@ -52,6 +52,11 @@ class RealContact
     private $longitude;
 
     /**
+     * @ORM\Column(type="boolean", name="is_main_phone", options={"default": false})
+     */
+    private $isMainPhone;
+
+    /**
      * Get id
      *
      * @return integer
@@ -227,5 +232,29 @@ class RealContact
     public function getAdditionalPhone()
     {
         return $this->additionalPhone;
+    }
+
+    /**
+     * Set isMainPhone
+     *
+     * @param boolean $isMainPhone
+     *
+     * @return RealContact
+     */
+    public function setIsMainPhone($isMainPhone)
+    {
+        $this->isMainPhone = $isMainPhone;
+
+        return $this;
+    }
+
+    /**
+     * Get isMainPhone
+     *
+     * @return boolean
+     */
+    public function getIsMainPhone()
+    {
+        return $this->isMainPhone;
     }
 }

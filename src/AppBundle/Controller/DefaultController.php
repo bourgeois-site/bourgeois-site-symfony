@@ -177,4 +177,16 @@ class DefaultController extends Controller
             'form' => $form->createView()
         ]);
     }
+
+    public function phoneAction()
+    {
+        $mainPhone = $this->getDoctrine()->
+            getRepository('AppBundle:RealContact')->
+            findOneByIsMainPhone(true)->
+            getMainPhone();
+
+        return $this->render('partials/phone.html.twig', [
+            'mainPhone' => $mainPhone 
+        ]); 
+    }
 }
