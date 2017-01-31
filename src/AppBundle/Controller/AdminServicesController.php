@@ -77,7 +77,7 @@ class AdminServicesController extends Controller
     }
 
     /**
-     * @Route("/админ/услуги/{slug}", name="admin_delete_service")
+     * @Route("/админ/услуги/{slug}/удалить", name="admin_delete_service")
      */
     public function deleteAction($slug)
     {

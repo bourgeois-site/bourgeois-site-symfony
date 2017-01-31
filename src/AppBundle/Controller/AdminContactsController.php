@@ -134,7 +134,7 @@ class AdminContactsController extends Controller
     }
 
     /**
-     * @Route("/админ/контакты/интернет/{id}", name="admin_delete_internet_contact")
+     * @Route("/админ/контакты/интернет/{id}/удалить", name="admin_delete_internet_contact")
      */
     public function deleteInternetContactAction($id)
     {
@@ -155,7 +155,7 @@ class AdminContactsController extends Controller
     }
 
     /**
-     * @Route("/админ/контакты/адреса/{id}", name="admin_delete_real_contact")
+     * @Route("/админ/контакты/адреса/{id}/удалить", name="admin_delete_real_contact")
      */
     public function deleteRealContactAction($id)
     {

@@ -77,7 +77,7 @@ class AdminWorksController extends Controller
     }
 
     /**
-     * @Route("/админ/выполненные-работы/{slug}", name="admin_delete_work")
+     * @Route("/админ/выполненные-работы/{slug}/удалить", name="admin_delete_work")
      */
     public function deleteAction($slug)
     {

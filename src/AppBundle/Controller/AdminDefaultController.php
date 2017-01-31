@@ -219,7 +219,7 @@ class AdminDefaultController extends Controller
     }
 
     /**
-     * @Route("/админ/абзац/{id}", name="admin_delete_section")
+     * @Route("/админ/абзац/{id}/удалить", name="admin_delete_section")
      */
     public function deleteSectionAction($id)
     {
