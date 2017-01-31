@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }} - {{ parent() }}{% endblock %}
+
+{% block main %}
+    <div id="page_header">
+        <h1>{{ title }}</h1>
+    </div>
+
+    {% for section in sections %}
+        {{ include('partials/section.html.twig', { 'section': section }) }}
+    {% endfor %}
+{% endblock %}

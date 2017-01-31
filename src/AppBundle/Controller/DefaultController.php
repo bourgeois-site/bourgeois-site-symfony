@@ -53,6 +53,27 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/акции", name="discounts")
+     */
+    public function discountsAction()
+    {
+        $discounts = $this->getDoctrine()->
+            getRepository('AppBundle:Category')->
+            findOneByType('discounts');
+
+        if (!$discounts) {
+            throw $this->createNotFoundException();
+        }
+
+        $title = $discounts->getTitle();
+        $sections = $discounts->getSections();
+
+        return $this->render('default/discounts.html.twig', [
+            'title' => $title, 'sections' => $sections
+        ]);
+    }
+
+    /**
      * @Route("/контакты", name="contacts")
      */
     public function contactsAction()
@@ -99,6 +120,7 @@ class DefaultController extends Controller
     {
         $company = [
             "О компании" => $this->generateUrl('aboutpage'),
+            "Акции" => $this->generateUrl('discounts'),
             "Цены" => $this->generateUrl('prices')
         ];
 
