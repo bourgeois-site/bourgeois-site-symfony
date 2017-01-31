@@ -34,13 +34,36 @@ class AdminDefaultController extends Controller
             $about = new Category();
             $about->setTitle("О компании");
             $about->setType('about');
-            $about->setSlug('о-компании');
+            $about->setSlug("о-компании");
             $em->persist($about);
             $em->flush();
         }
 
         return $this->render('admin/shared/show_category.html.twig', [
             'category' => $about,
+        ]);
+    }
+
+    /**
+     * @Route("/админ/акции", name="admin_discounts")
+     */
+    public function discountsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $discounts = $em->getRepository('AppBundle:Category')->
+            findOneByType('discounts');
+
+        if (!$discounts) {
+            $discounts = new Category();
+            $discounts->setTitle("Акции");
+            $discounts->setType('discounts');
+            $discounts->setSlug("акции");
+            $em->persist($discounts);
+            $em->flush();
+        }
+
+        return $this->render('admin/shared/show_category.html.twig', [
+            'category' => $discounts
         ]);
     }
 
@@ -86,7 +109,7 @@ class AdminDefaultController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
 
-            if ($category->getType() != 'about') {
+            if (($category->getType() != 'about') || ($category->getType() != 'discounts')) {
                 $category->generateSlug();
             }
 
@@ -99,6 +122,9 @@ class AdminDefaultController extends Controller
             switch($type) {
             case 'about':
                 return $this->redirectToRoute('admin_about');
+                break;
+            case 'discounts':
+                return $this->redirectToRoute('admin_discounts');
                 break;
             case 'service':
                 return $this->redirectToRoute('admin_show_service', ['slug' => $category->getSlug()]);
@@ -179,6 +205,9 @@ class AdminDefaultController extends Controller
             switch($type) {
             case 'about':
                 return $this->redirectToRoute('admin_about');
+                break;
+            case 'discounts':
+                return $this->redirectToRoute('admin_discounts');
                 break;
             case 'service':
                 return $this->redirectToRoute('admin_show_service', ['slug' => $category->getSlug()]);

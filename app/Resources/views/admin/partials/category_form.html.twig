@@ -1,8 +1,10 @@
 {{ form_start(form) }}
 <div class="row">
     <div class="col-md-6">
-        <h2>{{ form_label(form.title) }}</h2>
-        {{ form_widget(form.title) }}
+        <div class="{% if category.type == 'about' %}hidden{% endif %}">
+            <h2>{{ form_label(form.title) }}</h2>
+            {{ form_widget(form.title) }}
+        </div>
         <h2>{{ form_label(form.photo) }}</h2>
         <div class="{% if category.type != 'about' %}hidden{% endif %}">
             {{ form_row(form.photo.title) }}

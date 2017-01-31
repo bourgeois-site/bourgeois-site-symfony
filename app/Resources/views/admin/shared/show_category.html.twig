@@ -3,9 +3,11 @@
 {% block main %}
     <h1 class="page-header">
         {{ category.title }}
-        <a id="edit_category_link" class="btn btn-default pull-right edit_link" href="#" title="Редактировать">
-            <span class="glyphicon glyphicon-pencil"></span>
-        </a>
+        {% if category.type != 'discounts' %}
+            <a id="edit_category_link" class="btn btn-default pull-right edit_link" href="#" title="Редактировать">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+        {% endif %}
     </h1>
 
     <div id="edit_category_form">
