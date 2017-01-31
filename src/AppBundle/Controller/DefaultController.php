@@ -118,11 +118,21 @@ class DefaultController extends Controller
 
     public function footerAction()
     {
-        $company = [
-            "О компании" => $this->generateUrl('aboutpage'),
-            "Акции" => $this->generateUrl('discounts'),
-            "Цены" => $this->generateUrl('prices')
-        ];
+        $em = $this->getDoctrine()->getManager();
+
+        $company = ["О компании" => $this->generateUrl('aboutpage')];
+
+        $discounts = $em->getRepository('AppBundle:Category')->
+            findOneByType('discounts');
+        if ($discounts && sizeof($discounts->getSections()) > 0) {
+            $company["Акции"] = $this->generateUrl('discounts');
+        }
+
+        $prices = $em->getRepository('AppBundle:Category')->
+            findOneByType('prices');
+        if ($prices && sizeof($prices->getSections()) > 0) {
+            $company["Цены"] = $this->generateUrl('prices');
+        }
 
         $services = $this->getDoctrine()->
             getRepository('AppBundle:Category')->
@@ -215,5 +225,18 @@ class DefaultController extends Controller
         return $this->render('partials/phone.html.twig', [
             'mainPhone' => $mainPhone 
         ]); 
+    }
+
+    public function discountsLinkAction()
+    {
+        $discounts = $this->getDoctrine()->
+            getRepository('AppBundle:Category')->
+            findOneByType('discounts');
+
+        $count = sizeof($discounts->getSections());
+
+        return $this->render('partials/discounts_link.html.twig', [
+            'count' => $count
+        ]);
     }
 }

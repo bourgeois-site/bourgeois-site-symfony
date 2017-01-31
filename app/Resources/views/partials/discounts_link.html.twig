@@ -1,0 +1,6 @@
+{% if count > 0 %}
+    <a href="{{ path('discounts') }}" class="btn btn-warning btn-lg" id="discounts_link">
+        <span class="fa fa-percent"></span>
+        Акции <span class="badge">{{ count }}</span>
+    </a>
+{% endif %}
