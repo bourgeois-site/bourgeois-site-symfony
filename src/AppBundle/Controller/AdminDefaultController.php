@@ -67,14 +67,6 @@ class AdminDefaultController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/админ/профиль", name="admin_profile")
-     */
-    public function profileAction()
-    {
-        return $this->render('admin/default/profile.html.twig');
-    }
-
     public function asideAction()
     {
         $newRequestsCount = sizeof(

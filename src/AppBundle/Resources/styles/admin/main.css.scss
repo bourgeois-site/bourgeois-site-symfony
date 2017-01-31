@@ -1,6 +1,14 @@
 body {
   font-family: Open Sans, Helvetica, Arial, sans-serif;
 
+  header {
+    .navbar-brand {
+      position: absolute;
+      left: 50%;
+      margin-left: -95px;
+    }
+  }
+
   main {
     #new_entity_link {
       margin-bottom: 20px;
