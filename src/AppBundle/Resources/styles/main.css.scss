@@ -126,11 +126,21 @@ main {
       font-size: 24px;
     }
 
-    .thumbnail {
+    .thumbnail, .carousel {
       max-width: 100%;
 
       img {
         width: 100%;
+      }
+    }
+
+    .carousel {
+      padding: 4px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+
+      .carousel-control {
+        background: inherit !important;
       }
     }
   }
@@ -253,22 +263,6 @@ main {
       }
     }
 
-    .subsection {
-      .photo_left, .photo_right {
-        width: 40%;
-      }
-
-      .photo_left {
-        float: left;
-        margin-right: 40px;
-      }
-
-      .photo_right {
-        float: right;
-        margin-left: 40px;
-      }
-    }
-
     #works {
       img {
         height: 400px;
@@ -287,12 +281,6 @@ main {
       padding-top: 145px;
     }
 
-    .subsection {
-      .photo_left, .photo_right {
-        width: 50%;
-      }
-    }
-
     #jumbotron {
       .jumbotron {
         margin-top: 200px;
@@ -302,6 +290,22 @@ main {
     #works {
       img {
         height: 500px;
+      }
+    }
+
+    .subsection {
+      .photo_left, .photo_right {
+        width: 50%;
+      }
+
+      .photo_left {
+        float: left;
+        margin-right: 40px;
+      }
+
+      .photo_right {
+        float: right;
+        margin-left: 40px;
       }
     }
 

@@ -3,7 +3,7 @@ body {
 
   header {
     .navbar-brand {
-      position: absolute;
+      position: absolute !important;
       left: 50%;
       margin-left: -95px;
     }

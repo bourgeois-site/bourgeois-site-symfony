@@ -30,30 +30,30 @@ class AdminWorksController extends Controller
     {
         $title = "Новая выполненная работа";
 
-        $service = new Category();
+        $work = new Category();
 
-        $form = $this->createForm(CategoryType::class, $service);
+        $form = $this->createForm(CategoryType::class, $work);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $category = $form->getData();
-            $category->setType('work');
-            $category->generateSlug();
+            $work = $form->getData();
+            $work->setType('work');
+            $work->generateSlug();
             $em = $this->getDoctrine()->getManager();
-            $em->persist($category);
+            $em->persist($work);
             $em->flush();
 
             $this->addFlash('notice', "Добавлена новая выполненная работа");
 
             return $this->redirectToRoute('admin_show_work', [
-                'slug' => $category->getSlug()
+                'slug' => $work->getSlug()
             ]);
         }
 
         return $this->render('admin/shared/new_category.html.twig', [
             'title' => $title,
-            'category' => $service,
+            'category' => $work,
             'form' => $form->createView()
         ]);
     }

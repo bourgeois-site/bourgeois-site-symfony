@@ -3,18 +3,106 @@
         <h2 class="h2">{{ section.title }}</h1>
         <div class="divider"></div>
     </div>
-    {% if section.photos|length > 0 %}
-        <div class="thumbnail {{ cycle(['photo_right', 'photo_left'], section.id) }}">
-            {% for photo in section.photos %}
-                <img src="{{ vich_uploader_asset(photo, 'file') }}">
-                {% if photo.title or photo.description %}
-                    <div class="caption">
-                        <h3>{{ photo.title }}</h3>
-                        <p>{{ photo.description }}</p>
+    {% if section.description %}
+        {% if section.photos|length == 1 %}
+            <div class="thumbnail {{ cycle(['photo_right', 'photo_left'], section.id) }}">
+                {% for photo in section.photos %}
+                    <a href="#">
+                        <img src="{{ vich_uploader_asset(photo, 'file') }}">
+                    </a>
+                    {% if photo.title or photo.description %}
+                        <div class="caption">
+                            <h3>{{ photo.title }}</h3>
+                            <p>{{ photo.description }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% elseif section.photos|length > 1 %}
+        <div class="carousel slide {{ cycle(['photo_right', 'photo_left'], section.id) }}" id="c{{ section.id }}" data-ride="carousel" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <ol class="carousel-indicators">
+                    {% for photo in section.photos %}
+                    <li data-target="#c{{ section.id }}" data-slide-to="{{ loop.index - 1 }}" class="{% if loop.first %}active{% endif %}"></li>
+                    {% endfor %}
+                </ol>
+                {% for photo in section.photos %}
+                <div class="item {% if loop.first %}active{% endif %}">
+                    <a href="#">
+                        <img src="{{ vich_uploader_asset(photo, 'file') }}">
+                        {% if photo.title or photo.description %}
+                        <div class="carousel-caption">
+                            <h3>{{ photo.title }}</h3>
+                            <p>{{ photo.description }}</p>
+                        </div>
+                        {% endif %}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <a class="left carousel-control" href="#c{{ section.id }}" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Предыдущая</span>
+            </a>
+            <a class="right carousel-control" href="#c{{ section.id }}" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Следующая</span>
+            </a>
+        </div>
+        {% endif %}
+        {{ section.description|md2html }}
+    {% else %}
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+                {% if section.photos|length == 1 %}
+                <div class="thumbnail">
+                    {% for photo in section.photos %}
+                        <a href="#">
+                            <img src="{{ vich_uploader_asset(photo, 'file') }}">
+                        </a>
+                        {% if photo.title or photo.description %}
+                            <div class="caption">
+                                <h3>{{ photo.title }}</h3>
+                                <p>{{ photo.description }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% elseif section.photos|length > 1 %}
+                <div class="carousel slide" id="c{{ section.id }}" data-ride="carousel" data-interval="false">
+                    <div class="carousel-inner" role="listbox">
+                        <ol class="carousel-indicators">
+                            {% for photo in section.photos %}
+                            <li data-target="#c{{ section.id }}" data-slide-to="{{ loop.index - 1 }}" class="{% if loop.first %}active{% endif %}"></li>
+                            {% endfor %}
+                        </ol>
+                        {% for photo in section.photos %}
+                        <div class="item {% if loop.first %}active{% endif %}">
+                            <a href="#">
+                                <img src="{{ vich_uploader_asset(photo, 'file') }}">
+                                {% if photo.title or photo.description %}
+                                <div class="carousel-caption">
+                                    <h3>{{ photo.title }}</h3>
+                                    <p>{{ photo.description }}</p>
+                                </div>
+                                {% endif %}
+                            </a>
+                        </div>
+                        {% endfor %}
                     </div>
+
+                    <a class="left carousel-control" href="#c{{ section.id }}" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Предыдущая</span>
+                    </a>
+                    <a class="right carousel-control" href="#c{{ section.id }}" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Следующая</span>
+                    </a>
+                </div>
                 {% endif %}
-            {% endfor %}
+            </div>
         </div>
     {% endif %}
-    {{ section.description|md2html }}
 </section>

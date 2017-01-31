@@ -14,7 +14,7 @@
     {% set link = "<p>Ссылка строится по следующей формуле:</p><p> [текст](адрес ссылки)</p><p>Пример:</p><p>перейдите по [ссылке](http://студия-буржуа.рф)</p><p>Результат:</p>перейдите по <a href='http://студия-буржуа.рф'>ссылке</a>" %}
     {% set lineBreak = "Для переноса строки, оставляйте 2 пробела после или пустую строку нее" %}
 
-    <div class="section_description">
+    <div class="section_description {% if section.category.type == 'work' %}hidden{% endif %}">
         <div class="edit_description_bar">
             <a type="button" class="btn btn-default" data-toggle="popover" title="Жирный" data-content="{{ boldText }}">
                 <span class="fa fa-bold"></span>

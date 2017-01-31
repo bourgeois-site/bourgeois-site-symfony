@@ -37,17 +37,17 @@ class AdminServicesController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $category = $form->getData();
-            $category->setType('service');
-            $category->generateSlug();
+            $service = $form->getData();
+            $service->setType('service');
+            $service->generateSlug();
             $em = $this->getDoctrine()->getManager();
-            $em->persist($category);
+            $em->persist($service);
             $em->flush();
 
             $this->addFlash('notice', "Добавлена новая услуга");
 
             return $this->redirectToRoute('admin_show_service', [
-                'slug' => $category->getSlug()
+                'slug' => $service->getSlug()
             ]);
         }
 
