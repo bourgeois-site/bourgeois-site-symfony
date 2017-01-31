@@ -17,6 +17,9 @@
                 Номер для онлайн звонка
             </span>
             <select id="number" class="form-control" name="number">
+                {% if mainPhoneAbsent %}
+                    <option>(не выбран)</option>
+                {% endif %}
                 {% for contact in realContacts %}
                     {% set number = contact.mainPhone %}
                     {% if contact.isMainPhone %}

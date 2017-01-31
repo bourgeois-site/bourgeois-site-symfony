@@ -25,12 +25,22 @@ class AdminContactsController extends Controller
             getRepository('AppBundle:RealContact')->
             findAll();
         $realCount = sizeof($realContacts);
+        $contactWithMainPhone = $this->getDoctrine()->
+            getRepository('AppBundle:RealContact')->
+            findOneByIsMainPhone(true);
+
+        if (!$contactWithMainPhone) {
+            $mainPhoneAbsent = true;
+        } else {
+            $mainPhoneAbsent = false;
+        }
 
         return $this->render('admin/contacts/index.html.twig', [
             'internetContacts' => $internetContacts,
             'realContacts' => $realContacts,
             'internetCount' => $internetCount,
-            'realCount' => $realCount
+            'realCount' => $realCount,
+            'mainPhoneAbsent' => $mainPhoneAbsent
         ]);
     }
 

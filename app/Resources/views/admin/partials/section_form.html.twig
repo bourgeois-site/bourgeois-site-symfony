@@ -65,6 +65,7 @@
                     </a>
                     {{ form_row(photo.title) }}
                     {{ form_row(photo.description) }}
+                    <p><strong>{{ photo.vars.value.filename }}</strong></p>
                     {{ form_widget(photo.file) }}
                     <hr>
                 </div>
