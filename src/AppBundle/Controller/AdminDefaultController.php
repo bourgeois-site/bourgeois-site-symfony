@@ -305,6 +305,9 @@ class AdminDefaultController extends Controller
             case 'about':
                 return $this->redirectToRoute('admin_about');
                 break;
+            case 'discounts':
+                return $this->redirectToRoute('admin_discounts');
+                break;
             case 'service':
                 return $this->redirectToRoute('admin_show_service', ['slug' => $category->getSlug()]);
                 break;
