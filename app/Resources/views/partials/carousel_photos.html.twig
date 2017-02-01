@@ -8,7 +8,7 @@
         </ol>
         {% for photo in section.photos %}
         <div class="item {% if loop.first %}active{% endif %}">
-            <img src="{{ vich_uploader_asset(photo, 'file') }}">
+            <img src="{{ vich_uploader_asset(photo, 'file') }}" alt="{{ photo.title }}">
             {% if photo.title or photo.description %}
             <div class="carousel-caption">
                 <h3>{{ photo.title }}</h3>

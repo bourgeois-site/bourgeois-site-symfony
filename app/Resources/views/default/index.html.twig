@@ -44,7 +44,7 @@
                     {% endfor %}
                 </span>
                 <a href="{{ path('show_service', {'slug': service.slug }) }}">
-                    <img src="{{ vich_uploader_asset(service.photo, 'file') }}">
+                    <img src="{{ vich_uploader_asset(service.photo, 'file') }}" alt="{{ service.title }}">
                 </a>
             </div>
         {% endfor %}
@@ -70,7 +70,7 @@
                         {% for work in works %}
                         <div class="item {% if loop.first %}active{% endif %}">
                                 <a href="{{ path('show_work', {'slug': work.slug }) }}">
-                                    <img src="{{ vich_uploader_asset(work.photo, 'file') }}">
+                                    <img src="{{ vich_uploader_asset(work.photo, 'file') }}" alt="{{ work.title }}">
                                     <div class="carousel-caption">
                                         <h3>{{ work.title }}</h3>
                                     </div>
