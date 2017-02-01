@@ -1,0 +1,11 @@
+<div class="thumbnail {{ class }}">
+    {% for photo in section.photos %}
+        <img src="{{ vich_uploader_asset(photo, 'file') }}">
+        {% if photo.title or photo.description %}
+            <div class="caption">
+                <h3>{{ photo.title }}</h3>
+                <p>{{ photo.description }}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

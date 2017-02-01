@@ -1,0 +1,30 @@
+{% set carouselId = "c" ~ section.id %}
+<div class="carousel slide {{ class }}" id="{{ carouselId }}" data-ride="carousel" data-interval="false">
+    <div class="carousel-inner" role="listbox">
+        <ol class="carousel-indicators">
+            {% for photo in section.photos %}
+            <li data-target="#{{ carouselId }}" data-slide-to="{{ loop.index - 1 }}" class="{% if loop.first %}active{% endif %}"></li>
+            {% endfor %}
+        </ol>
+        {% for photo in section.photos %}
+        <div class="item {% if loop.first %}active{% endif %}">
+            <img src="{{ vich_uploader_asset(photo, 'file') }}">
+            {% if photo.title or photo.description %}
+            <div class="carousel-caption">
+                <h3>{{ photo.title }}</h3>
+                <p>{{ photo.description }}</p>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <a class="left carousel-control" href="#{{ carouselId }}" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Предыдущая</span>
+    </a>
+    <a class="right carousel-control" href="#{{ carouselId }}" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Следующая</span>
+    </a>
+</div>
