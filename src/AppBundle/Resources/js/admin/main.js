@@ -52,6 +52,9 @@ $(document).ready(function() {
   });
 
   $('#global_submit').on('click', function() {
-      $('form').submit();
+    var forms = $('form');
+    for(var i=0;i < forms.length;i++) {
+      setTimeout(forms[i].submit(), 300 * (i + 1));
+    }
   });
 });

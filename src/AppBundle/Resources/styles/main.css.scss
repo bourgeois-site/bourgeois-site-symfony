@@ -18,7 +18,7 @@ main {
 
     .carousel-indicators {
       li {
-        background: #00000080 !important;
+        background: rgba(0,0,0,0.5) !important;
 
         &.active {
           background: #fff !important;
