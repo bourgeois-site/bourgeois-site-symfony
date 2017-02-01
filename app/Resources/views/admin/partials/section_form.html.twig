@@ -65,7 +65,13 @@
                     </a>
                     {{ form_row(photo.title) }}
                     {{ form_row(photo.description) }}
-                    <p><strong>{{ photo.vars.value.filename }}</strong></p>
+                    <p><strong>
+                    {% if photo.vars.value.filename %}
+                        {{ photo.vars.value.filename }}
+                    {% else %}
+                        !!!ФОТО НЕ ПРИКРЕПЛЕНО!!!
+                    {% endif %}
+                    </strong></p>
                     {{ form_widget(photo.file) }}
                     <hr>
                 </div>
@@ -109,7 +115,8 @@
                 $('#section_{{ section.id }}_photos').append(result);
             }, error: function(error) {
                 alert(error.error);
-            } });
+            }
+        });
     });
 
     {% for photo in section.photos %}

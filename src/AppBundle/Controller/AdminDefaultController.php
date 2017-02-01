@@ -110,6 +110,7 @@ class AdminDefaultController extends Controller
             $em->flush();
 
             $this->addFlash('notice', "Изменения в \"{$title}\" произведены");
+            sleep(1);
 
             switch($type) {
             case 'about':
@@ -136,14 +137,15 @@ class AdminDefaultController extends Controller
     }
 
     /**
-     * @Route("/админ/{slug}/абзац/новый", name="admin_new_section")
+     * @Route("/админ/категория/{type}/{slug}/абзац/новый", name="admin_new_section")
      */
-    public function newSectionAction($slug)
+    public function newSectionAction($type, $slug)
     {
         $section = new Section();
 
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository('AppBundle:Category')->findOneBySlug($slug);
+        $category = $em->getRepository('AppBundle:Category')
+            ->findOneBy(array('type' => $type, 'slug' => $slug));
 
         if (!$category) {
             throw $this->createNotFoundException();
@@ -193,6 +195,7 @@ class AdminDefaultController extends Controller
             } else {
                 $this->addFlash('notice', "Изменения в \"{$category->getTitle()} > {$title}\" произведены");
             }
+            sleep(1);
 
             switch($type) {
             case 'about':
@@ -300,6 +303,7 @@ class AdminDefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($photo);
             $em->flush();
+            sleep(1);
 
             switch($type) {
             case 'about':

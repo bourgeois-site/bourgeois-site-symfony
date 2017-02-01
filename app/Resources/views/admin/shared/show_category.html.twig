@@ -108,7 +108,7 @@
 
     $('#new_section_link').on('click', function(e) {
         e.preventDefault();
-        $.ajax({url: "{{ path('admin_new_section', {'slug': category.slug }) }}",
+        $.ajax({url: "{{ path('admin_new_section', {'type': category.type, 'slug': category.slug }) }}",
             success: function(result) {
                 $('#new_section_forms').append(result);
             }, error: function(error) {
