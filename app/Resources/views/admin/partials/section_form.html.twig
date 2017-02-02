@@ -65,13 +65,15 @@
                     </a>
                     {{ form_row(photo.title) }}
                     {{ form_row(photo.description) }}
-                    <p><strong>
                     {% if photo.vars.value.filename %}
-                        {{ photo.vars.value.filename }}
+                        <p class="h4"><span class="label label-primary">
+                            {{ photo.vars.value.filename }}
+                        </span></p>
                     {% else %}
-                        !!!ФОТО НЕ ПРИКРЕПЛЕНО!!!
+                        <p class="h4"><span class="label label-danger">
+                            !!!ФОТО НЕ ПРИКРЕПЛЕНО!!!
+                        </span></p>
                     {% endif %}
-                    </strong></p>
                     {{ form_widget(photo.file) }}
                     <hr>
                 </div>

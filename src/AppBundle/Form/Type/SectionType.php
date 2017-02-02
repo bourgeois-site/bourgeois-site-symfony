@@ -15,10 +15,12 @@ class SectionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title', TextType::class, array(
-            'label' => "Заголовок", 'attr' => array('class' => 'form-control')
+            'label' => "Заголовок", 'required' => false,
+            'attr' => array('class' => 'form-control')
         ));
         $builder->add('description', TextareaType::class, array(
-            'label' => "Описание", 'attr' => array('class' => 'form-control')
+            'label' => "Описание", 'required' => false,
+            'attr' => array('class' => 'form-control')
         ));
         $builder->add('photos', CollectionType::class, array(
             'label' => "Фото",

@@ -54,7 +54,7 @@ $(document).ready(function() {
   $('#global_submit').on('click', function() {
     var forms = $('form');
     for(var i=0;i < forms.length;i++) {
-      setTimeout(forms[i].submit(), 50 * (i + 1));
+      setTimeout(forms[i].submit(), 10 * (i + 1));
     }
   });
 });

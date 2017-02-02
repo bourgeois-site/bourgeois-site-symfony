@@ -110,7 +110,7 @@ class AdminDefaultController extends Controller
             $em->flush();
 
             $this->addFlash('notice', "Изменения в \"{$title}\" произведены");
-            sleep(1);
+            sleep(3);
 
             switch($type) {
             case 'about':
@@ -195,7 +195,7 @@ class AdminDefaultController extends Controller
             } else {
                 $this->addFlash('notice', "Изменения в \"{$category->getTitle()} > {$title}\" произведены");
             }
-            sleep(1);
+            sleep(3);
 
             switch($type) {
             case 'about':
@@ -303,7 +303,7 @@ class AdminDefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($photo);
             $em->flush();
-            sleep(1);
+            sleep(3);
 
             switch($type) {
             case 'about':
