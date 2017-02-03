@@ -232,6 +232,13 @@ main {
   }
 }
 
+@keyframes bg {
+  0%   { background-color: #eea236; }
+  25%  { background-color: #d43f3a; }
+  50%  { background-color: #2e6da4; }
+  75%  { background-color: #4cae4c; }
+}
+
 #discounts_link {
   position: fixed;
   right: -100px;
@@ -245,6 +252,9 @@ main {
 
   &:hover {
     right: -12px;
+    animation-name: bg;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
   }
 }
 
