@@ -53,6 +53,7 @@ $(document).ready(function() {
 
   $('#global_submit').on('click', function() {
     var forms = $('form');
+    $(this).addClass('disabled').text("Ждите ~ " + forms.length * 3 + " сек");
     for(var i=0;i < forms.length;i++) {
       setTimeout(forms[i].submit(), 10 * (i + 1));
     }

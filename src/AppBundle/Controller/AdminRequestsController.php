@@ -31,13 +31,17 @@ class AdminRequestsController extends Controller
 
         $requests = $query->getResult();
 
+        $help = "<p>Здесь находятся все поступившие, но еще не обработанные заявки.</p>
+            <p>Обработанные заявки можно перенести в архив, нажав на \"Архивировать\".</p>";
+
         return $this->render('admin/requests/index.html.twig', [
             'type' => 'Новые',
             'page' => $page,
             'pagesCount' => $pagesCount,
             'path' => 'admin_new_requests',
             'allRequestsCount' => $allRequestsCount,
-            'requests' => $requests
+            'requests' => $requests,
+            'help' => $help
         ]);
     }
 
@@ -65,13 +69,18 @@ class AdminRequestsController extends Controller
 
         $requests = $query->getResult();
 
+        $help = "<p>Место для обработанных заявок.</p>
+          <p>Любую заявку можно \"восстановить\", то есть вернуть ее обратно в список новых.</p>
+          <p>В поле \"Дата\" каждой обработанной заявки - дата перенесения в архив.</p>";
+
         return $this->render('admin/requests/index.html.twig', [
             'type' => 'Обработанные',
             'page' => $page,
             'pagesCount' => $pagesCount,
             'path' => 'admin_archived_requests',
             'allRequestsCount' => $allRequestsCount,
-            'requests' => $requests
+            'requests' => $requests,
+            'help' => $help
         ]);
     }
 

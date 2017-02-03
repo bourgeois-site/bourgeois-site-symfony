@@ -5,7 +5,9 @@
             <h2>{{ form_label(form.title) }}</h2>
             {{ form_widget(form.title) }}
         </div>
-        <h2>{{ form_label(form.photo) }}</h2>
+        <h2 class="{% if category.type == 'about' %}hidden{% endif %}">
+            {{ form_label(form.photo) }}
+        </h2>
         <div class="{% if category.type != 'about' %}hidden{% endif %}">
             {{ form_row(form.photo.title) }}
             {{ form_row(form.photo.description) }}

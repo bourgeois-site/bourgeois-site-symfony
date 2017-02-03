@@ -3,6 +3,7 @@
 {% block main %}
     <h1 class="page-header">Новый контакт</h1>
 
+    {{ include('admin/partials/help_section.html.twig', {'text': help, 'title': "Новый контакт"}) }}
     <ul class="nav nav-tabs nav-justified">
         <li role="presentation" class="active">
             <a href="#" id="new_internet_form_link">Интернет</a>

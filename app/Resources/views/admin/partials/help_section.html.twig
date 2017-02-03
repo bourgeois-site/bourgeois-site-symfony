@@ -1,0 +1,24 @@
+<button id="help_button" type="button" class="btn btn-default" data-toggle="modal" data-target="#help_section" title="Помощь">
+    <span class="fa fa-2x fa-question-circle-o"></span>
+</button>
+
+<div class="modal fade" id="help_section" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button class="close" type="button" data-dismiss="modal" aria-lable="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title">{{ title }}</h3>
+            </div>
+            <div class="modal-body">
+                {{ text|raw }}
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" type="button" data-dismiss="modal">
+                    Спасибо
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

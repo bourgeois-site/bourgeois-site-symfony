@@ -80,10 +80,19 @@ body {
       height: 35px;
       transition: height 0.5s;
     }
+
+    #help_button {
+      margin-bottom: 10px !important;
+    }
   }
 }
 
 @media (min-width: 768px) {
+  #help_button {
+    position: fixed;
+    bottom: 60px;
+    left: 20px;
+  }
 }
 
 @media (min-width: 992px) {

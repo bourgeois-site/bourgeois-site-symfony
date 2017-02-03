@@ -5,6 +5,7 @@
         Выполненные работы <span class="badge">{{ works|length }}</span>
     </h1>
 
+    {{ include('admin/partials/help_section.html.twig', {'text': help, 'title': "Выполненные работы"}) }}
     <a href="{{ path('admin_new_work') }}" id="new_entity_link" class="btn btn-primary btn-lg">
         <span class="glyphicon glyphicon-plus"></span>
         Добавить новую

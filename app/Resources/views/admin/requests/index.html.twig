@@ -5,6 +5,8 @@
         {{ type }} заявки <span class="badge">{{ allRequestsCount }}</span>
     </h1>
 
+    {{ include('admin/partials/help_section.html.twig', {'text': help, 'title': type ~ " заявки" }) }}
+
     {% if allRequestsCount == 0 %}
         <div class="alert alert-success">{{ type }} заявки отсутствуют</div>
     {% else %}

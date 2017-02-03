@@ -10,6 +10,7 @@
         {% endif %}
     </h1>
 
+    {{ include('admin/partials/help_section.html.twig', {'text': help, 'title': category.title}) }}
     <div id="edit_category_form">
     </div>
 

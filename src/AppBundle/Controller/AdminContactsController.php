@@ -35,19 +35,23 @@ class AdminContactsController extends Controller
             $mainPhoneAbsent = false;
         }
 
+        $help = "<p>Здесь можно создать/изменить/удалить контакты, а также выбрать главный номер для звонка со смартфона</p>
+            <p>Главный номер выбирается из числа номеров, указанных как \"Главный номер\" при создании/изменении адресов</p>";
+
         return $this->render('admin/contacts/index.html.twig', [
             'internetContacts' => $internetContacts,
             'realContacts' => $realContacts,
             'internetCount' => $internetCount,
             'realCount' => $realCount,
-            'mainPhoneAbsent' => $mainPhoneAbsent
+            'mainPhoneAbsent' => $mainPhoneAbsent,
+            'help' => $help
         ]);
     }
 
     /**
      * @Route("/админ/контакты/новый", name="admin_new_contact")
      */
-    public function newInternetContactAction(Request $request)
+    public function newContactAction(Request $request)
     {
         $internetContactForm = $this->createForm(
             InternetContactType::class, new InternetContact());
@@ -69,9 +73,20 @@ class AdminContactsController extends Controller
             }
         }
 
+        $help = "<h4>Интернет контакт</h4><p>Контакты 2х типов</p>
+            <ul><li>электронная почта</li><li>соц. сети и мессенджеры</li></ul>
+            <p>Для каждого контакта нужно выбрать заголовок, который будет видеть пользователь, и адрес ресурса.</p>
+            <p>Для соц. сетей есть варианты значков</p>
+            <h4>Адрес</h4><p>Телефонный номер в поле \"Главный номер\" можно будет выбрать в дальнейшем для звонка со смартфона</p>
+            <p>Особо нужно обратить внимание на данные в поле \"широта/долгота\", так как от этого зависит корректность отображения на карте.</p>
+            <p>Формат такой: XX.XXXXXX</p>
+            <hr>
+            <p>После создания контактов не забывайте проверять результат на сайте(в разделе \"Контакты\" и внизу страницы).</p>";
+
         return $this->render('admin/contacts/new.html.twig', [
             'internetContactForm' => $internetContactForm->createView(),
-            'realContactForm' => $realContactForm->createView()
+            'realContactForm' => $realContactForm->createView(),
+            'help' => $help
         ]);
     }
 
@@ -103,9 +118,17 @@ class AdminContactsController extends Controller
             return $this->redirectToRoute('admin_contacts');
         }
 
+        $help = "<p>Контакты 2х типов</p>
+            <ul><li>электронная почта</li><li>соц. сети и мессенджеры</li></ul>
+            <p>Для каждого контакта нужно выбрать заголовок, который будет видеть пользователь, и адрес ресурса.</p>
+            <p>Для соц. сетей есть варианты значков</p>
+            <hr>
+            <p>После редактирования контактов не забывайте проверять результат на сайте(в разделе \"Контакты\" и внизу страницы).</p>";
+
         return $this->render('admin/contacts/edit.html.twig', [
             'title' => $title,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'help' => $help
         ]);
     }
 
@@ -137,9 +160,16 @@ class AdminContactsController extends Controller
             return $this->redirectToRoute('admin_contacts');
         }
 
+        $help = "<p>Телефонный номер в поле \"Главный номер\" можно будет выбрать в дальнейшем для звонка со смартфона</p>
+            <p>Особо нужно обратить внимание на данные в поле \"широта/долгота\", так как от этого зависит корректность отображения на карте.</p>
+            <p>Формат такой: XX.XXXXXX</p>
+            <hr>
+            <p>После редактирования контактов не забывайте проверять результат на сайте(в разделе \"Контакты\" и внизу страницы).</p>";
+
         return $this->render('admin/contacts/edit.html.twig', [
             'title' => $title,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'help' => $help
         ]);
     }
 

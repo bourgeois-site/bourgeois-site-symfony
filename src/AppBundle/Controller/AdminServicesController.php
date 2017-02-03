@@ -18,8 +18,12 @@ class AdminServicesController extends Controller
             getRepository('AppBundle:Category')->
             findByType('service');
 
+        $help = "<p>Здесь можно создать/просмотреть/удалить услуги.</p>
+            <p>Миниатюры под заголовками услуг те же, что и на главной странице сайта</p>";
+
         return $this->render('admin/services/index.html.twig', [
-            'services' => $services
+            'services' => $services,
+            'help' => $help
         ]);
     }
 
@@ -51,10 +55,14 @@ class AdminServicesController extends Controller
             ]);
         }
 
+        $help = "<p>Заголовок и фото будут использоваться на главной странице сайта</p>
+            <p>После создания можно будет добавлять разделы и редактировать эту услугу</p>";
+
         return $this->render('admin/shared/new_category.html.twig', [
             'title' => $title,
             'category' => $service,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'help' => $help
         ]);
     }
 
@@ -71,8 +79,15 @@ class AdminServicesController extends Controller
             throw $this->createNotFoundException();
         }
 
+        $help = "<p>Заголовок и фото главной формы (значок справа от \"{$service->getTitle()}\") будут использоваться на главной странице сайта.</p>
+            <p>Описание услуги состоит из разделов (абзацев), к которым можно прикреплять фото.</p>
+            <p>Количество абзацев и прикрепленных к ним фото не ограничено.</p>
+            <p>Каждое фото можно дополнить заголовком и описанием.</p>
+            <p>При удалении абзаца все прикрепленные к нему фото удаляются.</p>";
+
         return $this->render('admin/shared/show_category.html.twig', [
-            'category' => $service
+            'category' => $service,
+            'help' => $help
         ]);
     }
 

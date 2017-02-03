@@ -5,6 +5,7 @@
         Контакты <span class="badge">{{ internetCount + realCount }}</span>
     </h1>
 
+    {{ include('admin/partials/help_section.html.twig', {'text': help, 'title': "Контакты"}) }}
     <a id="new_entity_link" class="btn btn-primary btn-lg" href="{{ path('admin_new_contact') }}">
         <span class="glyphicon glyphicon-plus"></span>
         Добавить новый контакт

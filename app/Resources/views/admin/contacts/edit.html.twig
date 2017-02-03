@@ -1,8 +1,9 @@
 {% extends 'admin/layout.html.twig' %}
 
 {% block main %}
-    <h1 class="page-header">Редактировать {{ title }}</h1>
+    <h1 class="page-header">{{ title }}</h1>
 
+    {{ include('admin/partials/help_section.html.twig', {'text': help, 'title': "Редактировать контакт" }) }}
     {{ form_start(form) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}

@@ -18,8 +18,12 @@ class AdminWorksController extends Controller
             getRepository('AppBundle:Category')->
             findByType('work');
 
+        $help = "<p>Здесь можно создать/просмотреть/удалить выполненные работы.</p>
+            <p>Миниатюры под заголовками выполненных работ те же, что и на главной странице сайта</p>";
+
         return $this->render('admin/works/index.html.twig', [
-            'works' => $works
+            'works' => $works,
+            'help' => $help
         ]);
     }
 
@@ -51,10 +55,14 @@ class AdminWorksController extends Controller
             ]);
         }
 
+        $help = "<p>Заголовок и фото будут использоваться на главной странице сайта</p>
+            <p>После создания можно будет добавлять разделы и редактировать эту работу</p>";
+
         return $this->render('admin/shared/new_category.html.twig', [
             'title' => $title,
             'category' => $work,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'help' => $help
         ]);
     }
 
@@ -71,8 +79,15 @@ class AdminWorksController extends Controller
             throw $this->createNotFoundException();
         }
 
+        $help = "<p>Заголовок и фото главной формы (значок справа от \"{$work->getTitle()}\") будут использоваться на главной странице сайта.</p>
+            <p>Описание работы состоит из разделов (абзацев), к которым можно прикреплять фото.</p>
+            <p>Количество абзацев и прикрепленных к ним фото не ограничено.</p>
+            <p>Каждое фото можно дополнить заголовком и описанием.</p>
+            <p>При удалении абзаца все прикрепленные к нему фото удаляются.</p>";
+
         return $this->render('admin/shared/show_category.html.twig', [
-            'category' => $work
+            'category' => $work,
+            'help' => $help
         ]);
     }
 
