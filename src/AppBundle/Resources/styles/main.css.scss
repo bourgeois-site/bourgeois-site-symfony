@@ -173,7 +173,7 @@ main {
   }
 }
 
-#call_form {
+#call_form, #phone_modal {
   .modal-header {
     h3, p {
       text-align: center;
@@ -196,6 +196,8 @@ main {
   color: #fff;
   opacity: 0.7;
   transition: opacity 0.5s;
+  border: 1px solid #fff;
+  border-radius: 5px;
 
   &:hover {
     opacity: 1.0;
@@ -203,19 +205,19 @@ main {
 }
 
 #phone {
-  bottom: -5px;
-  left: -5px;
+  bottom: 8px;
+  left: 8px;
+  padding-left: 13px;
+  padding-right: 12px;
   background: #474747;
-  border: 1px solid #fff;
-  border-top-right-radius: 35px;
 }
 
 #mobile_call_button {
-  bottom: -8px;
-  right: -8px;
+  bottom: 8px;
+  right: 8px;
   background: #d9534f;
-  border: 1px solid #d43f3a;
-  border-top-left-radius: 35px;
+  padding-top: 8px;
+  padding-bottom: 12px;
 }
 
 #desktop_call_button {

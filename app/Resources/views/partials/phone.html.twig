@@ -1,5 +1,27 @@
 {% if mainPhone %}
-    <a id="phone" href="tel:{{ mainPhone }}" data-rel="external" title="Сделать звонок">
+    <button id="phone" type="button" data-toggle="modal" data-target="#phone_modal">
         <i class="fa fa-2x fa-phone"></i>
-    </a>
+    </button>
+
+    <div class="modal fade" id="phone_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3>Сделать звонок со смартфона</h3>
+                    <p>Вы можете уточнить интересующую информацию по номеру {{ mainPhone }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Отмена
+                    </button>
+                    <a href="tel:{{ mainPhone }}" data-rel="external" class="btn btn-danger">
+                        Сделать звонок
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endif %}
