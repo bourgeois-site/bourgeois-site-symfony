@@ -102,6 +102,8 @@ class DefaultController extends Controller
 
     public function headerAction()
     {
+        $company = ["О КОМПАНИИ" => $this->generateUrl('aboutpage')];
+
         $services = $this->getDoctrine()->
             getRepository('AppBundle:Category')->
             findByType('service');
@@ -111,6 +113,7 @@ class DefaultController extends Controller
             findByType('work');
 
         return $this->render('partials/header.html.twig', [
+            'company' => $company,
             'services' => $services,
             'works' => $works
         ]);

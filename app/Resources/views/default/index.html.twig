@@ -4,17 +4,28 @@
 <section id="jumbotron">
     <div class="container-fluid">
         <div class="row">
-            <div class="jumbotron col-md-6 col-md-offset-3">
+            <div class="jumbotron col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
                 {% if about.photo %}
                     <h1>{{ about.photo.title }}</h1>
-                    <p>{{ about.photo.description }}</p>
+                    <h3 class="h4">{{ about.photo.description }}</h3>
                 {% else %}
                     <h1>Студия Буржуа</h1>
-                    <p>Мы предлагаем услуги, включающие в себя все работы по частичному ремонту и ремонту "под ключ"</p>
+                    <h3 class="h4">Мы предлагаем услуги, включающие в себя все работы по частичному ремонту и ремонту "под ключ"</h3>
                 {% endif %}
-                <a href="{{ path('aboutpage') }}" class="btn btn-danger btn-lg">
-                    {{ about.title }}
-                </a>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="fa fa-2x fa-ruble"></span>
+                        <h3 class="h4">Укладываемся в бюджет</h3>
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="fa fa-2x fa-calculator"></span>
+                        <h3 class="h4">Детальная смета в день обращения</h3>
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="fa fa-2x fa-calendar"></span>
+                        <h3 class="h4">Соблюдаем сроки</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

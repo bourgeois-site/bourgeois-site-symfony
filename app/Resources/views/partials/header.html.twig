@@ -34,6 +34,13 @@
                             {% endfor %}
                         </ul>
                     </li>
+                    {% for title, link in company %}
+                        <li>
+                            <a class="header_link" href="{{ link }}">
+                                <small>{{ title }}</small>
+                            </a>
+                        </li>
+                    {% endfor %}
                     <li><a href="{{ path('contacts') }}" class="header_link">
                         <small>КОНТАКТЫ</small>
                     </a></li>
