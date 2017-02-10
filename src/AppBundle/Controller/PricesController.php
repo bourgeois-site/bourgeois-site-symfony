@@ -12,6 +12,15 @@ class PricesController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('prices/index.html.twig');
+        $prices = $this->getDoctrine()->getRepository('AppBundle:Category')->
+            findByType('price');
+
+        if (!$prices) {
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render('prices/index.html.twig',[
+            'prices' => $prices
+        ]);
     }
 }

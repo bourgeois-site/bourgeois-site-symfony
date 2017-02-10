@@ -1,0 +1,39 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block main %}
+    <h1 class="page-header">
+        Цены <span class="badge">{{ prices|length }}</span>
+    </h1>
+
+    {{ include('admin/partials/help_section.html.twig', {'text': help, 'title': "Цены"}) }}
+    <a href="{{ path('admin_new_price') }}" id="new_entity_link" class="btn btn-primary btn-lg">
+        <span class="glyphicon glyphicon-plus"></span>
+        Добавить прайс
+    </a>
+
+    <div class="list-group">
+        {% for price in prices %}
+            {% set title = price.title %}
+            {% set slug = price.slug %}
+            <div class="list-group-item">
+                <h2 class="h3 entity_header">
+                    {{ title }}
+                </h2>
+                <div class="entity_body">
+                    <a href="{{ vich_uploader_asset(price.photo, 'file') }}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        Просмотр
+                    </a>
+                    <a href="{{ path('admin_edit_price', { 'slug': slug }) }}" class="btn btn-info">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        Редактировать
+                    </a>
+                    <a href="{{ path('admin_delete_price', { 'slug': slug }) }}"class="btn btn-danger" data-confirm='Удалить "{{ title }}"?'>
+                        <span class="glyphicon glyphicon-trash"></span>
+                        Удалить
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

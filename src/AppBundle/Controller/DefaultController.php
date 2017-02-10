@@ -131,9 +131,8 @@ class DefaultController extends Controller
             $company["Акции"] = $this->generateUrl('discounts');
         }
 
-        $prices = $em->getRepository('AppBundle:Category')->
-            findOneByType('prices');
-        if ($prices && sizeof($prices->getSections()) > 0) {
+        $prices = $em->getRepository('AppBundle:Category')->findByType('price');
+        if ($prices) {
             $company["Цены"] = $this->generateUrl('prices');
         }
 

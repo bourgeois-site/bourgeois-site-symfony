@@ -1,7 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Цены - {{ parent() }}{% endblock %}
+
 {% block main %}
-<div id="iamnotready">
-    <h1>Price about everything</h1>
-</div>
+    <div id="page_header">
+        <h1>Цены</h1>
+    </div>
+
+    {% for price in prices %}
+        <h2>{{ price.title }}</h2>
+        <a href="{{ vich_uploader_asset(price.photo, 'file') }}">
+            Скачать
+        </a>
+    {% endfor %}
 {% endblock %}
