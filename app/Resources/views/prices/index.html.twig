@@ -9,7 +9,7 @@
 
     {% for price in prices %}
         <h2>{{ price.title }}</h2>
-        <a href="{{ vich_uploader_asset(price.photo, 'file') }}">
+        <a href="{{ vich_uploader_asset(price.photo, 'file') }}" target="_blank">
             Скачать
         </a>
     {% endfor %}

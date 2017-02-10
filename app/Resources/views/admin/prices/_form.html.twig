@@ -1,0 +1,27 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-6">
+        <h2>{{ form_label(form.title) }}</h2>
+        {{ form_widget(form.title) }}
+        <h2>{{ form_label(form.photo.file.file) }}</h2>
+        {{ form_row(form.photo.title) }}
+        {{ form_row(form.photo.description) }}
+        {% if form.photo.vars.value %}
+            {% if form.photo.vars.value.filename %}
+                <p class="h4"><span class="label label-primary">
+                    Файл прикреплен - {{ form.photo.vars.value.filename }}
+                </span></p>
+            {% else %}
+                <p class="h4"><span class="label label-danger">
+                    !!!ПРИКРЕПИТЕ ФАЙЛ!!!
+                </span></p>
+            {% endif %}
+        {% endif %}
+        {{ form_widget(form.photo.file) }}
+    </div>
+</div>
+<div class="hidden">
+    {{ form_row(form.photo) }}
+</div>
+{{ form_end(form) }}
+

@@ -1,0 +1,17 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block main %}
+    <h1 class="page_header">
+        Новый прайс
+    </h1>
+
+    {{ include('admin/partials/help_section.html.twig', { 'text': help, 'title': "Новый прайс" }) }}
+
+    {{ include('admin/prices/_form.html.twig', { 'form': form }) }}
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    {{ include('admin/partials/common_form_js.js') }}
+</script>
+{% endblock %}
