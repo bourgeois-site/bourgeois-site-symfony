@@ -181,6 +181,30 @@ main {
       height: 300px;
     }
   }
+
+  #prices {
+    margin-top: 40px;
+    text-align: center;
+
+    .price {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 15px;
+
+      h2 {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      .file_caption {
+        margin: 10px;
+
+        p {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
 }
 
 #call_form, #phone_modal {

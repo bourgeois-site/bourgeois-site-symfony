@@ -7,10 +7,24 @@
         <h1>Цены</h1>
     </div>
 
-    {% for price in prices %}
-        <h2>{{ price.title }}</h2>
-        <a href="{{ vich_uploader_asset(price.photo, 'file') }}" target="_blank">
-            Скачать
-        </a>
-    {% endfor %}
+    <div class="container" id="prices">
+        <div class="row">
+            {% for price in prices %}
+            <div class="col-md-6">
+                <div class="price">
+                    <h2>{{ price.title }}</h2>
+                    <hr>
+                    <div class="file_caption">
+                        <h3>{{ price.photo.title }}</h3>
+                        <p>{{ price.photo.description }}</p>
+                        <a href="{{ vich_uploader_asset(price.photo, 'file') }}" target="_blank" class="btn btn-primary btn-block">
+                            <span class="glyphicon glyphicon-download-alt"></span>
+                            Скачать
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
