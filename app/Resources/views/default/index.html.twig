@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block description %}
+{% if about.photo %}
+{{ about.photo.title }} - {{ about.photo.description }}
+{% endif %}
+{% endblock %}
+
 {% block main %}
 <section id="jumbotron">
     <div class="container-fluid">

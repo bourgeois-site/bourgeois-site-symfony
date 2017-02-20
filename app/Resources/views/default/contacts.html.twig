@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+{% block description %}{{ title }}. {{ parent() }}{% endblock %}
 {% block title %}{{ title }} - {{ parent() }}{% endblock %}
 
 {% block main %}
