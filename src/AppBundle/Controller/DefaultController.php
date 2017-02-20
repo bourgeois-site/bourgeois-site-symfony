@@ -102,15 +102,22 @@ class DefaultController extends Controller
 
     public function headerAction()
     {
-        $company = ["О КОМПАНИИ" => $this->generateUrl('aboutpage')];
+        $em = $this->getDoctrine()->getManager();
 
-        $services = $this->getDoctrine()->
-            getRepository('AppBundle:Category')->
+        $company = [];
+
+        $services = $em->getRepository('AppBundle:Category')->
             findByType('service');
 
-        $works = $this->getDoctrine()->
-            getRepository('AppBundle:Category')->
+        $works = $em->getRepository('AppBundle:Category')->
             findByType('work');
+
+        $prices = $em->getRepository('AppBundle:Category')->findByType('price');
+        if ($prices) {
+            $company["ЦЕНЫ"] = $this->generateUrl('prices');
+        }
+
+        $company["О КОМПАНИИ"] = $this->generateUrl('aboutpage');
 
         return $this->render('partials/header.html.twig', [
             'company' => $company,
