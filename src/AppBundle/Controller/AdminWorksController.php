@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class AdminWorksController extends Controller
 {
     /**
-     * @Route("/админ/выполненные-работы", name="admin_works")
+     * @Route("/админ/портфолио", name="admin_works")
      */
     public function indexAction()
     {
@@ -19,7 +19,7 @@ class AdminWorksController extends Controller
             findByType('work');
 
         $help = "<p>Здесь можно создать/просмотреть/удалить выполненные работы.</p>
-            <p>Миниатюры под заголовками выполненных работ те же, что и на главной странице сайта</p>";
+            <p>Миниатюры под заголовками работ те же, что и на главной странице сайта</p>";
 
         return $this->render('admin/works/index.html.twig', [
             'works' => $works,
@@ -28,11 +28,11 @@ class AdminWorksController extends Controller
     }
 
     /**
-     * @Route("/админ/выполненные-работы/новая", name="admin_new_work")
+     * @Route("/админ/портфолио/новая-работа", name="admin_new_work")
      */
     public function newAction(Request $request)
     {
-        $title = "Новая выполненная работа";
+        $title = "Новая работа";
 
         $work = new Category();
 
@@ -48,7 +48,7 @@ class AdminWorksController extends Controller
             $em->persist($work);
             $em->flush();
 
-            $this->addFlash('notice', "Добавлена новая выполненная работа");
+            $this->addFlash('notice', "Добавлена новая работа");
 
             return $this->redirectToRoute('admin_show_work', [
                 'slug' => $work->getSlug()
@@ -67,7 +67,7 @@ class AdminWorksController extends Controller
     }
 
     /**
-     * @Route("/админ/выполненные-работы/{slug}/редактировать", name="admin_show_work")
+     * @Route("/админ/портфолио/{slug}/редактировать", name="admin_show_work")
      */
     public function showAction($slug)
     {
@@ -92,7 +92,7 @@ class AdminWorksController extends Controller
     }
 
     /**
-     * @Route("/админ/выполненные-работы/{slug}/удалить", name="admin_delete_work")
+     * @Route("/админ/портфолио/{slug}/удалить", name="admin_delete_work")
      */
     public function deleteAction($slug)
     {
@@ -114,7 +114,7 @@ class AdminWorksController extends Controller
         $em->remove($work);
         $em->flush();
 
-        $this->addFlash('notice', "\"{$work->getTitle()}\" удалена из выполненных работ");
+        $this->addFlash('notice', "\"{$work->getTitle()}\" удалена из портфолио");
 
         return $this->redirectToRoute('admin_works');
     }
